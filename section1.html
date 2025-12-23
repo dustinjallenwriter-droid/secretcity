@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Golden Rule | The Art of Hinting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-mode">
+<div class="intro-container">
+    <div class="module-intro">
+        <!-- Section 1 - Golden Rule Reveal -->
+        <div class="intro-section golden-rule-section active" id="section1">
+            <h1 class="golden-rule" id="goldenRule" onclick="revealRule()">The Golden Rule</h1>
+        </div>
+
+        <!-- Section 2 - Rule Revealed -->
+        <div class="intro-section" id="section2">
+            <h2 class="rule-title">The Golden Rule</h2>
+            <p class="rule-statement">"Do not hint unless absolutely necessary."</p>
+            
+            <p>The ideal game is for the players to solve everything on their own without any hints from the clue-staff. Players do not want to be told the answers—they are paying to be challenged. Hinting should only be utilized to avoid a level of frustration that hinders the players' enjoyment or to avoid them missing the majority of the game due to lack of experience, low player numbers, or any other anomaly.</p>
+            
+            <button class="next-btn" onclick="showSection(3)">
+                <span>→</span>
+            </button>
+        </div>
+
+        <!-- Section 3 - Additional content -->
+        <div class="intro-section" id="section3">
+            <p>More content here...</p>
+            
+            <button class="next-btn" onclick="showSection(4)">
+                <span>→</span>
+            </button>
+        </div>
+
+        <!-- Navigation Dots -->
+        <div class="nav-dots">
+            <span class="dot active" onclick="showSection(1)"></span>
+            <span class="dot" onclick="showSection(2)"></span>
+            <span class="dot" onclick="showSection(3)"></span>
+        </div>
+    </div>
+</div>
+
+<script>
+let ruleRevealed = false;
+
+function revealRule() {
+    if (!ruleRevealed) {
+        showSection(2);
+        ruleRevealed = true;
+        document.body.classList.remove('dark-mode');
+    }
+}
+
+function showSection(sectionNumber) {
+    // Hide all sections
+    const sections = document.querySelectorAll('.intro-section');
+    sections.forEach(section => {
+        section.classList.remove('active');
+    });
+    
+    // Remove active from all dots
+    const dots = document.querySelectorAll('.dot');
+    dots.forEach(dot => {
+        dot.classList.remove('active');
+    });
+    
+    // Show the requested section
+    document.getElementById('section' + sectionNumber).classList.add('active');
+    
+    // Activate the corresponding dot
+    dots[sectionNumber - 1].classList.add('active');
+    
+    // Remove dark mode when leaving section 1
+    if (sectionNumber > 1) {
+        document.body.classList.remove('dark-mode');
+        ruleRevealed = true;
+    } else {
+        document.body.classList.add('dark-mode');
+        ruleRevealed = false; // Reset so it's clickable again
+    }
+}
+</script>
+</body>
+</html>
