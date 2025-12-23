@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module Overview | The Art of Hinting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="intro-container">
+    <div class="module-intro">
+        <!-- Section 1 -->
+        <div class="intro-section active" id="section1">
+            <p>As Clue Staff, you occupy a unique role that blends theatrical performance, customer service, and game facilitation. Character work and storytelling may come naturally, but the art of hinting requires practice, observation, and restraint.</p>
+            
+            <p>Hinting demands constant judgment calls.<br> 
+                
+                <br>Every group of players is different—some feel neglected without assurance and guidance, others prefer to work through bumps in the road independently. Your goal is to enhance player satisfaction by helping them when they're truly stuck, without robbing them of the joy of discovery.</p>
+            
+            <button class="next-btn" onclick="showSection(2)">
+                <span>→</span>
+            </button>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="intro-section" id="section2">
+            <div class="failure-points">
+                <p><b>This module addresses the three critical failure points in hinting:</b></p>
+                <ul>
+                    <li><b>Over-hinting:</b> Giving too much information too soon, robbing players of achievement</li>
+                    <li><b>Poorly hinting:</b> Confusing players further with unclear, distracting, misleading, or narrative-breaking "hints"</li>
+                    <li><b>Under-hinting:</b> Allowing frustration to escalate and diminish the experience</li>
+                </ul>
+            </div>
+            
+            <button class="next-btn" onclick="showSection(3)">
+                <span>→</span>
+            </button>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="intro-section" id="section3">
+            <div class="module-topics">
+                <p><b>Topics covered in this module:</b></p>
+                <ul class="topic-list">
+                    <li>The Hinting Philosophy: Understanding stewing time vs. frustration</li>
+                    <li>Reading the Room: Body language and group dynamics</li>
+                    <li>Question-Based Hinting Protocol</li>
+                    <li>Maintaining Narrative Immersion</li>
+                    <li>Timing Your Interventions</li>
+                    <li>Game Anomalies and Special Situations</li>
+                </ul>
+            </div>
+
+            <button class="begin-btn" onclick="window.location.href='section1.html'">Start Learning</button>
+        </div>
+
+        <!-- Navigation Dots -->
+        <div class="nav-dots">
+            <span class="dot active" onclick="showSection(1)"></span>
+            <span class="dot" onclick="showSection(2)"></span>
+            <span class="dot" onclick="showSection(3)"></span>
+        </div>
+    </div>
+</div>
+
+<script>
+function showSection(sectionNumber) {
+    // Hide all sections
+    const sections = document.querySelectorAll('.intro-section');
+    sections.forEach(section => {
+        section.classList.remove('active');
+    });
+    
+    // Remove active from all dots
+    const dots = document.querySelectorAll('.dot');
+    dots.forEach(dot => {
+        dot.classList.remove('active');
+    });
+    
+    // Show the requested section
+    document.getElementById('section' + sectionNumber).classList.add('active');
+    
+    // Activate the corresponding dot
+    dots[sectionNumber - 1].classList.add('active');
+}
+</script>
+</body>
+</html>
