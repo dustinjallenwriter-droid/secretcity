@@ -404,15 +404,30 @@ body.dark-mode .intro-container {
     min-height: 100vh;
 }
 
-body:not(.dark-mode) .intro-container {
+body.dark-mode .nav-dots {
+    display: none;
+}
+
+
+/* Instead, add a specific class for pages that need centering */
+body.centered-layout .intro-container {
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
 }
 
-body.dark-mode .nav-dots {
-    display: none;
+/* Keep dark mode centering */
+body.dark-mode .intro-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Ensure landing page uses normal flow */
+body:not(.dark-mode):not(.centered-layout) .intro-container {
+    display: block;
 }
 
 /* Golden Rule Styling */
