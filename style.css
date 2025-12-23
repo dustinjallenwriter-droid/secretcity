@@ -525,3 +525,20 @@ body:not(.dark-mode):not(.centered-layout) .intro-container {
         font-size: 1.2rem;
     }
 }
+/* Large statement style for section 2 */
+.rule-statement-large {
+    font-family: var(--heading-font);
+    font-size: 3.5rem;
+    font-weight: 1000;
+    color: var(--black);
+    text-align: center;
+    line-height: 1.4;
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+@media (max-width: 768px) {
+    .rule-statement-large {
+        font-size: 1.8rem;
+    }
+}
