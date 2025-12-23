@@ -1,544 +1,101 @@
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Work+Sans:wght@400;500;600;700;800&display=swap');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Golden Rule | The Art of Hinting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-mode centered-layout">
+<div class="intro-container">
+    <div class="module-intro">
+        <!-- Section 1 - Golden Rule Reveal -->
+        <div class="intro-section golden-rule-section active" id="section1">
+            <h1 class="golden-rule" id="goldenRule" onclick="revealRule()">The Golden Rule</h1>
+        </div>
 
-/* CSS Variables for Secret City Brand */
-:root {
---yellow: #FDB913;
---teal: #1a4d5c;
---black: #1a1a1a;
---white: #FFFFFF;
---off-white: #F8F8F8;
---gray: #666666;
---heading-font: 'Work Sans', sans-serif;
---body-font: 'Quicksand', sans-serif;
-}
+        <!-- Section 2 - Rule Statement Only -->
+        <div class="intro-section" id="section2">
+            <p class="rule-statement-large">DO NOT HINT UNLESS ABSOLUTELY NECESSARY.</p>
+            
+            <button class="next-btn" onclick="showSection(3)">
+                <span>→</span>
+            </button>
+        </div>
 
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-}
+        <!-- Section 3 - Full Explanation -->
+        <div class="intro-section" id="section3">
+            <h2 class="rule-title">The Golden Rule</h2>
+            <p class="rule-statement">"Do not hint unless absolutely necessary."</p>
+            
+            <p>The ideal game is for the players to solve everything on their own without any hints from the clue-staff. Players do not want to be told the answers—they are paying to be challenged. Hinting should only be utilized to avoid a level of frustration that hinders the players' enjoyment or to avoid them missing the majority of the game due to lack of experience, low player numbers, or any other anomaly.</p>
+            
+            <button class="next-btn" onclick="showSection(4)">
+                <span>→</span>
+            </button>
+        </div>
 
-body {
-font-family: var(--body-font);
-background: var(--white);
-color: var(--black);
-min-height: 100vh;
-margin: 0;
-display: flex;
-align-items: center;
-justify-content: center;
-padding: 2rem;
-}
+        <!-- Section 4 - Additional content -->
+        <div class="intro-section" id="section4">
+            <p>More content here...</p>
+            
+            <button class="next-btn" onclick="showSection(5)">
+                <span>→</span>
+            </button>
+        </div>
 
-.intro-container {
-width: 100%;
-max-width: 600px;
-margin: 0 auto;
-}
+        <!-- Navigation Dots -->
+        <div class="nav-dots">
+            <span class="dot active" onclick="showSection(1)"></span>
+            <span class="dot" onclick="showSection(2)"></span>
+            <span class="dot" onclick="showSection(3)"></span>
+            <span class="dot" onclick="showSection(4)"></span>
+        </div>
+    </div>
+</div>
 
-.crawl-wrapper {
-margin-bottom: 3rem;
-}
+<script>
+let ruleRevealed = false;
 
-.crawl {
-width: 100%;
-}
-
-.title h1 {
-font-family: var(--heading-font);
-font-size: 3rem;
-font-weight: 800;
-color: var(--black);
-margin-bottom: 0.5rem;
-letter-spacing: -0.02em;
-line-height: 1.1;
-}
-
-/* Yellow accent underline */
-.title h1::after {
-content: '';
-display: block;
-width: 80px;
-height: 4px;
-background: var(--yellow);
-margin-top: 1rem;
-}
-
-.subtitle {
-font-family: var(--heading-font);
-font-size: 1rem;
-color: var(--teal);
-margin-bottom: 3rem;
-letter-spacing: 0.05em;
-font-weight: 600;
-text-transform: uppercase;
-}
-
-.content {
-font-family: var(--body-font);
-font-size: 1.05rem;
-line-height: 1.7;
-color: var(--gray);
-font-weight: 400;
-}
-
-.content p {
-margin-bottom: 1.5rem;
-color: var(--black);
-}
-
-.content ul {
-list-style: none;
-margin: 2rem 0;
-}
-
-.content li {
-margin-bottom: 1.2rem;
-padding-left: 2rem;
-position: relative;
-color: var(--gray);
-}
-
-/* Yellow bullet points */
-.content li::before {
-content: '';
-position: absolute;
-left: 0;
-top: 0.6em;
-width: 8px;
-height: 8px;
-background: var(--yellow);
-border-radius: 50%;
-}
-
-/* Begin Button - Below content */
-.begin-btn {
-font-family: var(--heading-font);
-width: 100%;
-max-width: 300px;
-display: block;
-margin: 3rem auto 0;
-padding: 1.2rem 3rem;
-font-size: 1rem;
-font-weight: 700;
-text-transform: uppercase;
-letter-spacing: 0.15em;
-background: var(--black);
-color: var(--white);
-border: none;
-cursor: pointer;
-transition: all 0.3s ease;
-position: relative;
-overflow: hidden;
-}
-
-/* Yellow accent bar on button */
-.begin-btn::before {
-content: '';
-position: absolute;
-top: 0;
-left: 0;
-width: 4px;
-height: 100%;
-background: var(--yellow);
-}
-
-.begin-btn:hover {
-background: var(--teal);
-transform: translateY(-2px);
-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.begin-btn:active {
-transform: translateY(0);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-body {
-padding: 1.5rem;
-    }
-.title h1 {
-font-size: 2.5rem;
-    }
-.subtitle {
-font-size: 0.9rem;
-    }
-.content {
-font-size: 1rem;
-    }
-.begin-btn {
-font-size: 0.9rem;
-padding: 1rem 2.5rem;
+function revealRule() {
+    if (!ruleRevealed) {
+        showSection(2);
+        ruleRevealed = true;
+        document.body.classList.remove('dark-mode');
     }
 }
-/* Module Overview Specific Styles */
-.module-intro {
-    max-width: 700px;
-    margin: 0 auto;
-}
 
-.module-intro > p {
-    margin-bottom: 1.5rem;
-    line-height: 1.8;
-}
-
-/* Failure Points Section */
-.failure-points {
-    margin: 3rem 0;
-    padding: 2rem;
-    background: var(--off-white);
-    border-left: 4px solid var(--yellow);
-}
-
-.failure-points p {
-    margin-bottom: 1rem;
-    font-weight: 600;
-    color: var(--black);
-}
-
-.failure-points ul {
-    list-style: none;
-    margin: 0;
-}
-
-.failure-points li {
-    margin-bottom: 1rem;
-    padding-left: 0;
-    color: var(--gray);
-}
-
-.failure-points li:before {
-    display: none;
-}
-
-.failure-points li b {
-    color: var(--teal);
-    font-weight: 600;
-}
-
-/* Topics Section */
-.module-topics {
-    margin: 3rem 0;
-}
-
-.module-topics > p {
-    margin-bottom: 1.5rem;
-    font-weight: 600;
-    color: var(--black);
-    font-size: 1.1rem;
-}
-
-.topic-list {
-    list-style: none;
-    margin: 0;
-}
-
-.topic-list li {
-    margin-bottom: 0.75rem;
-    padding-left: 1.5rem;
-    color: var(--gray);
-    font-weight: 500;
-    position: relative;
-}
-
-.topic-list li:before {
-    width: 6px;
-    height: 6px;
-    top: 0.65em;
-}
-
-/* Responsive for TOC page */
-@media (max-width: 768px) {
-    .failure-points {
-        padding: 1.5rem;
-    }
+function showSection(sectionNumber) {
+    // Hide all sections
+    const sections = document.querySelectorAll('.intro-section');
+    sections.forEach(section => {
+        section.classList.remove('active');
+    });
     
-    .module-intro > p {
-        font-size: 0.95rem;
-    }
-}
-/* Section Navigation Styles */
-.intro-section {
-    display: none;
-    opacity: 0;
-    animation: fadeIn 0.5s ease-in;
-}
-
-.intro-section.active {
-    display: block;
-    opacity: 1;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Next Arrow Button */
-.next-btn {
-    display: block;
-    margin: 3rem auto 0;
-    width: 60px;
-    height: 60px;
-    background: var(--black);
-    color: var(--white);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1.5rem;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.next-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--yellow);
-    transform: scale(0);
-    transition: transform 0.3s ease;
-    border-radius: 50%;
-    z-index: 0;
-}
-
-.next-btn:hover::before {
-    transform: scale(1);
-}
-
-.next-btn span {
-    position: relative;
-    z-index: 1;
-}
-
-.next-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.next-btn:active {
-    transform: translateY(0);
-}
-/* Navigation Dots */
-.nav-dots {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 3rem;
-    padding-top: 2rem;
-}
-
-.dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #ddd;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.dot:hover {
-    background: var(--gray);
-    transform: scale(1.2);
-}
-
-.dot.active {
-    background: var(--yellow);
-    width: 32px;
-    border-radius: 6px;
-}
-/* Increase line spacing throughout */
-.module-intro p {
-    line-height: 1.9;
-}
-
-.failure-points li {
-    line-height: 1.8;
-}
-
-/* Topic list with arrow bullets */
-.topic-list li {
-    line-height: 1.8;
-    padding-left: 2rem;
-}
-
-.topic-list li:before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: auto;
-    height: auto;
-    background: none;
-    border-radius: 0;
-    color: var(--yellow);
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-
-/* Add more spacing between topic items */
-.topic-list li {
-    margin-bottom: 1rem;
-}
-/* Dark Mode for Golden Rule */
-body.dark-mode {
-    background: #0a0a0a;
-    transition: background 0.6s ease;
-}
-
-body.dark-mode .intro-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-}
-
-body.dark-mode .nav-dots {
-    display: none;
-}
-
-
-/* Instead, add a specific class for pages that need centering */
-body.centered-layout .intro-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-}
-
-/* Keep dark mode centering */
-body.dark-mode .intro-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-}
-
-/* Ensure landing page uses normal flow */
-body:not(.dark-mode):not(.centered-layout) .intro-container {
-    display: block;
-}
-
-/* Golden Rule Styling */
-.golden-rule-section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: auto;
-    width: 100%;
-}
-
-.golden-rule {
-    font-family: var(--heading-font);
-    font-size: 4rem;
-    font-weight: 800;
-    background: linear-gradient(
-        135deg,
-        #ffd700 0%,
-        #ffed4e 25%,
-        #ffd700 50%,
-        #ffed4e 75%,
-        #ffd700 100%
-    );
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: shimmer 3s ease-in-out infinite, float 3s ease-in-out infinite;
-    cursor: pointer;
-    text-align: center;
-    letter-spacing: 0.05em;
-    text-shadow: 0 0 30px rgba(255, 215, 0, 0.5),
-                 0 0 60px rgba(255, 215, 0, 0.3);
-    transition: transform 0.3s ease;
-    margin: 0;
-}
-
-.golden-rule:hover {
-    transform: scale(1.05);
-}
-
-@keyframes shimmer {
-    0%, 100% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-/* Rule Revealed Styling */
-.rule-title {
-    font-family: var(--heading-font);
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--black);
-    margin-bottom: 1rem;
-    position: relative;
-}
-
-.rule-title::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 3px;
-    background: var(--yellow);
-    margin-top: 0.5rem;
-}
-
-.rule-statement {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--teal);
-    font-style: italic;
-    margin-bottom: 2rem;
-    line-height: 1.6;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .golden-rule {
-        font-size: 2.5rem;
-    }
+    // Remove active from all dots
+    const dots = document.querySelectorAll('.dot');
+    dots.forEach(dot => {
+        dot.classList.remove('active');
+    });
     
-    .rule-statement {
-        font-size: 1.2rem;
+    // Show the requested section
+    document.getElementById('section' + sectionNumber).classList.add('active');
+    
+    // Activate the corresponding dot
+    dots[sectionNumber - 1].classList.add('active');
+    
+    // Remove dark mode when leaving section 1
+    if (sectionNumber > 1) {
+        document.body.classList.remove('dark-mode');
+        ruleRevealed = true;
+    } else {
+        document.body.classList.add('dark-mode');
+        ruleRevealed = false;
     }
 }
-/* Large statement style for section 2 */
-.rule-statement-large {
-    font-family: var(--heading-font);
-    font-size: 3.5rem;
-    font-weight: 1000;
-    color: var(--black);
-    text-align: center;
-    line-height: 1.4;
-    margin: 0;
-    letter-spacing: -0.02em;
-}
-
-@media (max-width: 768px) {
-    .rule-statement-large {
-        font-size: 1.8rem;
-    }
-}
+</script>
+</body>
+</html>
