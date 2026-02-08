@@ -19,3 +19,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000);
     });
 });
+
+let currentStep = 1;
+const totalSteps = 4;
+
+function showStep(stepNumber) {
+    currentStep = stepNumber;
+    
+    // Hide all step cards
+    document.querySelectorAll('.step-card').forEach(card => {
+        card.classList.remove('active');
+    });
+    
+    // Show selected step
+    document.getElementById('step' + stepNumber).classList.add('active');
+    
+    // Update dots
+    document.querySelectorAll('.step-dot').forEach(dot => {
+        dot.classList.remove('active');
+        if (parseInt(dot.dataset.step) < stepNumber) {
+            dot.classList.add('completed');
+        }
+    });
+    document.querySelector('.step-dot[data-step="' + stepNumber + '"]').classList.add('active');
+}
+
+function prevStep() {
+    if (currentStep > 1) {
+        showStep(currentStep - 1);
+    }
+}
+
+function nextStep() {
+    if (currentStep < totalSteps) {
+        showStep(currentStep + 1);
+    }
+}
+
+function completeSteps() {
+    document.querySelectorAll('.step-dot').forEach(dot => {
+        dot.classList.add('completed');
+    });
+}

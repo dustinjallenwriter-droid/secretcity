@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Check Your Understanding | The Art of Hinting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+<div class="quiz-container">
+    <div class="quiz-header">
+        <h1>Check your understanding</h1>
+        <p>Now it's your turn to apply what you've learned about timing, stewing, and the First Ten Minutes Rule. Use the following activities to test your knowledge and reinforce your skills.</p>
+    </div>
+
+    <!-- Question 1: Scenario Multiple Choice -->
+    <div class="quiz-question active" id="question1">
+        <div class="question-card">
+            <div class="scenario">
+                <p>You're 7 minutes into a game. Two players are stuck, trying to combine pieces from two separate puzzles, looking frustrated, while others explore. They call you over to ask for advice.</p>
+                <p class="scenario-prompt">What do you do?</p>
+            </div>
+
+            <div class="options">
+                <label class="option">
+                    <input type="radio" name="q1" value="a">
+                    <span class="option-text">Jump in with a question-based hint: "And where did you find the bookmarks???"</span>
+                </label>
+                <label class="option">
+                    <input type="radio" name="q1" value="b" data-correct="true">
+                    <span class="option-text">Continue observing; frustration is normal this early: "Hmm… Well, we enlisted you for a reason. I'm sure you can figure it out!"</span>
+                </label>
+                <label class="option">
+                    <input type="radio" name="q1" value="c">
+                    <span class="option-text">Take a jab at them for some tough-love motivation: "I see we don't know how to read. That sucks."</span>
+                </label>
+                <label class="option">
+                    <input type="radio" name="q1" value="d">
+                    <span class="option-text">Distract them with character work: "Hey, put those down and listen to me sing an autobiographical song."</span>
+                </label>
+            </div>
+
+            <button class="submit-btn" onclick="submitAnswer(1)">Submit</button>
+        </div>
+
+        <div class="feedback" id="feedback1">
+            <div class="feedback-icon">
+                <span class="icon-circle"><span class="checkmark">✓</span></span>
+            </div>
+            <p class="feedback-label">Correct</p>
+            <p class="feedback-text">This is the best choice. The first ten minutes are for players to stew and work through challenges on their own, unless something is seriously wrong.</p>
+        </div>
+    </div>
+
+    <!-- Question 2: Drag and Drop Sorting -->
+    <div class="quiz-question" id="question2">
+        <h2 class="question-title">Productive or Unproductive?</h2>
+        <p class="question-intro">Sort the following player behaviors into either <strong>Productive Stewing</strong> or <strong>Unproductive Frustration</strong>. This will help you sharpen your ability to read the room and respond appropriately.</p>
+
+        <div class="sort-activity">
+            <div class="card-stack" id="cardStack">
+                <div class="sort-card" data-category="unproductive" draggable="true">Ignoring each other and looking at you for help</div>
+                <div class="sort-card" data-category="productive" draggable="true">Animated discussion</div>
+                <div class="sort-card" data-category="unproductive" draggable="true">Extended silence and checking phones</div>
+                <div class="sort-card" data-category="productive" draggable="true">Physical engagement with game pieces</div>
+                <div class="sort-card" data-category="productive" draggable="true">Players pointing at puzzle elements</div>
+                <div class="sort-card" data-category="unproductive" draggable="true">Arms crossed, heads down</div>
+            </div>
+
+            <div class="drop-zones">
+                <div class="drop-zone" id="productiveZone" data-category="productive">
+                    <span class="zone-label">Productive Stewing</span>
+                    <div class="zone-cards"></div>
+                </div>
+                <div class="drop-zone" id="unproductiveZone" data-category="unproductive">
+                    <span class="zone-label">Unproductive Frustration</span>
+                    <div class="zone-cards"></div>
+                </div>
+            </div>
+        </div>
+
+        <button class="submit-btn" onclick="checkSorting()">Submit</button>
+
+        <div class="feedback" id="feedback2">
+            <div class="feedback-icon">
+                <span class="icon-circle"><span class="checkmark">✓</span></span>
+            </div>
+            <p class="feedback-label">Well done!</p>
+            <p class="feedback-text">You correctly identified the signs of productive stewing versus unproductive frustration. Use these cues to guide your hinting decisions.</p>
+        </div>
+    </div>
+
+    <!-- Question 3: Conceptual Multiple Choice -->
+    <div class="quiz-question" id="question3">
+        <div class="question-card">
+            <div class="scenario">
+                <p>One group receives frequent hints and completes the game, but feels they wouldn't have solved it without you.</p>
+                <p>Another group struggles, doesn't finish, but feels they would've escaped if they had 30 more seconds.</p>
+                <p class="scenario-prompt">Which scenario is more likely to result in higher player satisfaction?</p>
+            </div>
+
+            <div class="options">
+                <label class="option">
+                    <input type="radio" name="q3" value="a" data-correct="true">
+                    <span class="option-text">The group that didn't quite win but felt accomplished</span>
+                </label>
+                <label class="option">
+                    <input type="radio" name="q3" value="b">
+                    <span class="option-text">The group that received frequent hints and won</span>
+                </label>
+                <label class="option">
+                    <input type="radio" name="q3" value="c">
+                    <span class="option-text">Both groups will be equally satisfied</span>
+                </label>
+                <label class="option">
+                    <input type="radio" name="q3" value="d">
+                    <span class="option-text">Neither group will be satisfied</span>
+                </label>
+            </div>
+
+            <button class="submit-btn" onclick="submitAnswer(3)">Submit</button>
+        </div>
+
+        <div class="feedback" id="feedback3">
+            <div class="feedback-icon">
+                <span class="icon-circle"><span class="checkmark">✓</span></span>
+            </div>
+            <p class="feedback-label">Correct</p>
+            <p class="feedback-text">Players value genuine challenge and earned success more than simply winning with heavy hinting.</p>
+        </div>
+    </div>
+
+    <!-- Quiz Navigation -->
+    <div class="quiz-nav">
+        <div class="quiz-progress">
+            <span class="progress-dot active" data-q="1">1</span>
+            <span class="progress-dot" data-q="2">2</span>
+            <span class="progress-dot" data-q="3">3</span>
+        </div>
+    </div>
+
+    <!-- Continue Button (shown after all questions complete) -->
+    <button class="continue-btn" id="continueBtn" onclick="window.location.href='section-2.html'">Continue</button>
+</div>
+
+<script src="quiz.js"></script>
+</body>
+</html>
