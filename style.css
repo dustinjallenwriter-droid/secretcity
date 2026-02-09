@@ -100,18 +100,6 @@ position: relative;
 color: var(--gray);
 }
 
-/* Yellow bullet points */
-.content li::before {
-content: '';
-position: absolute;
-left: 0;
-top: 0.6em;
-width: 8px;
-height: 8px;
-background: var(--yellow);
-border-radius: 50%;
-}
-
 /* Begin Button - Below content */
 .begin-btn {
 font-family: var(--heading-font);
@@ -565,7 +553,7 @@ body:not(.dark-mode):not(.centered-layout) .intro-container {
 
 .content li::before,
 .intro-section li::before {
-    content: "›";
+    f
     position: absolute;
     left: 0;
     color: var(--secret-blue);
