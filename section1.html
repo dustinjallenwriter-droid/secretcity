@@ -164,9 +164,11 @@
     <span class="step-dot" data-step="4" onclick="showStep(4)">4</span>
     <span class="step-arrow" id="nextArrow" onclick="nextStep()">›</span>
 </div>
-    <button class="next-btn" onclick="showSection(7)">
-        <span>→</span>
-    </button>
+    
+    <!-- Quiz button - appears only on step 4 -->
+    <a href="section1quiz.html" class="quiz-btn" id="quizBtn" style="display: none;">
+        Check your understanding
+    </a>
 </div>
 
         <!-- Navigation Dots -->
@@ -272,6 +274,14 @@ function showStep(stepNumber) {
     
     prevArrow.classList.toggle('disabled', currentStep === 1);
     nextArrow.classList.toggle('disabled', currentStep === totalSteps);
+    
+    // Show quiz button only on step 4
+    const quizBtn = document.getElementById('quizBtn');
+    if (currentStep === totalSteps) {
+        quizBtn.style.display = 'block';
+    } else {
+        quizBtn.style.display = 'none';
+    }
 }
 
 function prevStep() {
@@ -288,4 +298,3 @@ function nextStep() {
 </script>
 </body>
 </html>
-
