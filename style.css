@@ -553,7 +553,7 @@ body:not(.dark-mode):not(.centered-layout) .intro-container {
 
 .content li::before,
 .intro-section li::before {
-    f
+    content: "›";
     position: absolute;
     left: 0;
     color: var(--secret-blue);
@@ -633,7 +633,6 @@ body:not(.dark-mode):not(.centered-layout) .intro-container {
 }
 
 .accordion-content li::before {
-    content: "•";
     position: absolute;
     left: 0;
     color: var(--black);
@@ -819,4 +818,54 @@ body:not(.dark-mode):not(.centered-layout) .intro-container {
 .accordion-content p:last-child {
     padding-bottom: 1.5rem;
     margin-bottom: 0;
+}
+
+/* Quiz Button Styling */
+.quiz-btn {
+    font-family: var(--heading-font);
+    display: block;
+    margin: 3rem auto 0;
+    padding: 1.2rem 3rem;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    background: var(--teal);
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    text-align: center;
+    max-width: 400px;
+}
+
+/* Yellow accent bar on quiz button */
+.quiz-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--yellow);
+}
+
+.quiz-btn:hover {
+    background: var(--black);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.quiz-btn:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .quiz-btn {
+        font-size: 0.9rem;
+        padding: 1rem 2.5rem;
+    }
 }
