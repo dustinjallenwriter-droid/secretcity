@@ -1,0 +1,871 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Work+Sans:wght@400;500;600;700;800&display=swap');
+
+/* CSS Variables for Secret City Brand */
+:root {
+--yellow: #FDB913;
+--teal: #1a4d5c;
+--black: #1a1a1a;
+--white: #FFFFFF;
+--off-white: #F8F8F8;
+--gray: #666666;
+--heading-font: 'Work Sans', sans-serif;
+--body-font: 'Quicksand', sans-serif;
+}
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: var(--body-font);
+background: var(--white);
+color: var(--black);
+min-height: 100vh;
+margin: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 2rem;
+}
+
+.intro-container {
+width: 100%;
+max-width: 600px;
+margin: 0 auto;
+}
+
+.crawl-wrapper {
+margin-bottom: 3rem;
+}
+
+.crawl {
+width: 100%;
+}
+
+.title h1 {
+font-family: var(--heading-font);
+font-size: 3rem;
+font-weight: 800;
+color: var(--black);
+margin-bottom: 0.5rem;
+letter-spacing: -0.02em;
+line-height: 1.1;
+}
+
+/* Yellow accent underline */
+.title h1::after {
+content: '';
+display: block;
+width: 80px;
+height: 4px;
+background: var(--yellow);
+margin-top: 1rem;
+}
+
+.subtitle {
+font-family: var(--heading-font);
+font-size: 1rem;
+color: var(--teal);
+margin-bottom: 3rem;
+letter-spacing: 0.05em;
+font-weight: 600;
+text-transform: uppercase;
+}
+
+.content {
+font-family: var(--body-font);
+font-size: 1.05rem;
+line-height: 1.7;
+color: var(--gray);
+font-weight: 400;
+}
+
+.content p {
+margin-bottom: 1.5rem;
+color: var(--black);
+}
+
+.content ul {
+list-style: none;
+margin: 2rem 0;
+}
+
+.content li {
+margin-bottom: 1.2rem;
+padding-left: 2rem;
+position: relative;
+color: var(--gray);
+}
+
+/* Begin Button - Below content */
+.begin-btn {
+font-family: var(--heading-font);
+width: 100%;
+max-width: 300px;
+display: block;
+margin: 3rem auto 0;
+padding: 1.2rem 3rem;
+font-size: 1rem;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 0.15em;
+background: var(--black);
+color: var(--white);
+border: none;
+cursor: pointer;
+transition: all 0.3s ease;
+position: relative;
+overflow: hidden;
+}
+
+/* Yellow accent bar on button */
+.begin-btn::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 4px;
+height: 100%;
+background: var(--yellow);
+}
+
+.begin-btn:hover {
+background: var(--teal);
+transform: translateY(-2px);
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.begin-btn:active {
+transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+body {
+padding: 1.5rem;
+    }
+.title h1 {
+font-size: 2.5rem;
+    }
+.subtitle {
+font-size: 0.9rem;
+    }
+.content {
+font-size: 1rem;
+    }
+.begin-btn {
+font-size: 0.9rem;
+padding: 1rem 2.5rem;
+    }
+}
+/* Module Overview Specific Styles */
+.module-intro {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.module-intro > p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+/* Failure Points Section */
+.failure-points {
+    margin: 3rem 0;
+    padding: 2rem;
+    background: var(--off-white);
+    border-left: 4px solid var(--yellow);
+}
+
+.failure-points p {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--black);
+}
+
+.failure-points ul {
+    list-style: none;
+    margin: 0;
+}
+
+.failure-points li {
+    margin-bottom: 1rem;
+    padding-left: 0;
+    color: var(--gray);
+}
+
+.failure-points li:before {
+    display: none;
+}
+
+.failure-points li b {
+    color: var(--teal);
+    font-weight: 600;
+}
+
+/* Topics Section */
+.module-topics {
+    margin: 3rem 0;
+}
+
+.module-topics > p {
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    color: var(--black);
+    font-size: 1.1rem;
+}
+
+.topic-list {
+    list-style: none;
+    margin: 0;
+}
+
+.topic-list li {
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+    color: var(--gray);
+    font-weight: 500;
+    position: relative;
+}
+
+.topic-list li:before {
+    width: 6px;
+    height: 6px;
+    top: 0.65em;
+}
+
+/* Responsive for TOC page */
+@media (max-width: 768px) {
+    .failure-points {
+        padding: 1.5rem;
+    }
+    
+    .module-intro > p {
+        font-size: 0.95rem;
+    }
+}
+/* Section Navigation Styles */
+.intro-section {
+    display: none;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.intro-section.active {
+    display: block;
+    opacity: 1;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Next Arrow Button */
+.next-btn {
+    display: block;
+    margin: 3rem auto 0;
+    width: 60px;
+    height: 60px;
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.next-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--yellow);
+    transform: scale(0);
+    transition: transform 0.3s ease;
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.next-btn:hover::before {
+    transform: scale(1);
+}
+
+.next-btn span {
+    position: relative;
+    z-index: 1;
+}
+
+.next-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.next-btn:active {
+    transform: translateY(0);
+}
+/* Navigation Dots */
+.nav-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 3rem;
+    padding-top: 2rem;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot:hover {
+    background: var(--gray);
+    transform: scale(1.2);
+}
+
+.dot.active {
+    background: var(--yellow);
+    width: 32px;
+    border-radius: 6px;
+}
+/* Increase line spacing throughout */
+.module-intro p {
+    line-height: 1.9;
+}
+
+.failure-points li {
+    line-height: 1.8;
+}
+
+/* Topic list with arrow bullets */
+.topic-list li {
+    line-height: 1.8;
+    padding-left: 2rem;
+}
+
+.topic-list li:before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: auto;
+    height: auto;
+    background: none;
+    border-radius: 0;
+    color: var(--yellow);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Add more spacing between topic items */
+.topic-list li {
+    margin-bottom: 1rem;
+}
+/* Dark Mode for Golden Rule */
+body.dark-mode {
+    background: #0a0a0a;
+    transition: background 0.6s ease;
+}
+
+body.dark-mode .intro-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+body.dark-mode .nav-dots {
+    display: none;
+}
+
+
+/* Instead, add a specific class for pages that need centering */
+body.centered-layout .intro-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Keep dark mode centering */
+body.dark-mode .intro-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Ensure landing page uses normal flow */
+body:not(.dark-mode):not(.centered-layout) .intro-container {
+    display: block;
+}
+
+/* Golden Rule Styling */
+.golden-rule-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: auto;
+    width: 100%;
+}
+
+.golden-rule {
+    font-family: var(--heading-font);
+    font-size: 4rem;
+    font-weight: 800;
+    background: linear-gradient(
+        135deg,
+        #ffd700 0%,
+        #ffed4e 25%,
+        #ffd700 50%,
+        #ffed4e 75%,
+        #ffd700 100%
+    );
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s ease-in-out infinite, float 3s ease-in-out infinite;
+    cursor: pointer;
+    text-align: center;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.5),
+                 0 0 60px rgba(255, 215, 0, 0.3);
+    transition: transform 0.3s ease;
+    margin: 0;
+}
+
+.golden-rule:hover {
+    transform: scale(1.05);
+}
+
+@keyframes shimmer {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Rule Revealed Styling */
+.rule-title {
+    font-family: var(--heading-font);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.rule-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--yellow);
+    margin-top: 0.5rem;
+}
+
+.rule-statement {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--teal);
+    font-style: italic;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .golden-rule {
+        font-size: 2.5rem;
+    }
+    
+    .rule-statement {
+        font-size: 1.2rem;
+    }
+}
+/* Large statement style for section 2 */
+.rule-statement-large {
+    font-family: var(--heading-font);
+    font-size: 3.5rem;
+    font-weight: 1000;
+    color: var(--black);
+    text-align: center;
+    line-height: 1.4;
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+@media (max-width: 768px) {
+    .rule-statement-large {
+        font-size: 1.8rem;
+    }
+}
+.list-lead {
+    font-weight: 600;
+    color: var(--secret-blue);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.01em;
+}
+
+.content ul,
+.intro-section ul {
+    list-style: none;
+    margin: 0 0 1.5rem 1.5rem;
+    padding: 0;
+}
+
+.content li,
+.intro-section li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.25rem;
+    position: relative;
+}
+
+.content li::before,
+.intro-section li::before {
+    content: "›";
+    position: absolute;
+    left: 0;
+    color: var(--secret-blue);
+    font-weight: 600;
+}
+.accordion {
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+}
+
+.accordion-item {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.accordion-item:last-child {
+    border-bottom: none;
+}
+
+.accordion-header {
+    width: 100%;
+    padding: 1.25rem 1.5rem;
+    background: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--body-font);
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-align: left;
+    transition: background 0.2s ease;
+}
+
+.accordion-header:hover {
+    background: #fafafa;
+}
+
+.accordion-icon {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #666;
+    transition: transform 0.3s ease;
+}
+
+.accordion-item.active .accordion-icon {
+    transform: rotate(45deg);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    background: #fff;
+    border-left: 4px solid var(--gold);
+    transition: max-height 0.3s ease;
+}
+
+.accordion-content p,
+.accordion-content ul {
+    padding: 0 1.5rem;
+}
+
+.accordion-content p:first-child {
+    padding-top: 1rem;
+}
+
+.accordion-content ul {
+    padding-bottom: 1.5rem;
+}
+
+.accordion-content li {
+    margin-bottom: 0.75rem;
+    padding-left: 1.25rem;
+    position: relative;
+}
+
+.accordion-content li::before {
+    position: absolute;
+    left: 0;
+    color: var(--black);
+}
+/* Note box */
+.note-box {
+     background: rgba(244, 196, 48, 0.15);
+    border-left: 4px solid var(--gold);
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+}
+
+.note-box p {
+    margin: 0;
+}
+
+/* Step Carousel */
+.step-carousel {
+    margin: 2rem 0;
+}
+
+.step-card {
+    display: none;
+    background: rgba(244, 196, 48, 0.15);
+    border: 1px solid var(--gold);
+    border-left: 4px solid var(--gold);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: left;
+}
+
+.step-card.active {
+    display: block;
+}
+
+.step-badge {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--secret-blue);
+    margin-bottom: 1rem;
+}
+
+.step-card h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--black);
+}
+
+.step-card p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Step Navigation */
+.step-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.step-arrow {
+    font-size: 1.3rem;
+    color: #999;
+    cursor: pointer;
+    user-select: none;
+    padding: 0.25rem;
+    transition: color 0.2s ease;
+}
+
+.step-arrow:hover {
+    color: var(--secret-blue);
+}
+
+.step-arrow.disabled {
+    color: #ddd;
+    cursor: default;
+}
+
+.step-dot {
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #fff;
+}
+
+.step-dot:hover {
+    border-color: var(--secret-blue);
+}
+
+.step-dot.active {
+    border-color: var(--secret-blue);
+    background: var(--secret-blue);
+    color: #fff;
+    font-weight: 700;
+}
+
+.step-dot.completed {
+    border-color: var(--gold);
+    background: var(--gold);
+    color: var(--black);
+}
+/* Accordion Styles */
+.accordion {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+}
+
+.accordion-item {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.accordion-item:last-child {
+    border-bottom: none;
+}
+
+.accordion-header {
+    width: 100%;
+    padding: 1.25rem 1.5rem;
+    background: #fff;
+    border: none;
+    border-left: 4px solid var(--gold);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--body-font);
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-align: left;
+    transition: background 0.2s ease;
+}
+
+.accordion-header:hover {
+    background: rgba(244, 196, 48, 0.08);
+}
+
+.accordion-icon {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--gold);
+}
+
+.accordion-item.active {
+    border-left: 4px solid var(--gold);
+}
+
+.accordion-item.active .accordion-header {
+    background: rgba(244, 196, 48, 0.1);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    background: #fff;
+    transition: max-height 0.3s ease;
+}
+
+.accordion-content p {
+    padding: 0 1.5rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.accordion-content p:first-child {
+    padding-top: 0.5rem;
+}
+
+.accordion-content p:last-child {
+    padding-bottom: 1.5rem;
+    margin-bottom: 0;
+}
+
+/* Quiz Button Styling */
+.quiz-btn {
+    font-family: var(--heading-font);
+    display: block;
+    margin: 3rem auto 0;
+    padding: 1.2rem 3rem;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    background: var(--teal);
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    text-align: center;
+    max-width: 400px;
+}
+
+/* Yellow accent bar on quiz button */
+.quiz-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--yellow);
+}
+
+.quiz-btn:hover {
+    background: var(--black);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.quiz-btn:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .quiz-btn {
+        font-size: 0.9rem;
+        padding: 1rem 2.5rem;
+    }
+}

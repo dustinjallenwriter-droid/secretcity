@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Read the Room! | The Art of Hinting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="intro-container">
+    <div class="module-intro">
+        <!-- Section 1 - Title & Intro -->
+        <div class="intro-section active" id="section1">
+            <h2 class="section-title">Responding to group dynamics and player behaviour</h2>
+            <br>
+            <p>When it comes to hinting, knowing <em>when</em> to hint is often more important than knowing <em>what</em> to say. You won't always be given direct cues as to when it is or isn't the right time to hint. Developing <em>tact</em> often depends on reading unspoken cues from players.</p>
+            <br>
+            <p>In this lesson, you'll learn how to interpret group dynamics and adapt your approach to keep every team engaged and challenged. By sharpening your observation skills, you'll be able to support players at just the right moments without giving too much away.</p>
+            
+            <button class="next-btn" onclick="showSection(2)">
+                <span>→</span>
+            </button>
+        </div>
+
+        <!-- Section 2 - Common Group Dynamics -->
+        <div class="intro-section" id="section2">
+            <h2 class="section-title">Common Group Dynamics in Escape Rooms</h2>
+            <br>
+            <p>Understanding different group dynamics allows you to tailor your approach and maximize engagement. Expand each section to learn about common group types and how to support them.</p>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Unbalanced Groups</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>These groups have one dominant solver or leader, while others follow passively. The leader may drive progress, but quieter members can become disengaged.</p>
+                        <div class="note-box">
+                            <p><strong>Hinting Consideration:</strong><br> Offer positive reinforcement to encourage participation from everyone, and gently prompt quieter players to contribute.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Uncommunicative Groups</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>In these groups, players work quietly or in isolation, rarely sharing discoveries or ideas. Important information can be missed due to lack of communication.</p>
+                        <div class="note-box">
+                            <p><strong>Hinting Consideration:</strong> <br>Remind the group to share findings and theories, helping them unlock new perspectives and solutions.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Clumping Groups</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>All players crowd around a single puzzle, leaving other challenges untouched. This can slow progress and leave some team members idle.</p>
+                        <div class="note-box">
+                            <p><strong>Hinting Consideration:</strong> <br>Suggest dividing tasks so everyone stays engaged and the group covers more ground.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Distracted Groups</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>These groups jump from task to task without making progress, or overlook obvious clues. They may become scattered or lose focus.</p>
+                        <div class="note-box">
+                            <p><strong>Hinting Consideration:</strong> <br>Encourage thoroughness and careful searching to help them refocus and move forward.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="next-btn" onclick="showSection(3)">
+                <span>→</span>
+            </button>
+        </div>
+
+        <!-- Section 3 - The Three Universal Reminders -->
+        <div class="intro-section" id="section3">
+            <h2 class="section-title">The Three Universal Reminders</h2>
+            <br>
+            <p>Secret City's <strong>three universal reminders</strong> are powerful tools you can use at any time to encourage teamwork and problem-solving. While they're not quite hints, these prompts help groups work more effectively without revealing puzzle solutions, keeping the experience challenging and rewarding.</p>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Divide and Conquer</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p><strong>When to use:</strong> <br>If the entire group is clustered around one puzzle while others remain untouched, or if some players are idle while others work.</p>
+                        <p><strong>How to phrase in character:</strong> <br>'There's so much to explore here—why not divide your forces?' or 'With your numbers, you could investigate several mysteries at once!'</p>
+                        <p><strong>Example:</strong> <br>Six players crowd around a letter puzzle while other challenges are ignored. Suggest splitting up to cover more ground.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Communication</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p><strong>When to use:</strong><br>> If players are making discoveries but not sharing, or if groups are working in isolation and missing out on each other's insights.</p>
+                        <p><strong>How to phrase in character:</strong> <br>'Have you shared your findings with your companions?' or 'Perhaps you and your teammate should compare notes?'</p>
+                        <p><strong>Example:</strong><br> One player solves a puzzle, but others don't know and start working on it again. Remind them to update each other.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Be Thorough</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p><strong>When to use:</strong> <br>If players are rushing, overlooking obvious clues, or making careless errors. Also helpful when important elements are dismissed without examination.</p>
+                        <p><strong>How to phrase in character:</strong> <br>'Let's be thorough in figuring this out,' or 'What did you notice about the postcard... anything else?'</p>
+                        <p><strong>Example:</strong> <br>Players miss a clue hidden in plain sight because they didn't search carefully. Encourage them to slow down and check again.</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="next-btn" onclick="showSection(4)">
+                <span>→</span>
+            </button>
+        </div>
+
+        <!-- Section 4 - Check Your Understanding Quiz -->
+        <div class="intro-section" id="section4">
+            <h2 class="section-title">Check Your Understanding</h2>
+            <br>
+            <p>Now it's time to put your knowledge into practice. Use the following activities to apply what you've learned about player cues, group dynamics, and universal reminders in realistic scenarios.</p>
+
+            <div class="question-card">
+                <p class="question-text">If all players are crowded around one puzzle, which reminder should you consider voicing?</p>
+
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q1" value="a">
+                        <span class="option-text">Communication</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1" value="b">
+                        <span class="option-text">Be Thorough</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1" value="c" data-correct="true">
+                        <span class="option-text">Divide & Conquer</span>
+                    </label>
+                </div>
+
+                <button class="submit-btn" onclick="submitAnswer()">Submit</button>
+            </div>
+
+            <div class="feedback" id="feedback">
+                <div class="feedback-icon">
+                    <span class="checkmark">✓</span>
+                </div>
+                <p class="feedback-label">Correct</p>
+                <p class="feedback-text">Correct! This scenario highlights the need to divide tasks among players to avoid everyone focusing on the same puzzle.</p>
+            </div>
+
+            <button class="continue-btn" id="continueBtn" onclick="window.location.href='section3.html'">Continue</button>
+        </div>
+
+        <!-- Navigation Dots -->
+        <div class="nav-dots">
+            <span class="dot active" onclick="showSection(1)"></span>
+            <span class="dot" onclick="showSection(2)"></span>
+            <span class="dot" onclick="showSection(3)"></span>
+            <span class="dot" onclick="showSection(4)"></span>
+        </div>
+    </div>
+</div>
+
+<script>
+function showSection(sectionNumber) {
+    const sections = document.querySelectorAll('.intro-section');
+    sections.forEach(section => section.classList.remove('active'));
+    
+    const dots = document.querySelectorAll('.dot');
+    dots.forEach(dot => dot.classList.remove('active'));
+    
+    document.getElementById('section' + sectionNumber).classList.add('active');
+    dots[sectionNumber - 1].classList.add('active');
+}
+
+// Accordion functionality
+document.querySelectorAll('.accordion-header').forEach(button => {
+    button.addEventListener('click', () => {
+        const item = button.parentElement;
+        const content = button.nextElementSibling;
+        const icon = button.querySelector('.accordion-icon');
+        const isActive = item.classList.contains('active');
+
+        // Close all items in same accordion
+        const accordion = item.parentElement;
+        accordion.querySelectorAll('.accordion-item').forEach(i => {
+            i.classList.remove('active');
+            i.querySelector('.accordion-content').style.maxHeight = null;
+            i.querySelector('.accordion-icon').textContent = '+';
+        });
+
+        // Open clicked item if it wasn't already open
+        if (!isActive) {
+            item.classList.add('active');
+            content.style.maxHeight = content.scrollHeight + 'px';
+            icon.textContent = '−';
+        }
+    });
+});
+
+// Quiz functionality
+function submitAnswer() {
+    const selected = document.querySelector('input[name="q1"]:checked');
+    if (!selected) return;
+
+    const isCorrect = selected.dataset.correct === 'true';
+    const feedback = document.getElementById('feedback');
+    
+    // Mark options
+    document.querySelectorAll('input[name="q1"]').forEach(input => {
+        const option = input.closest('.option');
+        input.disabled = true;
+        
+        if (input.dataset.correct === 'true') {
+            option.classList.add('correct');
+        } else if (input.checked && !isCorrect) {
+            option.classList.add('incorrect');
+        }
+    });
+
+    // Show feedback
+    feedback.classList.add('show');
+    if (!isCorrect) {
+        feedback.querySelector('.feedback-label').textContent = 'Not quite';
+        feedback.querySelector('.checkmark').textContent = '✗';
+    }
+
+    // Hide submit, show continue
+    document.querySelector('.submit-btn').style.display = 'none';
+    document.getElementById('continueBtn').style.display = 'block';
+}
+
+// Option click to select
+document.querySelectorAll('.option').forEach(option => {
+    option.addEventListener('click', () => {
+        const input = option.querySelector('input');
+        if (input.disabled) return;
+        input.checked = true;
+        
+        document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+        option.classList.add('selected');
+    });
+});
+</script>
+</body>
+</html>

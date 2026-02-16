@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Golden Rule | The Art of Hinting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-mode centered-layout">
+<div class="intro-container">
+    <div class="module-intro">
+        <!-- Section 1 - Golden Rule Reveal -->
+        <div class="intro-section golden-rule-section active" id="section1">
+            <h1 class="golden-rule" id="goldenRule" onclick="revealRule()">The Golden Rule</h1>
+        </div>
+
+        <!-- Section 2 - Rule Statement Only -->
+        <div class="intro-section" id="section2">
+            <p class="rule-statement-large">DO NOT HINT UNLESS ABSOLUTELY NECESSARY.</p>
+            
+            <button class="next-btn" onclick="showSection(3)">
+                <span>→</span>
+            </button>
+        </div>
+
+        <!-- Section 3 - Full Explanation -->
+        <div class="intro-section" id="section3">
+            <h2 class="rule-title">The Golden Rule</h2>
+            <p class="rule-statement">"Do not hint unless absolutely necessary."</p>
+           <br> 
+          <p>The ideal game is for the players to solve everything on their own without any hints from the clue-staff. Players do not want to be told the answers—they are paying to be challenged.</p><br>
+<p class="list-lead">Hinting should only be used to avoid:</p>
+<ul>
+    <li>Frustration levels that hinder the players' enjoyment</li>
+    <li>Players missing the majority of the game due to lack of experience or low player numbers</li>
+    <li>Other anomalies like language barriers or disability-related reasons (which will be covered later)</li>
+</ul>  
+            <button class="next-btn" onclick="showSection(4)">
+                <span>→</span>
+            </button>
+        </div>
+   <!-- Section 4 - Stewing vs Frustration -->
+    <div class="intro-section" id="section4">
+        <h2 class="section-title">Stewing vs. Frustration</h2>
+        <p>Learning to distinguish between productive struggle and unproductive frustration is essential. Expand each section below to learn the signs:</p>
+        
+        <div class="accordion">
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    <span>Productive stewing</span>
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>This is when players are forming theories, testing ideas, and experiencing the challenge they paid for. This productive struggle (stewing time) should be protected whenever possible.</p>
+                    <br><ul>
+                        <li>Animated discussion and debate</li>
+                        <li>Players pointing at puzzle elements</li>
+                        <li>Constructive 'What if...' and 'Maybe...' language</li>
+                        <li>Physical engagement with game pieces</li>
+                        <li>Players building on each other's ideas</li>
+                        <li>Comfortable silence punctuated by new observations</li>
+                        <li>Team members checking in with each other</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    <span>Unproductive frustration</span>
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>Certain cues may make it clear that players are no longer making progress and could benefit from your intervention. When you observe these signs, consider stepping in to help get the group back on track:</p><br>
+                    <ul>
+                        <li>Extended complete silence</li>
+                        <li>Players physically distancing from the puzzles</li>
+                        <li>Arms crossed or heads down</li>
+                        <li>Repeatedly looking at you for help</li>
+                        <li>Circular conversations going nowhere</li>
+                        <li>One person dominating while others disengage</li>
+                        <li>Visible anger or embarrassment</li>
+                        <li>Checking phones</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    <span>The in-between zone</span>
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>Many groups fall between these extremes. When it's unclear, wait 1–2 more minutes if it's early in the game; if later on, consider jumping in. Position yourself nearby, as your presence may prompt discussion. If needed, ask an open-ended question to try and kickstart their gameplay.</p>
+                    <p>Observing and responding appropriately in this zone is a key skill for effective hinting.</p>
+                </div>
+            </div>
+        </div>
+
+        <button class="next-btn" onclick="showSection(5)">
+            <span>→</span>
+        </button>
+    </div>
+
+    <!-- Section 5 - First Ten Minutes Rule -->
+<div class="intro-section" id="section5">
+    <h2 class="section-title">The <em>First Ten Minutes</em> rule</h2>
+    <br><p>The first ten minutes of gameplay are critical for establishing player autonomy and group dynamics. During this time, teams begin to:</p>
+    <ul><br>
+        <li>Form their own strategies</li>
+        <li>Explore the space</li>
+        <li>Fall into playfulness</li>
+        <li>Build individual and team mental frameworks</li>
+        <li>Calibrate to the game's difficulty</li>
+    </ul>
+    <p>Staying in character and available to them contributes to their immersion, but allowing players to explore independently and on their own terms in these early moments sets the foundation for a more rewarding experience.</p>
+    
+    <div class="note-box">
+        <p><strong>Note:</strong> The "First Ten Minutes" applies primarily to Secret City's one-hour escape game experiences. As our games branch out into different spans of time and situations, the amount of time here may not always be 10 minutes. But the principle remains the same: don't start interrupting their organic team formation process early in the game.</p>
+    </div>
+
+    <button class="next-btn" onclick="showSection(6)">
+        <span>→</span>
+    </button>
+</div>
+
+<!-- Section 6 - What To Do (Step Carousel) -->
+<div class="intro-section" id="section6">
+    <h2 class="section-title">What to do (and not do) in the first ten minutes</h2>
+    <br><p>Following this process in the opening minutes of a game sets the stage for a successful and satisfying experience for players.</p>
+
+    <div class="step-carousel">
+        <div class="step-card active" id="step1">
+            <span class="step-badge">Step 1</span>
+            <h3>Observe, don't intervene</h3>
+            <p>Watch group dynamics and individual engagement. Let players explore and interact with the room without interference.</p>
+        </div>
+
+        <div class="step-card" id="step2">
+            <span class="step-badge">Step 2</span>
+            <h3>Note engagement and frustration</h3>
+            <p>Identify who is active, who is passive, and any early signs of frustration. Use these observations to inform your later decisions.</p>
+        </div>
+
+        <div class="step-card" id="step3">
+            <span class="step-badge">Step 3</span>
+            <h3>Maintain character presence</h3>
+            <p>Stay in character and let players explore independently. Your presence should support immersion, not direct gameplay.</p>
+        </div>
+
+        <div class="step-card" id="step4">
+            <span class="step-badge">Step 4</span>
+            <h3>Exceptions</h3>
+            <p>Intervene only for safety, technical issues, or fundamental misunderstandings. These are the rare cases where breaking the rule is justified.</p>
+        </div>
+
+<div class="step-nav">
+    <span class="step-arrow disabled" id="prevArrow" onclick="prevStep()">‹</span>
+    <span class="step-dot active" data-step="1" onclick="showStep(1)">1</span>
+    <span class="step-dot" data-step="2" onclick="showStep(2)">2</span>
+    <span class="step-dot" data-step="3" onclick="showStep(3)">3</span>
+    <span class="step-dot" data-step="4" onclick="showStep(4)">4</span>
+    <span class="step-arrow" id="nextArrow" onclick="nextStep()">›</span>
+</div>
+    
+    <!-- Quiz button - appears only on step 4 -->
+    <a href="section1quiz.html" class="quiz-btn" id="quizBtn" style="display: none;">
+        Check your understanding
+    </a>
+</div>
+
+        <!-- Navigation Dots -->
+        <div class="nav-dots">
+            <span class="dot active" onclick="showSection(1)"></span>
+            <span class="dot" onclick="showSection(2)"></span>
+            <span class="dot" onclick="showSection(3)"></span>
+            <span class="dot" onclick="showSection(4)"></span>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+let ruleRevealed = false;
+
+function revealRule() {
+    if (!ruleRevealed) {
+        showSection(2);
+        ruleRevealed = true;
+        document.body.classList.remove('dark-mode');
+    }
+}
+
+function showSection(sectionNumber) {
+    // Hide all sections
+    const sections = document.querySelectorAll('.intro-section');
+    sections.forEach(section => {
+        section.classList.remove('active');
+    });
+    
+    // Remove active from all dots
+    const dots = document.querySelectorAll('.dot');
+    dots.forEach(dot => {
+        dot.classList.remove('active');
+    });
+    
+    // Show the requested section
+    document.getElementById('section' + sectionNumber).classList.add('active');
+    
+    // Activate the corresponding dot
+    dots[sectionNumber - 1].classList.add('active');
+    
+    // Remove dark mode when leaving section 1
+    if (sectionNumber > 1) {
+        document.body.classList.remove('dark-mode');
+        ruleRevealed = true;
+    } else {
+        document.body.classList.add('dark-mode');
+        ruleRevealed = false;
+    }
+}
+document.querySelectorAll('.accordion-header').forEach(button => {
+    button.addEventListener('click', () => {
+        const item = button.parentElement;
+        const content = button.nextElementSibling;
+        const isActive = item.classList.contains('active');
+
+        // Close all items
+        document.querySelectorAll('.accordion-item').forEach(i => {
+            i.classList.remove('active');
+            i.querySelector('.accordion-content').style.maxHeight = null;
+        });
+
+        // Open clicked item if it wasn't already open
+        if (!isActive) {
+            item.classList.add('active');
+            content.style.maxHeight = content.scrollHeight + 'px';
+        }
+    });
+});
+
+let currentStep = 1;
+const totalSteps = 4;
+
+function showStep(stepNumber) {
+    currentStep = stepNumber;
+    
+    // Hide all step cards
+    document.querySelectorAll('.step-card').forEach(card => {
+        card.classList.remove('active');
+    });
+    
+    // Show selected step
+    document.getElementById('step' + stepNumber).classList.add('active');
+    
+    // Update dots
+    document.querySelectorAll('.step-dot').forEach(dot => {
+        const dotStep = parseInt(dot.dataset.step);
+        dot.classList.remove('active', 'completed');
+        
+        if (dotStep < stepNumber) {
+            dot.classList.add('completed');
+        } else if (dotStep === stepNumber) {
+            dot.classList.add('active');
+        }
+    });
+    
+    // Update arrows
+    const prevArrow = document.getElementById('prevArrow');
+    const nextArrow = document.getElementById('nextArrow');
+    
+    prevArrow.classList.toggle('disabled', currentStep === 1);
+    nextArrow.classList.toggle('disabled', currentStep === totalSteps);
+    
+    // Show quiz button only on step 4
+    const quizBtn = document.getElementById('quizBtn');
+    if (currentStep === totalSteps) {
+        quizBtn.style.display = 'block';
+    } else {
+        quizBtn.style.display = 'none';
+    }
+}
+
+function prevStep() {
+    if (currentStep > 1) {
+        showStep(currentStep - 1);
+    }
+}
+
+function nextStep() {
+    if (currentStep < totalSteps) {
+        showStep(currentStep + 1);
+    }
+}
+</script>
+</body>
+</html>
