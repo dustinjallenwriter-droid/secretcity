@@ -25,10 +25,10 @@
         </div>
 
         <div class="tap-zones scenario-choices">
-            <button class="tap-zone scenario-option" onclick="checkScenario(1, 'correct')">
+            <button class="tap-zone scenario-option" onclick="checkScenario(1, 'correct', this)">
                 <span class="option-text">"Yes, we really gotta get out of here, so as long as it's just for translating, go ahead and use that thing!"</span>
             </button>
-            <button class="tap-zone scenario-option" onclick="checkScenario(1, 'incorrect')">
+            <button class="tap-zone scenario-option" onclick="checkScenario(1, 'incorrect', this)">
                 <span class="option-text">"No! I don't trust that strange device! Put it away!"</span>
             </button>
         </div>
@@ -50,10 +50,10 @@
         </div>
 
         <div class="tap-zones scenario-choices">
-            <button class="tap-zone scenario-option" onclick="checkScenario(2, 'incorrect')">
+            <button class="tap-zone scenario-option" onclick="checkScenario(2, 'incorrect', this)">
                 <span class="option-text">Wait it out — they need to learn that puzzles are hard, and the parents can handle it.</span>
             </button>
-            <button class="tap-zone scenario-option" onclick="checkScenario(2, 'correct')">
+            <button class="tap-zone scenario-option" onclick="checkScenario(2, 'correct', this)">
                 <span class="option-text">Step in earlier with encouragement: "You're so close! What if we focus on just this one part first?"</span>
             </button>
         </div>
@@ -75,10 +75,10 @@
         </div>
 
         <div class="tap-zones scenario-choices">
-            <button class="tap-zone scenario-option" onclick="checkScenario(3, 'correct')">
+            <button class="tap-zone scenario-option" onclick="checkScenario(3, 'correct', this)">
                 <span class="option-text">Hold back — they're engaged and working through it. Only intervene if they ask or if progress completely stalls.</span>
             </button>
-            <button class="tap-zone scenario-option" onclick="checkScenario(3, 'incorrect')">
+            <button class="tap-zone scenario-option" onclick="checkScenario(3, 'incorrect', this)">
                 <span class="option-text">Jump in with a hint — 25 minutes is a long time to be stuck and you don't want them to run out of time.</span>
             </button>
         </div>
@@ -110,8 +110,12 @@ let completedQuestions = [];
 const totalQuestions = 3;
 let currentQuestion = 1;
 
-function checkScenario(questionNum, result) {
+function checkScenario(questionNum, result, btn) {
     document.activeElement.blur();
+    
+    // Flash the tapped button
+    btn.classList.add('flash');
+    setTimeout(() => btn.classList.remove('flash'), 300);
     
     const feedback = document.getElementById(`feedback${questionNum}`);
     const buttons = document.querySelectorAll(`#question${questionNum} .scenario-option`);
