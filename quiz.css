@@ -439,3 +439,65 @@
         font-size: 0.75rem;
     }
 }
+
+/* ============================
+   SCENARIO-BASED QUESTIONS
+   ============================ */
+
+.scenario-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.scenario-text {
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.scenario-prompt {
+    font-weight: 700;
+    color: var(--teal);
+    margin: 0;
+}
+
+.scenario-choices {
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.scenario-option {
+    max-width: 100%;
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+}
+
+.scenario-option .option-text {
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+.scenario-option:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+@media (max-width: 600px) {
+    .scenario-card {
+        padding: 1.5rem;
+    }
+    
+    .scenario-option {
+        padding: 1rem 1.25rem;
+    }
+    
+    .scenario-option .option-text {
+        font-size: 0.95rem;
+    }
+}
