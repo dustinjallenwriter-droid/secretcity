@@ -134,47 +134,7 @@
                 </div>
             </div>
 
-            <button class="next-btn" onclick="showSection(4)">
-                <span>→</span>
-            </button>
-        </div>
-
-        <!-- Section 4 - Check Your Understanding Quiz -->
-        <div class="intro-section" id="section4">
-            <h2 class="section-title">Check Your Understanding</h2>
-            <br>
-            <p>Now it's time to put your knowledge into practice. Use the following activities to apply what you've learned about player cues, group dynamics, and universal reminders in realistic scenarios.</p>
-
-            <div class="question-card">
-                <p class="question-text">If all players are crowded around one puzzle, which reminder should you consider voicing?</p>
-
-                <div class="options">
-                    <label class="option">
-                        <input type="radio" name="q1" value="a">
-                        <span class="option-text">Communication</span>
-                    </label>
-                    <label class="option">
-                        <input type="radio" name="q1" value="b">
-                        <span class="option-text">Be Thorough</span>
-                    </label>
-                    <label class="option">
-                        <input type="radio" name="q1" value="c" data-correct="true">
-                        <span class="option-text">Divide & Conquer</span>
-                    </label>
-                </div>
-
-                <button class="submit-btn" onclick="submitAnswer()">Submit</button>
-            </div>
-
-            <div class="feedback" id="feedback">
-                <div class="feedback-icon">
-                    <span class="checkmark">✓</span>
-                </div>
-                <p class="feedback-label">Correct</p>
-                <p class="feedback-text">Correct! This scenario highlights the need to divide tasks among players to avoid everyone focusing on the same puzzle.</p>
-            </div>
-
-            <button class="continue-btn" id="continueBtn" onclick="window.location.href='section3.html'">Continue</button>
+            <a href="section2quiz.html" class="quiz-btn">Check your understanding</a>
         </div>
 
         <!-- Navigation Dots -->
@@ -182,7 +142,6 @@
             <span class="dot active" onclick="showSection(1)"></span>
             <span class="dot" onclick="showSection(2)"></span>
             <span class="dot" onclick="showSection(3)"></span>
-            <span class="dot" onclick="showSection(4)"></span>
         </div>
     </div>
 </div>
@@ -221,50 +180,6 @@ document.querySelectorAll('.accordion-header').forEach(button => {
             content.style.maxHeight = content.scrollHeight + 'px';
             icon.textContent = '−';
         }
-    });
-});
-
-// Quiz functionality
-function submitAnswer() {
-    const selected = document.querySelector('input[name="q1"]:checked');
-    if (!selected) return;
-
-    const isCorrect = selected.dataset.correct === 'true';
-    const feedback = document.getElementById('feedback');
-    
-    // Mark options
-    document.querySelectorAll('input[name="q1"]').forEach(input => {
-        const option = input.closest('.option');
-        input.disabled = true;
-        
-        if (input.dataset.correct === 'true') {
-            option.classList.add('correct');
-        } else if (input.checked && !isCorrect) {
-            option.classList.add('incorrect');
-        }
-    });
-
-    // Show feedback
-    feedback.classList.add('show');
-    if (!isCorrect) {
-        feedback.querySelector('.feedback-label').textContent = 'Not quite';
-        feedback.querySelector('.checkmark').textContent = '✗';
-    }
-
-    // Hide submit, show continue
-    document.querySelector('.submit-btn').style.display = 'none';
-    document.getElementById('continueBtn').style.display = 'block';
-}
-
-// Option click to select
-document.querySelectorAll('.option').forEach(option => {
-    option.addEventListener('click', () => {
-        const input = option.querySelector('input');
-        if (input.disabled) return;
-        input.checked = true;
-        
-        document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
-        option.classList.add('selected');
     });
 });
 </script>
