@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Magic of Staying in Character | The Art of Hinting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="intro-container">
+    <div class="module-intro">
+        <!-- Section 1: Intro -->
+        <div class="intro-section active" id="section1">
+            <h2 class="section-title">The Magic of Staying in Character</h2>
+            <br>
+            <p>In this multi-faceted role of Clue Staff, <em>hinting</em> belongs to the game facilitation part of the job — but we can't forget that, even when the final seconds are ticking away, <em>this is still immersive theatre</em>.</p>
+            <br>
+            <p>Filter your hints through a narrative-based lens that furthers, rather than breaks, the game's world. By delivering hints as part of the story, players remain fully engaged in the world you and your colleagues have worked so hard to create.</p>
+            <br>
+            <p>These objectives will guide you:</p>
+            <ul class="topic-list">
+                <li>Understand how story and character shape effective hinting</li>
+                <li>Practice giving hints that preserve immersion</li>
+                <li>Recognize hints that enhance vs. disrupt the story</li>
+                <li>Identify when stepping out of character is necessary</li>
+            </ul>
+
+            <button class="next-btn" onclick="showSection(2)">
+                <span>→</span>
+            </button>
+        </div>
+
+        <!-- Section 2: Why It Matters -->
+        <div class="intro-section" id="section2">
+            <h2 class="section-title">Why Immersion Matters</h2>
+            <br>
+            <p>Hints should feel like seamless moments within the story, not interruptions that remind players they're in a game.</p>
+            <br>
+            <p>As Clue Staff, your character is woven into the world of the game — your hints should reflect that. When you stay in character, you reinforce the narrative, making players feel like true protagonists on a quest, rather than participants being guided by an outside force.</p>
+            <br>
+            <p>This approach keeps the magic alive and ensures players remain emotionally invested in their journey.</p>
+
+            <button class="next-btn" onclick="showSection(3)">
+                <span>→</span>
+            </button>
+        </div>
+
+        <!-- Section 3: Principles -->
+        <div class="intro-section" id="section3">
+            <h2 class="section-title">Principles of Immersive Hinting</h2>
+            <br>
+            <p>Expand each principle to learn how to keep your hints in-world and story-driven.</p>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Stay in Character</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Maintaining your role, voice, and demeanor ensures that every hint feels authentic to the story. Whether you're a shifty bartender or an eccentric alchemist, your character should be the lens through which all hints are delivered.</p>
+                        <p>Staying in character helps players suspend disbelief and deepens their emotional connection to the experience.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Use Story-Driven Language</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Frame your hints using language and references that belong in the game's world. Instead of giving direct instructions, weave your guidance into the narrative — refer to objects, events, or lore that make sense for your character.</p>
+                        <p>This keeps the illusion intact and makes hints feel like natural story beats.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Make the Players the Heroes</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Always position the players as the protagonists. Your hints should empower them to make discoveries and solve challenges, rather than making your character the source of all answers.</p>
+                        <p>Even though <strong>you</strong> know the answers, <strong>your character</strong> depends on the players to figure them out! Frame your guidance as support for their journey.</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="next-btn" onclick="showSection(4)">
+                <span>→</span>
+            </button>
+        </div>
+
+        <!-- Section 4: Examples -->
+        <div class="intro-section" id="section4">
+            <h2 class="section-title">Immersive vs. Non-Immersive</h2>
+            <br>
+            <p>Tap each card to see how the same hint can be delivered in or out of character. Notice how the immersive version keeps players engaged in the story.</p>
+
+            <div class="flip-cards">
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <p class="flip-scenario">Player doesn't know to roll the dice in the dice box</p>
+                            <span class="flip-prompt">Tap to flip</span>
+                        </div>
+                        <div class="flip-card-back">
+                            <p><strong>Immersive:</strong> "Hmm... Rocco was always very particular about where he ran his dice games, but he never let me see where he played."</p>
+                            <p><strong>Non-immersive:</strong> "You need to roll the dice inside that box."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <p class="flip-scenario">Team is running out of time</p>
+                            <span class="flip-prompt">Tap to flip</span>
+                        </div>
+                        <div class="flip-card-back">
+                            <p><strong>Immersive:</strong> "The evil alchemist and his minions are nearly upon us! Hurry!"</p>
+                            <p><strong>Non-immersive:</strong> "You have about two minutes left."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <p class="flip-scenario">Player is ignoring a clue</p>
+                            <span class="flip-prompt">Tap to flip</span>
+                        </div>
+                        <div class="flip-card-back">
+                            <p><strong>Immersive:</strong> "I sense that parchment holds secrets yet untold..."</p>
+                            <p><strong>Non-immersive:</strong> "Check the paper again."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="next-btn" onclick="showSection(5)">
+                <span>→</span>
+            </button>
+        </div>
+
+        <!-- Section 5: When to Break Character -->
+        <div class="intro-section" id="section5">
+            <h2 class="section-title">When to Break Character</h2>
+            <br>
+            <p>While immersion is a top priority, player safety and well-being always come first. Expand each scenario to see the best practice response.</p>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Technical Issues</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p><strong>Usually stay in character</strong> by weaving the issue into the story.</p>
+                        <p>For example: "The evil alchemist's magic seems to be interfering with our environment — give me a moment to commune with the ancient forces."</p>
+                        <p>Only break character if absolutely necessary.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Emotional Distress</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p><strong>Break character briefly</strong> to support the player.</p>
+                        <p>If someone is visibly upset or anxious, step out of character to offer reassurance and options, then return to the story when appropriate.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Safety Concerns</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p><strong>Break character immediately</strong> if there is any risk to player safety.</p>
+                        <p>Address the situation directly and clearly, prioritizing well-being over immersion.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Time Pressure</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p><strong>Do not break character.</strong> Use in-character urgency to communicate time limits.</p>
+                        <p>For example: "Markoth's minions are nearly upon us!"</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="next-btn" onclick="showSection(6)">
+                <span>→</span>
+            </button>
+        </div>
+
+        <!-- Section 6: Wrap-up -->
+        <div class="intro-section" id="section6">
+            <h2 class="section-title">Putting It Together</h2>
+            <br>
+            <p>Narrative-based hinting keeps players immersed and makes every clue feel like part of the adventure.</p>
+            <br>
+            <p>Delivering hints in character enhances the story, while knowing when to break character ensures player safety and comfort.</p>
+            <br>
+            <p>Striking this balance is key to creating memorable, engaging escape room experiences.</p>
+
+            <a href="section4quiz.html" class="quiz-btn">Check your understanding</a>
+        </div>
+
+        <!-- Navigation Dots -->
+        <div class="nav-dots">
+            <span class="dot active" onclick="showSection(1)"></span>
+            <span class="dot" onclick="showSection(2)"></span>
+            <span class="dot" onclick="showSection(3)"></span>
+            <span class="dot" onclick="showSection(4)"></span>
+            <span class="dot" onclick="showSection(5)"></span>
+            <span class="dot" onclick="showSection(6)"></span>
+        </div>
+    </div>
+</div>
+
+<script>
+// Section navigation
+function showSection(sectionNumber) {
+    document.querySelectorAll('.intro-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+    
+    document.getElementById('section' + sectionNumber).classList.add('active');
+    document.querySelectorAll('.dot')[sectionNumber - 1].classList.add('active');
+}
+
+// Accordion
+document.querySelectorAll('.accordion-header').forEach(button => {
+    button.addEventListener('click', () => {
+        const item = button.parentElement;
+        const content = button.nextElementSibling;
+        const icon = button.querySelector('.accordion-icon');
+        const isActive = item.classList.contains('active');
+
+        const accordion = item.parentElement;
+        accordion.querySelectorAll('.accordion-item').forEach(i => {
+            i.classList.remove('active');
+            i.querySelector('.accordion-content').style.maxHeight = null;
+            i.querySelector('.accordion-icon').textContent = '+';
+        });
+
+        if (!isActive) {
+            item.classList.add('active');
+            content.style.maxHeight = content.scrollHeight + 'px';
+            icon.textContent = '−';
+        }
+    });
+});
+
+// Flip cards
+function flipCard(card) {
+    card.classList.toggle('flipped');
+}
+</script>
+</body>
+</html>
