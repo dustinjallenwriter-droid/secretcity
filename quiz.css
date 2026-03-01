@@ -281,8 +281,20 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+/* Disable hover effects on touch devices */
+@media (hover: none) {
+    .tap-zone:hover {
+        border-color: #e0e0e0;
+        background: #fff;
+        transform: none;
+        box-shadow: none;
+    }
+}
+
 .tap-zone:active {
     transform: translateY(0);
+    border-color: var(--gold);
+    background: rgba(244, 196, 48, 0.1);
 }
 
 .zone-icon {
