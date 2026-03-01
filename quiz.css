@@ -293,6 +293,11 @@
     background: rgba(244, 196, 48, 0.15);
 }
 
+/* Remove hover/focus styles on touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .tap-zone {
+        outline: none !important;
+    }
     
     .tap-zone:hover,
     .tap-zone:focus,
@@ -309,21 +314,23 @@
 /* Flash animation for tap feedback */
 @keyframes tapFlash {
     0% {
-        border-color: #e0e0e0 !important;
-        background: #fff !important;
+        border-color: #e0e0e0;
+        background: #fff;
     }
     50% {
-        border-color: #FDB913 !important;
-        background: rgba(244, 196, 48, 0.15) !important;
+        border-color: #FDB913;
+        background: rgba(253, 185, 19, 0.25);
     }
     100% {
-        border-color: #e0e0e0 !important;
-        background: #fff !important;
+        border-color: #e0e0e0;
+        background: #fff;
     }
 }
 
 .tap-zone.flash {
-    animation: tapFlash 0.3s ease !important;
+    animation: tapFlash 0.3s ease;
+    border-color: #FDB913 !important;
+    background: rgba(253, 185, 19, 0.25) !important;
 }
 
 .zone-icon {
