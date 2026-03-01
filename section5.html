@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Special Situations | The Art of Hinting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="intro-container">
+    <div class="module-intro">
+        <!-- Section 1: Intro -->
+        <div class="intro-section active" id="section1">
+            <h2 class="section-title">Adapting Your Approach</h2>
+            <br>
+            <p>Every group that enters an escape room brings its own unique dynamics and needs. Sometimes, this diversity demands flexibility.</p>
+            <br>
+            <p>As Clue Staff, your ability to adapt your hinting and hosting style for children, families, ESL groups, accessibility requirements, and other special cases is essential.</p>
+            <br>
+            <p>This lesson will help you recognize anomalies and make sure every player enjoys a positive and immersive experience — no matter the situation.</p>
+
+            <button class="next-btn" onclick="showSection(2)">
+                <span>→</span>
+            </button>
+        </div>
+
+        <!-- Section 2: Objectives -->
+        <div class="intro-section" id="section2">
+            <h2 class="section-title">Learning Objectives</h2>
+            <br>
+            <p>These objectives will guide you through the skills needed to recognize and respond to special situations:</p>
+
+            <ul class="topic-list">
+                <li>Spot unique group needs and situations that require a flexible approach</li>
+                <li>Modify hinting strategies for young players, families, and English language learners</li>
+                <li>Maintain immersion while ensuring all accommodations are met with dignity</li>
+                <li>Tailor your approach for highly experienced or small groups</li>
+                <li>Use core hinting strategies with thoughtful adjustments in special situations</li>
+            </ul>
+
+            <button class="next-btn" onclick="showSection(3)">
+                <span>→</span>
+            </button>
+        </div>
+
+        <!-- Section 3: Common Anomalies -->
+        <div class="intro-section" id="section3">
+            <h2 class="section-title">Common Anomalies</h2>
+            <br>
+            <p>Expand each item to learn about the challenges and best practices for each group type.</p>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Children or Young Players</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Adjust hint timing by intervening earlier if frustration appears. Use age-appropriate language and prioritize encouragement over challenge.</p>
+                        <p>Keep questions simple and celebrate small successes to build confidence.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>ESL Groups</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Speak slowly and clearly, using gestures and visuals to support understanding. Be patient with response times and rephrase wordplay-heavy puzzles.</p>
+                        <p>Always check for comprehension before moving on.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Accessibility Needs</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Proactively clarify any accommodations and prioritize player dignity. Offer support discreetly, and ensure all players can participate fully while maintaining immersion whenever possible.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Highly Experienced Players</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Use minimal, subtle hints and respect their expertise. Let them lead the experience, only intervening if asked or if progress stalls for an extended period.</p>
+                        <p>Advanced, open-ended questions are often most effective.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Small Groups</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Consider earlier intervention if the group is inexperienced, as fewer hands can slow progress. Adapt reminders to focus on teamwork and support, rather than dividing tasks.</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="next-btn" onclick="showSection(4)">
+                <span>→</span>
+            </button>
+        </div>
+
+        <!-- Section 4: Key Takeaways -->
+        <div class="intro-section" id="section4">
+            <h2 class="section-title">Key Takeaways</h2>
+            <br>
+            <p>Flexibility is key to supporting every group that enters your game. By recognizing anomalies and adapting your approach, you ensure that all players — regardless of age, language, ability, or experience — have a rewarding and memorable adventure.</p>
+            <br>
+            <p>Remember to apply core hinting principles with empathy and creativity in every special situation.</p>
+            <br>
+            <p class="rule-statement-large" style="font-size: 1.8rem; margin-top: 2rem;">Embrace adaptability and call on your empathy — your flexibility can make an escape room experience unforgettably inclusive.</p>
+
+            <a href="section5quiz.html" class="quiz-btn">Check your understanding</a>
+        </div>
+
+        <!-- Navigation Dots -->
+        <div class="nav-dots">
+            <span class="dot active" onclick="showSection(1)"></span>
+            <span class="dot" onclick="showSection(2)"></span>
+            <span class="dot" onclick="showSection(3)"></span>
+            <span class="dot" onclick="showSection(4)"></span>
+        </div>
+    </div>
+</div>
+
+<script>
+// Section navigation
+function showSection(sectionNumber) {
+    document.querySelectorAll('.intro-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+    
+    document.getElementById('section' + sectionNumber).classList.add('active');
+    document.querySelectorAll('.dot')[sectionNumber - 1].classList.add('active');
+}
+
+// Accordion
+document.querySelectorAll('.accordion-header').forEach(button => {
+    button.addEventListener('click', () => {
+        const item = button.parentElement;
+        const content = button.nextElementSibling;
+        const icon = button.querySelector('.accordion-icon');
+        const isActive = item.classList.contains('active');
+
+        const accordion = item.parentElement;
+        accordion.querySelectorAll('.accordion-item').forEach(i => {
+            i.classList.remove('active');
+            i.querySelector('.accordion-content').style.maxHeight = null;
+            i.querySelector('.accordion-icon').textContent = '+';
+        });
+
+        if (!isActive) {
+            item.classList.add('active');
+            content.style.maxHeight = content.scrollHeight + 'px';
+            icon.textContent = '−';
+        }
+    });
+});
+</script>
+</body>
+</html>
