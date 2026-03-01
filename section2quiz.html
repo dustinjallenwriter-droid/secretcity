@@ -14,111 +14,46 @@
 <div class="quiz-container">
     <div class="quiz-header">
         <h1>Check your understanding</h1>
-        <p>Use the following activities to apply what you've learned about player cues, group dynamics, and universal reminders in realistic scenarios.</p>
+        <p>For each scenario, tap the universal reminder that best fits the situation.</p>
     </div>
 
-    <!-- Question 1: Universal Reminders -->
+    <!-- Tap to Sort Activity -->
     <div class="quiz-question active" id="question1">
-        <div class="question-card">
-            <div class="scenario">
-                <p>All six players are crowded around a letter puzzle. Meanwhile, two other puzzles in the room remain completely untouched. Some players are just watching over shoulders, not actively participating.</p>
-                <p class="scenario-prompt">Which universal reminder should you consider voicing?</p>
+        <div class="sort-activity">
+            <!-- Current card display -->
+            <div class="current-card-container">
+                <p class="card-counter"><span id="cardNumber">1</span> of <span id="totalCards">6</span></p>
+                <div class="current-card" id="currentCard"></div>
             </div>
 
-            <div class="options">
-                <label class="option">
-                    <input type="radio" name="q1" value="a">
-                    <span class="option-text">Communication</span>
-                </label>
-                <label class="option">
-                    <input type="radio" name="q1" value="b">
-                    <span class="option-text">Be Thorough</span>
-                </label>
-                <label class="option">
-                    <input type="radio" name="q1" value="c" data-correct="true">
-                    <span class="option-text">Divide & Conquer</span>
-                </label>
+            <!-- Tap zones - three options -->
+            <div class="tap-zones tap-zones-triple">
+                <button class="tap-zone" id="divideZone" onclick="sortCard('divide')">
+                    <span class="zone-icon">⚔</span>
+                    <span class="zone-label">Divide & Conquer</span>
+                </button>
+                <button class="tap-zone" id="communicateZone" onclick="sortCard('communicate')">
+                    <span class="zone-icon">💬</span>
+                    <span class="zone-label">Communication</span>
+                </button>
+                <button class="tap-zone" id="thoroughZone" onclick="sortCard('thorough')">
+                    <span class="zone-icon">🔍</span>
+                    <span class="zone-label">Be Thorough</span>
+                </button>
             </div>
 
-            <button class="submit-btn" onclick="submitAnswer(1)">Submit</button>
+            <!-- Progress indicator -->
+            <div class="sort-progress">
+                <div class="sort-progress-bar" id="sortProgressBar"></div>
+            </div>
         </div>
 
         <div class="feedback" id="feedback1">
             <div class="feedback-icon">
                 <span class="icon-circle"><span class="checkmark">✓</span></span>
             </div>
-            <p class="feedback-label">Correct</p>
-            <p class="feedback-text">This scenario highlights the need to divide tasks among players. With everyone focused on one puzzle, others go unsolved and some players become passive spectators.</p>
-        </div>
-    </div>
-
-    <!-- Question 2: Group Dynamics -->
-    <div class="quiz-question" id="question2">
-        <div class="question-card">
-            <div class="scenario">
-                <p>You notice one player has solved a puzzle and pocketed a key, but hasn't told anyone. Another pair is now trying to solve the same puzzle again, not realizing it's already done.</p>
-                <p class="scenario-prompt">Which universal reminder fits this situation?</p>
-            </div>
-
-            <div class="options">
-                <label class="option">
-                    <input type="radio" name="q2" value="a" data-correct="true">
-                    <span class="option-text">Communication</span>
-                </label>
-                <label class="option">
-                    <input type="radio" name="q2" value="b">
-                    <span class="option-text">Divide & Conquer</span>
-                </label>
-                <label class="option">
-                    <input type="radio" name="q2" value="c">
-                    <span class="option-text">Be Thorough</span>
-                </label>
-            </div>
-
-            <button class="submit-btn" onclick="submitAnswer(2)">Submit</button>
-        </div>
-
-        <div class="feedback" id="feedback2">
-            <div class="feedback-icon">
-                <span class="icon-circle"><span class="checkmark">✓</span></span>
-            </div>
-            <p class="feedback-label">Correct</p>
-            <p class="feedback-text">When players aren't sharing discoveries, the team wastes time duplicating work. A gentle reminder to communicate keeps everyone on the same page.</p>
-        </div>
-    </div>
-
-    <!-- Question 3: Matching Dynamics to Reminders -->
-    <div class="quiz-question" id="question3">
-        <div class="question-card">
-            <div class="scenario">
-                <p>Players are rushing through the room, picking things up and putting them down quickly. They've walked past an obvious clue three times without noticing it. They seem excited but scattered.</p>
-                <p class="scenario-prompt">Which universal reminder would help here?</p>
-            </div>
-
-            <div class="options">
-                <label class="option">
-                    <input type="radio" name="q3" value="a">
-                    <span class="option-text">Divide & Conquer</span>
-                </label>
-                <label class="option">
-                    <input type="radio" name="q3" value="b" data-correct="true">
-                    <span class="option-text">Be Thorough</span>
-                </label>
-                <label class="option">
-                    <input type="radio" name="q3" value="c">
-                    <span class="option-text">Communication</span>
-                </label>
-            </div>
-
-            <button class="submit-btn" onclick="submitAnswer(3)">Submit</button>
-        </div>
-
-        <div class="feedback" id="feedback3">
-            <div class="feedback-icon">
-                <span class="icon-circle"><span class="checkmark">✓</span></span>
-            </div>
-            <p class="feedback-label">Correct</p>
-            <p class="feedback-text">When players are rushing and missing clues, encouraging them to slow down and be thorough helps them catch what they've overlooked.</p>
+            <p class="feedback-label">Well done!</p>
+            <p class="feedback-text" id="feedbackText">You correctly matched the scenarios to the universal reminders.</p>
         </div>
     </div>
 
@@ -126,15 +61,133 @@
     <div class="quiz-nav">
         <div class="quiz-progress">
             <span class="progress-dot active" data-q="1">1</span>
-            <span class="progress-dot" data-q="2">2</span>
-            <span class="progress-dot" data-q="3">3</span>
         </div>
     </div>
 
-    <!-- Continue Button (shown after all questions complete) -->
+    <!-- Continue Button -->
     <button class="continue-btn" id="continueBtn" onclick="window.location.href='section3.html'">Continue</button>
 </div>
 
-<script src="quiz.js"></script>
+<script>
+// Sorting activity state
+const sortCards = [
+    { 
+        text: "All six players are crowded around one puzzle while two others remain untouched.", 
+        category: "divide" 
+    },
+    { 
+        text: "A player solved a puzzle and pocketed the key, but hasn't told anyone. Others are now re-solving it.", 
+        category: "communicate" 
+    },
+    { 
+        text: "Players are rushing through, picking things up and putting them down. They've missed an obvious clue three times.", 
+        category: "thorough" 
+    },
+    { 
+        text: "Two players found separate halves of the same clue but haven't compared notes.", 
+        category: "communicate" 
+    },
+    { 
+        text: "Everyone is watching one person try to solve a lock while other puzzles sit untouched.", 
+        category: "divide" 
+    },
+    { 
+        text: "Players opened a box, glanced inside briefly, and moved on—missing a hidden compartment.", 
+        category: "thorough" 
+    }
+];
+
+let currentCardIndex = 0;
+let sortScore = 0;
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+    initSorting();
+});
+
+function initSorting() {
+    currentCardIndex = 0;
+    sortScore = 0;
+    document.getElementById('totalCards').textContent = sortCards.length;
+    updateProgressBar();
+    showCurrentCard();
+}
+
+function showCurrentCard() {
+    const cardElement = document.getElementById('currentCard');
+    const cardNumberElement = document.getElementById('cardNumber');
+    
+    if (currentCardIndex < sortCards.length) {
+        cardElement.textContent = sortCards[currentCardIndex].text;
+        cardElement.className = 'current-card';
+        cardNumberElement.textContent = currentCardIndex + 1;
+    }
+}
+
+function sortCard(chosenCategory) {
+    if (currentCardIndex >= sortCards.length) return;
+    
+    const card = sortCards[currentCardIndex];
+    const cardElement = document.getElementById('currentCard');
+    const isCorrect = card.category === chosenCategory;
+    
+    // Visual feedback on card
+    if (isCorrect) {
+        cardElement.classList.add('card-correct');
+        sortScore++;
+    } else {
+        cardElement.classList.add('card-incorrect');
+    }
+    
+    // Brief pause to show feedback, then next card
+    setTimeout(() => {
+        currentCardIndex++;
+        updateProgressBar();
+        
+        if (currentCardIndex < sortCards.length) {
+            showCurrentCard();
+        } else {
+            finishSorting();
+        }
+    }, 600);
+}
+
+function updateProgressBar() {
+    const progress = (currentCardIndex / sortCards.length) * 100;
+    document.getElementById('sortProgressBar').style.width = progress + '%';
+}
+
+function finishSorting() {
+    const feedback = document.getElementById('feedback1');
+    const feedbackText = document.getElementById('feedbackText');
+    const cardContainer = document.querySelector('.current-card-container');
+    const tapZones = document.querySelector('.tap-zones');
+    
+    // Hide the card and zones
+    cardContainer.style.display = 'none';
+    tapZones.style.display = 'none';
+    
+    // Show feedback
+    feedback.classList.add('show');
+    
+    if (sortScore === sortCards.length) {
+        feedbackText.textContent = `Perfect! You correctly matched all ${sortCards.length} scenarios to the right reminders.`;
+    } else if (sortScore >= sortCards.length - 1) {
+        feedbackText.textContent = `Nice work! You got ${sortScore} out of ${sortCards.length} correct.`;
+    } else {
+        feedback.classList.add('incorrect');
+        feedback.querySelector('.feedback-label').textContent = 'Not quite';
+        feedback.querySelector('.checkmark').textContent = '✗';
+        feedbackText.textContent = `You got ${sortScore} out of ${sortCards.length} correct. Review the three universal reminders and when to use each one.`;
+    }
+    
+    // Show continue button
+    document.getElementById('continueBtn').classList.add('show');
+    
+    // Mark progress dot as completed
+    document.querySelector('.progress-dot').classList.remove('active');
+    document.querySelector('.progress-dot').classList.add('completed');
+}
+</script>
 </body>
 </html>
