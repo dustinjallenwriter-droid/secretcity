@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ultimate Hinting Challenge | The Art of Hinting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+    --gold: #FDB913;
+    --dark-bg: #0a1215;
+    --dark-card: #121f24;
+    --dark-border: #1a3a44;
+    --teal: #1a4d5c;
+    --white: #FFFFFF;
+    --off-white: #e0e0e0;
+    --gray: #888;
+    --correct: #28a745;
+    --incorrect: #dc3545;
+    --heading-font: 'Work Sans', sans-serif;
+    --body-font: 'Quicksand', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--body-font);
+    background: var(--dark-bg);
+    color: var(--white);
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* ============================
+   INTRO SCREEN
+   ============================ */
+.intro-screen {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+}
+
+.intro-screen h1 {
+    font-family: var(--heading-font);
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #ffd700, #FDB913, #ffd700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.intro-screen .subtitle {
+    font-size: 1rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 2rem;
+}
+
+.intro-screen p {
+    max-width: 500px;
+    line-height: 1.8;
+    color: var(--off-white);
+    margin-bottom: 1.5rem;
+}
+
+.name-input-group {
+    margin: 2rem 0;
+    text-align: left;
+    width: 100%;
+    max-width: 300px;
+}
+
+.name-input-group label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+}
+
+.name-input-group input {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-family: var(--body-font);
+    background: var(--dark-card);
+    border: 2px solid var(--dark-border);
+    border-radius: 8px;
+    color: var(--white);
+    transition: border-color 0.2s ease;
+}
+
+.name-input-group input:focus {
+    outline: none;
+    border-color: var(--gold);
+}
+
+.begin-challenge-btn {
+    font-family: var(--heading-font);
+    padding: 1.2rem 3rem;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    background: transparent;
+    color: var(--gold);
+    border: 2px solid var(--gold);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.begin-challenge-btn:hover {
+    background: var(--gold);
+    color: var(--dark-bg);
+}
+
+.begin-challenge-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* ============================
+   PHASE TRANSITION
+   ============================ */
+.phase-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--dark-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.phase-transition.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.phase-transition .phase-label {
+    font-size: 0.9rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    margin-bottom: 1rem;
+}
+
+.phase-transition h2 {
+    font-family: var(--heading-font);
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--white);
+    text-align: center;
+}
+
+.phase-transition .phase-time {
+    font-size: 1.2rem;
+    color: var(--gray);
+    margin-top: 1rem;
+}
+
+/* ============================
+   QUIZ CONTAINER
+   ============================ */
+.quiz-container {
+    display: none;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2rem;
+    padding-bottom: 120px;
+}
+
+.quiz-container.active {
+    display: block;
+}
+
+/* ============================
+   TIMELINE
+   ============================ */
+.timeline-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--dark-card);
+    border-top: 1px solid var(--dark-border);
+    padding: 1rem 2rem;
+    z-index: 50;
+}
+
+.timeline-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--gray);
+    margin-bottom: 0.5rem;
+}
+
+.timeline-track {
+    height: 8px;
+    background: var(--dark-border);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.timeline-progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--teal), var(--gold));
+    width: 0%;
+    transition: width 0.5s ease;
+    border-radius: 4px;
+}
+
+.timeline-marker {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    background: var(--gold);
+    border-radius: 50%;
+    border: 3px solid var(--dark-bg);
+    transition: left 0.5s ease;
+    left: 0%;
+}
+
+.timeline-phase-markers {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: 0.7rem;
+    color: var(--gray);
+}
+
+.timeline-phase-markers span {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.timeline-phase-markers span.active {
+    color: var(--gold);
+}
+
+/* ============================
+   QUESTION CARD
+   ============================ */
+.question-card {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.question-card.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.question-header {
+    margin-bottom: 1.5rem;
+}
+
+.question-number {
+    font-size: 0.85rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.5rem;
+}
+
+.question-context {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-left: 4px solid var(--gold);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+}
+
+.question-instruction {
+    font-size: 0.95rem;
+    color: var(--off-white);
+    margin-bottom: 1rem;
+}
+
+/* ============================
+   SORT ACTIVITY (Phase 1 & 2)
+   ============================ */
+.sort-activity {
+    margin-bottom: 1.5rem;
+}
+
+.card-counter {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--gray);
+    margin-bottom: 1rem;
+}
+
+.current-card {
+    background: var(--dark-card);
+    border: 2px solid var(--dark-border);
+    border-top: 4px solid var(--gold);
+    border-radius: 12px;
+    padding: 1.5rem;
+    font-size: 1.05rem;
+    text-align: center;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    transition: all 0.3s ease;
+}
+
+.current-card.card-correct {
+    border-color: var(--correct);
+    background: rgba(40, 167, 69, 0.15);
+    border-top-color: var(--correct);
+}
+
+.current-card.card-incorrect {
+    border-color: var(--incorrect);
+    background: rgba(220, 53, 69, 0.15);
+    border-top-color: var(--incorrect);
+}
+
+.tap-zones {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.tap-zone {
+    flex: 1;
+    max-width: 180px;
+    padding: 1.25rem 1rem;
+    border: 2px solid var(--dark-border);
+    border-radius: 12px;
+    background: var(--dark-card);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.tap-zone:hover {
+    border-color: var(--gold);
+    background: rgba(253, 185, 19, 0.1);
+}
+
+.tap-zone .zone-icon {
+    font-size: 1.8rem;
+}
+
+.tap-zone .zone-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--off-white);
+}
+
+/* Flash animation */
+@keyframes tapFlash {
+    0% { border-color: var(--dark-border); background: var(--dark-card); }
+    50% { border-color: var(--gold); background: rgba(253, 185, 19, 0.2); }
+    100% { border-color: var(--dark-border); background: var(--dark-card); }
+}
+
+.tap-zone.flash {
+    animation: tapFlash 0.3s ease;
+}
+
+/* Progress bar */
+.sort-progress {
+    margin-top: 1rem;
+    height: 4px;
+    background: var(--dark-border);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.sort-progress-bar {
+    height: 100%;
+    background: var(--gold);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* ============================
+   TRUE/FALSE (Phase 3)
+   ============================ */
+.statement-card {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    text-align: center;
+}
+
+.tf-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.tf-btn {
+    flex: 1;
+    max-width: 150px;
+    padding: 1.25rem;
+    border: 2px solid var(--dark-border);
+    border-radius: 12px;
+    background: var(--dark-card);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--body-font);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.tf-btn:hover {
+    border-color: var(--gold);
+    background: rgba(253, 185, 19, 0.1);
+}
+
+.tf-btn .btn-icon {
+    font-size: 1.5rem;
+}
+
+.tf-btn .btn-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--off-white);
+}
+
+.tf-btn.flash {
+    animation: tapFlash 0.3s ease;
+}
+
+.tf-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Feedback */
+.question-feedback {
+    display: none;
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.question-feedback.show {
+    display: block;
+}
+
+.question-feedback.correct {
+    border-color: var(--correct);
+}
+
+.question-feedback.incorrect {
+    border-color: var(--incorrect);
+}
+
+.feedback-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.feedback-text {
+    color: var(--off-white);
+    line-height: 1.6;
+}
+
+/* ============================
+   CERTIFICATE
+   ============================ */
+.certificate-screen {
+    display: none;
+    min-height: 100vh;
+    padding: 2rem;
+    text-align: center;
+}
+
+.certificate-screen.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.certificate {
+    background: var(--dark-card);
+    border: 3px solid var(--gold);
+    border-radius: 12px;
+    padding: 3rem 2rem;
+    max-width: 500px;
+    width: 100%;
+}
+
+.certificate-header {
+    font-size: 0.8rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    margin-bottom: 0.5rem;
+}
+
+.certificate h2 {
+    font-family: var(--heading-font);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 2rem;
+}
+
+.certificate-divider {
+    width: 60px;
+    height: 3px;
+    background: var(--gold);
+    margin: 0 auto 2rem;
+}
+
+.certificate-label {
+    font-size: 0.85rem;
+    color: var(--gray);
+    margin-bottom: 0.5rem;
+}
+
+.certificate-name {
+    font-family: var(--heading-font);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 2rem;
+}
+
+.certificate-score {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+}
+
+.certificate-score.pass {
+    color: var(--correct);
+}
+
+.certificate-score.fail {
+    color: var(--incorrect);
+}
+
+.certificate-percentage {
+    font-size: 1.2rem;
+    color: var(--gray);
+    margin-bottom: 1.5rem;
+}
+
+.certificate-status {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 2rem;
+}
+
+.certificate-status.pass {
+    background: rgba(40, 167, 69, 0.2);
+    color: var(--correct);
+    border: 1px solid var(--correct);
+}
+
+.certificate-status.fail {
+    background: rgba(220, 53, 69, 0.2);
+    color: var(--incorrect);
+    border: 1px solid var(--incorrect);
+}
+
+.certificate-date {
+    font-size: 0.9rem;
+    color: var(--gray);
+    margin-bottom: 2rem;
+}
+
+.certificate-instruction {
+    font-size: 0.85rem;
+    color: var(--off-white);
+    background: rgba(253, 185, 19, 0.1);
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    padding: 1rem;
+    line-height: 1.6;
+}
+
+/* ============================
+   RESPONSIVE
+   ============================ */
+@media (max-width: 600px) {
+    .intro-screen h1 {
+        font-size: 2rem;
+    }
+    
+    .phase-transition h2 {
+        font-size: 2rem;
+    }
+    
+    .tap-zone {
+        padding: 1rem 0.75rem;
+    }
+    
+    .tap-zone .zone-icon {
+        font-size: 1.5rem;
+    }
+    
+    .tap-zone .zone-label {
+        font-size: 0.75rem;
+    }
+    
+    .certificate {
+        padding: 2rem 1.5rem;
+    }
+    
+    .certificate-name {
+        font-size: 1.5rem;
+    }
+    
+    .certificate-score {
+        font-size: 2.5rem;
+    }
+}
+
+/* Hide elements */
+.hidden {
+    display: none !important;
+}
+</style>
+</head>
+<body>
+
+<!-- INTRO SCREEN -->
+<div class="intro-screen" id="introScreen">
+    <h1>The Ultimate Hinting Challenge</h1>
+    <p class="subtitle">Final Exam</p>
+    
+    <p>You're about to experience a simulated 60-minute escape room — from opening moments to the final seconds.</p>
+    <p>20 questions across three phases will test everything you've learned about the art of hinting.</p>
+    
+    <div class="name-input-group">
+        <label for="playerName">Your Name</label>
+        <input type="text" id="playerName" placeholder="Enter your name" autocomplete="off">
+    </div>
+    
+    <button class="begin-challenge-btn" id="beginBtn" disabled>Begin Challenge</button>
+</div>
+
+<!-- PHASE TRANSITION -->
+<div class="phase-transition" id="phaseTransition">
+    <p class="phase-label" id="phaseLabel">Phase 1 of 3</p>
+    <h2 id="phaseTitle">Beginning the Game</h2>
+    <p class="phase-time" id="phaseTime">0:00 – 10:00</p>
+</div>
+
+<!-- QUIZ CONTAINER -->
+<div class="quiz-container" id="quizContainer">
+    <!-- Questions will be injected here -->
+</div>
+
+<!-- TIMELINE -->
+<div class="timeline-container" id="timelineContainer" style="display: none;">
+    <div class="timeline-labels">
+        <span>0:00</span>
+        <span>60:00</span>
+    </div>
+    <div class="timeline-track">
+        <div class="timeline-progress" id="timelineProgress"></div>
+        <div class="timeline-marker" id="timelineMarker"></div>
+    </div>
+    <div class="timeline-phase-markers">
+        <span id="phase1Label" class="active">Beginning</span>
+        <span id="phase2Label">Mid-Game</span>
+        <span id="phase3Label">Endgame</span>
+    </div>
+</div>
+
+<!-- CERTIFICATE SCREEN -->
+<div class="certificate-screen" id="certificateScreen">
+    <div class="certificate">
+        <p class="certificate-header">The Art of Hinting</p>
+        <h2>Certificate of Completion</h2>
+        <div class="certificate-divider"></div>
+        
+        <p class="certificate-label">This certifies that</p>
+        <p class="certificate-name" id="certName"></p>
+        
+        <p class="certificate-label">has completed The Ultimate Hinting Challenge</p>
+        
+        <p class="certificate-score" id="certScore"></p>
+        <p class="certificate-percentage" id="certPercentage"></p>
+        <p class="certificate-status" id="certStatus"></p>
+        
+        <p class="certificate-date" id="certDate"></p>
+        
+        <p class="certificate-instruction">📸 Please screenshot this certificate and send to your manager.</p>
+    </div>
+</div>
+
+<script>
+// ============================
+// DATA
+// ============================
+
+const phases = [
+    { 
+        label: "Phase 1 of 3", 
+        title: "Beginning the Game", 
+        time: "0:00 – 10:00",
+        buttonLabels: { positive: "✓", negative: "✗" },
+        instruction: "Sort each response: appropriate (✓) or inappropriate (✗)?"
+    },
+    { 
+        label: "Phase 2 of 3", 
+        title: "Mid-Game", 
+        time: "20:00 – 40:00",
+        buttonLabels: { positive: "👍", negative: "👎" },
+        instruction: "Assess whether each intervention is a good tactic."
+    },
+    { 
+        label: "Phase 3 of 3", 
+        title: "Endgame", 
+        time: "48:00 – 60:00",
+        buttonLabels: { positive: "✓ True", negative: "✗ False" },
+        instruction: "True or false?"
+    }
+];
+
+const questions = [
+    // PHASE 1: Questions 1-7
+    {
+        phase: 0,
+        context: "You're about to start your first game as Clue Staff. You want to refresh yourself on what counts as a universal reminder.",
+        type: "sort",
+        cards: [
+            { text: "\"Divide and conquer — spread out and tackle different puzzles!\"", correct: true },
+            { text: "\"Work faster — you're running out of time!\"", correct: false },
+            { text: "\"Communicate — share what you find with your team!\"", correct: true },
+            { text: "\"Stay calm — don't let frustration get to you!\"", correct: false },
+            { text: "\"Let me help — I'll show you the next step!\"", correct: false },
+            { text: "\"Be thorough — examine everything carefully!\"", correct: true }
+        ],
+        timelinePosition: 0
+    },
+    {
+        phase: 0,
+        context: "You're 3 minutes into the game. One player is totally disengaged, leaning against a wall while others search the room actively. Which of the following actions should you take?",
+        type: "sort",
+        cards: [
+            { text: "Position yourself nearby and stay available for in-character engagement.", correct: true },
+            { text: "Announce to the group: \"I see SOMEONE isn't interested in playing!\"", correct: false },
+            { text: "Whisper the location of a hidden item to get them motivated.", correct: false },
+            { text: "Approach the player in character and invite them into the story.", correct: true }
+        ],
+        timelinePosition: 5
+    },
+    {
+        phase: 0,
+        context: "You're 6 minutes in. The entire group is huddled around one puzzle while a set of suspicious portraits remain totally unobserved around the room.",
+        type: "sort",
+        cards: [
+            { text: "March over and point at the portraits: \"Look at those next.\"", correct: false },
+            { text: "Observe silently — it's still early and they may naturally spread out.", correct: true },
+            { text: "Make an in-character comment about how many mysteries this room contains.", correct: true },
+            { text: "Solve one of the other puzzles yourself to keep the game moving.", correct: false }
+        ],
+        timelinePosition: 10
+    },
+    {
+        phase: 0,
+        context: "You're 8 minutes in. A child, around age 7, is trying to decode an inscription while their parents battle a separate logic puzzle. The child looks increasingly frustrated and confused.",
+        type: "sort",
+        cards: [
+            { text: "Intervene early with encouragement and try to set them up with the puzzle logic: \"You're doing great! Let's take it one step at a time.\"", correct: true },
+            { text: "Wait until the ten-minute mark — rules are rules.", correct: false },
+            { text: "Tell the child this puzzle is too hard and they should help their parents instead.", correct: false },
+            { text: "Crouch down and ask: \"What letters do you see? Maybe we can figure it out together.\"", correct: true }
+        ],
+        timelinePosition: 13
+    },
+    {
+        phase: 0,
+        context: "You're 7 minutes in. Players are spinning their wheels, trying random combinations on a lock. They seem to have forgotten key information from the intro scenes about what they're actually trying to accomplish.",
+        type: "sort",
+        cards: [
+            { text: "Tell them the combination directly — they're clearly lost.", correct: false },
+            { text: "Re-state relevant information from the intro without adding anything new.", correct: true },
+            { text: "Let them keep guessing — eventually they'll stumble onto it.", correct: false },
+            { text: "Remind them in character of their objective: \"Remember why we're here...\"", correct: true }
+        ],
+        timelinePosition: 12
+    },
+    {
+        phase: 0,
+        context: "You're 9 minutes in. Players are moving quickly through the room, picking up items and setting them down without really examining them. They've walked past an obvious clue three times.",
+        type: "sort",
+        cards: [
+            { text: "Observe a bit longer — they may circle back on their own.", correct: true },
+            { text: "Pick up the clue and hand it to them.", correct: false },
+            { text: "Shout \"STOP! You're missing something obvious!\"", correct: false },
+            { text: "Make an in-character reminder about the importance of being thorough.", correct: true }
+        ],
+        timelinePosition: 15
+    },
+    {
+        phase: 0,
+        context: "The first 10 minutes pass. The group is stuck on one puzzle, debating theories with animated discussion. Half are on the right track, but one person keeps pulling focus in the wrong direction. Frustration is visible, but progress is being made.",
+        type: "sort",
+        cards: [
+            { text: "Interrupt the debate: \"Most of you are right! Ignore that person!\"", correct: false },
+            { text: "Wait and observe — this is productive stewing and they're making progress.", correct: true },
+            { text: "Suggest they divide and conquer — some could explore other puzzles.", correct: true },
+            { text: "Pull the wrong person aside and whisper that they're off track.", correct: false }
+        ],
+        timelinePosition: 17
+    },
+    // PHASE 2: Questions 8-14
+    {
+        phase: 1,
+        context: "You're 22 minutes in. A group of first-time players is stuck on a puzzle involving colored symbols. They're trying random things without any system.",
+        type: "sort",
+        cards: [
+            { text: "\"What patterns do you notice about the symbols?\"", correct: true },
+            { text: "Grab the pieces and demonstrate the correct solution.", correct: false },
+            { text: "\"What information have you found that might relate to this puzzle?\"", correct: true },
+            { text: "\"Match the red symbol to the red slot — that's how it works.\"", correct: false }
+        ],
+        timelinePosition: 37
+    },
+    {
+        phase: 1,
+        context: "You're 28 minutes in. A group who mentioned they've \"done tons of escape rooms\" is moving efficiently but asks for guidance on a mechanical puzzle.",
+        type: "sort",
+        cards: [
+            { text: "\"What have you observed about this mechanism so far?\"", correct: true },
+            { text: "Since they're experts, break character and explain the mechanics directly.", correct: false },
+            { text: "Intentionally misdirect them to add difficulty — they can handle it.", correct: false },
+            { text: "\"What happens when you turn this piece? What might that tell us?\"", correct: true }
+        ],
+        timelinePosition: 47
+    },
+    {
+        phase: 1,
+        context: "You're 30 minutes in. Energy is low. Two players are sitting down, one is checking their phone, and the remaining players are half-heartedly poking at a puzzle.",
+        type: "sort",
+        cards: [
+            { text: "Give them a direct answer to get momentum going again.", correct: false },
+            { text: "Engage individuals directly: \"Your fresh eyes might see what others have missed. What stands out to you here?\"", correct: true },
+            { text: "Approach with enthusiasm: \"I sense you're close to a breakthrough. What theories do you have?\"", correct: true },
+            { text: "Break character to remind them how much time is left.", correct: false }
+        ],
+        timelinePosition: 50
+    },
+    {
+        phase: 1,
+        context: "You're 33 minutes in. One player found a torn paper early on, and another found a matching piece later — but neither has connected that they go together.",
+        type: "sort",
+        cards: [
+            { text: "\"Put the two pieces together — they form one clue.\"", correct: false },
+            { text: "\"Has everyone shared their discoveries?\"", correct: true },
+            { text: "\"I wonder if any of your findings might be... connected somehow?\"", correct: true },
+            { text: "Take both pieces and physically put them together for the group.", correct: false }
+        ],
+        timelinePosition: 55
+    },
+    {
+        phase: 1,
+        context: "You're 35 minutes in. The group unlocked a box, glanced at its contents, grabbed one item, and moved on — not realizing there was a false bottom with another clue.",
+        type: "sort",
+        cards: [
+            { text: "\"Are you certain you've uncovered everything that box had to offer?\"", correct: true },
+            { text: "\"There's a false bottom in that box — check again.\"", correct: false },
+            { text: "Open the box yourself and reveal the hidden compartment.", correct: false },
+            { text: "\"Secrets often hide within secrets... the thorough adventurer examines everything twice.\"", correct: true }
+        ],
+        timelinePosition: 58
+    },
+    {
+        phase: 1,
+        context: "You're 38 minutes in. A group primarily speaking another language is struggling with an English riddle. They've asked if they can use a translation app on their phone.",
+        type: "sort",
+        cards: [
+            { text: "\"No phones allowed — those are the rules.\"", correct: false },
+            { text: "\"Absolutely — use whatever tools help you on this quest!\" (Allow the phone for translation)", correct: true },
+            { text: "Break character entirely and explain the riddle's meaning in plain terms.", correct: false },
+            { text: "Offer to read the riddle slowly and clearly, with gestures to aid understanding.", correct: true }
+        ],
+        timelinePosition: 63
+    },
+    {
+        phase: 1,
+        context: "You're 40 minutes in. The group is stuck and has asked for help. You want to use the escalating hint ladder appropriately.",
+        type: "sort",
+        cards: [
+            { text: "Start with: \"Tell me, what have you discovered so far?\" (Assessment)", correct: true },
+            { text: "Jump straight to: \"Have you considered that the clock numbers are the combination?\"", correct: false },
+            { text: "Ask: \"What do you think this mechanism is trying to tell us?\"", correct: true },
+            { text: "Give them the answer since they asked — \"The code is 4-7-2.\"", correct: false }
+        ],
+        timelinePosition: 67
+    },
+    // PHASE 3: Questions 15-20
+    {
+        phase: 2,
+        context: "There are 12 minutes left. The group is working on the wrong element of a complex puzzle involving something mounted on the wall that they need to remove and examine.",
+        type: "truefalse",
+        statement: "Gazing intently at the mounted object and musing aloud, \"I've always wondered what secrets might lie behind such things...\" is an appropriate immersive hint.",
+        correct: true,
+        explanation: "This is a great example of an in-character nudge that redirects attention without giving away the solution.",
+        timelinePosition: 80
+    },
+    {
+        phase: 2,
+        context: "There are 8 minutes left. Despite your best in-character hints, the group remains confused. Frustration is growing.",
+        type: "truefalse",
+        statement: "It's acceptable to break character for the sake of clarity when players aren't understanding your hints.",
+        correct: false,
+        explanation: "Find creative ways to rephrase within character. Try different approaches: gestures, positioning, simpler language. Breaking immersion should be reserved for safety or genuine emotional distress.",
+        timelinePosition: 87
+    },
+    {
+        phase: 2,
+        context: "There are 6 minutes left. The group is making progress but doesn't seem to realize time is running short.",
+        type: "truefalse",
+        statement: "Communicating urgency through in-character language like \"Time grows short! We must act swiftly!\" is an appropriate approach.",
+        correct: true,
+        explanation: "In-character urgency maintains immersion while effectively conveying time pressure.",
+        timelinePosition: 90
+    },
+    {
+        phase: 2,
+        context: "There are 3 minutes left. A major mechanical puzzle component freezes. You know unplugging and rebooting takes 30 seconds.",
+        type: "truefalse",
+        statement: "It's acceptable to break character to calmly describe the technical issue and offer extra time as compensation.",
+        correct: false,
+        explanation: "You can handle this in-world: \"Ah! Something interferes with our progress! Give me a moment... Fear not, we shall be granted additional time to compensate.\"",
+        timelinePosition: 95
+    },
+    {
+        phase: 2,
+        context: "Mid-game, a player quietly approaches you and says they're feeling overwhelmed and claustrophobic. Their breathing is shallow.",
+        type: "truefalse",
+        statement: "It's appropriate to break character to check on the player, offer reassurance, and let them know they can step out if needed.",
+        correct: true,
+        explanation: "Player well-being always takes priority over immersion. Safety and emotional distress are the only valid reasons to break character.",
+        timelinePosition: 50
+    },
+    {
+        phase: 2,
+        context: "After completing a game, you reflect on what \"perfect\" looks like.",
+        type: "truefalse",
+        statement: "A perfect game means you were actively engaged, consistently in character, contributing to narrative immersion — but never had to give a single direct hint.",
+        correct: true,
+        explanation: "The ideal is facilitation through presence, engagement, and subtle guidance — letting players experience the full joy of discovery themselves.",
+        timelinePosition: 100
+    }
+];
+
+// ============================
+// STATE
+// ============================
+let playerName = "";
+let currentQuestion = 0;
+let currentCardIndex = 0;
+let score = 0;
+let questionScore = 0;
+let currentPhase = -1;
+
+// ============================
+// INIT
+// ============================
+document.addEventListener('DOMContentLoaded', () => {
+    const nameInput = document.getElementById('playerName');
+    const beginBtn = document.getElementById('beginBtn');
+    
+    nameInput.addEventListener('input', () => {
+        playerName = nameInput.value.trim();
+        beginBtn.disabled = playerName.length === 0;
+    });
+    
+    beginBtn.addEventListener('click', startChallenge);
+});
+
+function startChallenge() {
+    document.getElementById('introScreen').classList.add('hidden');
+    document.getElementById('timelineContainer').style.display = 'block';
+    showPhaseTransition(0);
+}
+
+// ============================
+// PHASE TRANSITIONS
+// ============================
+function showPhaseTransition(phaseIndex) {
+    currentPhase = phaseIndex;
+    const phase = phases[phaseIndex];
+    
+    document.getElementById('phaseLabel').textContent = phase.label;
+    document.getElementById('phaseTitle').textContent = phase.title;
+    document.getElementById('phaseTime').textContent = phase.time;
+    
+    // Update phase markers
+    document.getElementById('phase1Label').classList.toggle('active', phaseIndex === 0);
+    document.getElementById('phase2Label').classList.toggle('active', phaseIndex === 1);
+    document.getElementById('phase3Label').classList.toggle('active', phaseIndex === 2);
+    
+    const transition = document.getElementById('phaseTransition');
+    transition.classList.add('active');
+    
+    setTimeout(() => {
+        transition.classList.remove('active');
+        document.getElementById('quizContainer').classList.add('active');
+        showQuestion(currentQuestion);
+    }, 2500);
+}
+
+// ============================
+// QUESTIONS
+// ============================
+function showQuestion(index) {
+    const q = questions[index];
+    const container = document.getElementById('quizContainer');
+    
+    // Update timeline
+    updateTimeline(q.timelinePosition);
+    
+    // Check if we need a phase transition
+    if (index > 0 && q.phase !== questions[index - 1].phase) {
+        container.classList.remove('active');
+        showPhaseTransition(q.phase);
+        return;
+    }
+    
+    currentCardIndex = 0;
+    questionScore = 0;
+    
+    let html = `<div class="question-card active" id="questionCard">`;
+    html += `<div class="question-header">`;
+    html += `<p class="question-number">Question ${index + 1} of ${questions.length}</p>`;
+    html += `</div>`;
+    html += `<div class="question-context">${q.context}</div>`;
+    
+    if (q.type === 'sort') {
+        html += `<p class="question-instruction">${phases[q.phase].instruction}</p>`;
+        html += `<div class="sort-activity">`;
+        html += `<p class="card-counter"><span id="cardNumber">1</span> of ${q.cards.length}</p>`;
+        html += `<div class="current-card" id="currentCard">${q.cards[0].text}</div>`;
+        html += `<div class="tap-zones">`;
+        html += `<button class="tap-zone" onclick="handleSort(true, this)">`;
+        html += `<span class="zone-icon">${phases[q.phase].buttonLabels.positive}</span>`;
+        html += `</button>`;
+        html += `<button class="tap-zone" onclick="handleSort(false, this)">`;
+        html += `<span class="zone-icon">${phases[q.phase].buttonLabels.negative}</span>`;
+        html += `</button>`;
+        html += `</div>`;
+        html += `<div class="sort-progress"><div class="sort-progress-bar" id="sortProgress"></div></div>`;
+        html += `</div>`;
+    } else if (q.type === 'truefalse') {
+        html += `<div class="statement-card">${q.statement}</div>`;
+        html += `<div class="tf-buttons">`;
+        html += `<button class="tf-btn" onclick="handleTrueFalse(true, this)">`;
+        html += `<span class="btn-icon">✓</span>`;
+        html += `<span class="btn-label">True</span>`;
+        html += `</button>`;
+        html += `<button class="tf-btn" onclick="handleTrueFalse(false, this)">`;
+        html += `<span class="btn-icon">✗</span>`;
+        html += `<span class="btn-label">False</span>`;
+        html += `</button>`;
+        html += `</div>`;
+        html += `<div class="question-feedback" id="tfFeedback">`;
+        html += `<p class="feedback-icon" id="tfFeedbackIcon"></p>`;
+        html += `<p class="feedback-text" id="tfFeedbackText"></p>`;
+        html += `</div>`;
+    }
+    
+    html += `</div>`;
+    container.innerHTML = html;
+}
+
+// ============================
+// SORT HANDLING
+// ============================
+function handleSort(isPositive, btn) {
+    const q = questions[currentQuestion];
+    const card = q.cards[currentCardIndex];
+    const cardEl = document.getElementById('currentCard');
+    
+    // Flash button
+    btn.classList.add('flash');
+    setTimeout(() => btn.classList.remove('flash'), 300);
+    
+    // Check answer
+    const isCorrect = (isPositive === card.correct);
+    if (isCorrect) {
+        cardEl.classList.add('card-correct');
+        questionScore++;
+    } else {
+        cardEl.classList.add('card-incorrect');
+    }
+    
+    // Update progress
+    currentCardIndex++;
+    const progress = (currentCardIndex / q.cards.length) * 100;
+    document.getElementById('sortProgress').style.width = progress + '%';
+    
+    setTimeout(() => {
+        if (currentCardIndex < q.cards.length) {
+            // Next card
+            cardEl.className = 'current-card';
+            cardEl.textContent = q.cards[currentCardIndex].text;
+            document.getElementById('cardNumber').textContent = currentCardIndex + 1;
+        } else {
+            // Question complete
+            finishQuestion();
+        }
+    }, 500);
+}
+
+// ============================
+// TRUE/FALSE HANDLING
+// ============================
+function handleTrueFalse(answer, btn) {
+    const q = questions[currentQuestion];
+    const isCorrect = (answer === q.correct);
+    
+    // Flash button
+    btn.classList.add('flash');
+    setTimeout(() => btn.classList.remove('flash'), 300);
+    
+    // Disable buttons
+    document.querySelectorAll('.tf-btn').forEach(b => b.disabled = true);
+    
+    // Show feedback
+    const feedback = document.getElementById('tfFeedback');
+    const icon = document.getElementById('tfFeedbackIcon');
+    const text = document.getElementById('tfFeedbackText');
+    
+    if (isCorrect) {
+        feedback.classList.add('correct');
+        icon.textContent = '✓';
+        questionScore = 1;
+    } else {
+        feedback.classList.add('incorrect');
+        icon.textContent = '✗';
+    }
+    
+    text.textContent = q.explanation;
+    feedback.classList.add('show');
+    
+    setTimeout(() => {
+        finishQuestion();
+    }, 2500);
+}
+
+// ============================
+// QUESTION COMPLETION
+// ============================
+function finishQuestion() {
+    const q = questions[currentQuestion];
+    
+    // Calculate score for this question
+    if (q.type === 'sort') {
+        // For sort questions, count as 1 point if they got majority correct
+        const threshold = Math.ceil(q.cards.length / 2);
+        if (questionScore >= threshold) {
+            score++;
+        }
+    } else {
+        // For T/F, it's just 1 or 0
+        score += questionScore;
+    }
+    
+    currentQuestion++;
+    
+    if (currentQuestion < questions.length) {
+        showQuestion(currentQuestion);
+    } else {
+        showCertificate();
+    }
+}
+
+// ============================
+// TIMELINE
+// ============================
+function updateTimeline(position) {
+    const progress = document.getElementById('timelineProgress');
+    const marker = document.getElementById('timelineMarker');
+    
+    progress.style.width = position + '%';
+    marker.style.left = position + '%';
+}
+
+// ============================
+// CERTIFICATE
+// ============================
+function showCertificate() {
+    document.getElementById('quizContainer').classList.remove('active');
+    document.getElementById('timelineContainer').style.display = 'none';
+    
+    const percentage = Math.round((score / questions.length) * 100);
+    const passed = percentage >= 80;
+    
+    document.getElementById('certName').textContent = playerName;
+    document.getElementById('certScore').textContent = `${score}/${questions.length}`;
+    document.getElementById('certScore').classList.add(passed ? 'pass' : 'fail');
+    document.getElementById('certPercentage').textContent = `${percentage}%`;
+    
+    const status = document.getElementById('certStatus');
+    status.textContent = passed ? 'PASSED' : 'NOT YET PASSED';
+    status.classList.add(passed ? 'pass' : 'fail');
+    
+    const today = new Date();
+    const dateStr = today.toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    });
+    document.getElementById('certDate').textContent = dateStr;
+    
+    document.getElementById('certificateScreen').classList.add('active');
+}
+</script>
+</body>
+</html>
