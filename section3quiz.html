@@ -29,11 +29,11 @@
             </div>
 
             <div class="tap-zones">
-                <button class="tap-zone" id="goodZone" onclick="sortCard('good')">
+                <button class="tap-zone" id="goodZone" onclick="sortCard('good', this)">
                     <span class="zone-icon">👍</span>
                     <span class="zone-label">Good Question</span>
                 </button>
-                <button class="tap-zone" id="tooMuchZone" onclick="sortCard('toomuch')">
+                <button class="tap-zone" id="tooMuchZone" onclick="sortCard('toomuch', this)">
                     <span class="zone-icon">👎</span>
                     <span class="zone-label">Giving It Away</span>
                 </button>
@@ -92,9 +92,13 @@ function showCard() {
     }
 }
 
-function sortCard(choice) {
+function sortCard(choice, btn) {
     document.activeElement.blur();
     if (cardIndex >= cards.length) return;
+    
+    // Flash the tapped button
+    btn.classList.add('flash');
+    setTimeout(() => btn.classList.remove('flash'), 300);
     
     const card = cards[cardIndex];
     const cardEl = document.getElementById('currentCard');
