@@ -400,6 +400,39 @@ body {
     animation: tapFlash 0.3s ease;
 }
 
+/* Remove hover/focus styles on touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .tap-zone {
+        outline: none !important;
+    }
+    
+    .tap-zone:hover,
+    .tap-zone:focus,
+    .tap-zone:focus-visible,
+    .tap-zone:focus-within {
+        border-color: var(--dark-border) !important;
+        background: var(--dark-card) !important;
+        transform: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+    }
+    
+    .tf-btn {
+        outline: none !important;
+    }
+    
+    .tf-btn:hover,
+    .tf-btn:focus,
+    .tf-btn:focus-visible,
+    .tf-btn:focus-within {
+        border-color: var(--dark-border) !important;
+        background: var(--dark-card) !important;
+        transform: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+    }
+}
+
 /* Progress bar */
 .sort-progress {
     margin-top: 1rem;
@@ -1127,6 +1160,7 @@ function showQuestion(index) {
 // SORT HANDLING
 // ============================
 function handleSort(isPositive, btn) {
+    document.activeElement.blur();
     const q = questions[currentQuestion];
     const card = q.cards[currentCardIndex];
     const cardEl = document.getElementById('currentCard');
@@ -1166,6 +1200,7 @@ function handleSort(isPositive, btn) {
 // TRUE/FALSE HANDLING
 // ============================
 function handleTrueFalse(answer, btn) {
+    document.activeElement.blur();
     const q = questions[currentQuestion];
     const isCorrect = (answer === q.correct);
     
