@@ -125,6 +125,7 @@ function showCurrentCard() {
 }
 
 function sortCard(chosenCategory) {
+    document.activeElement.blur();
     if (currentCardIndex >= sortCards.length) return;
     
     const card = sortCards[currentCardIndex];
