@@ -275,6 +275,9 @@
     align-items: center;
     gap: 0.5rem;
     -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .tap-zone:hover {
@@ -286,6 +289,24 @@
 
 .tap-zone:active {
     transform: translateY(0);
+    border-color: var(--gold);
+    background: rgba(244, 196, 48, 0.15);
+}
+
+/* Remove hover/focus styles on touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .tap-zone:hover {
+        border-color: #e0e0e0;
+        background: #fff;
+        transform: none;
+        box-shadow: none;
+    }
+    
+    .tap-zone:focus {
+        outline: none;
+        border-color: #e0e0e0;
+        background: #fff;
+    }
 }
 
 .zone-icon {
