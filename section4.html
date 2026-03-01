@@ -1,271 +1,892 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Magic of Staying in Character | The Art of Hinting</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div class="intro-container">
-    <div class="module-intro">
-        <!-- Section 1: Intro -->
-        <div class="intro-section active" id="section1">
-            <h2 class="section-title">The Magic of Staying in Character</h2>
-            <br>
-            <p>In this multi-faceted role of Clue Staff, <em>hinting</em> belongs to the game facilitation part of the job — but we can't forget that, even when the final seconds are ticking away, <em>this is still immersive theatre</em>.</p>
-            <br>
-            <p>Filter your hints through a narrative-based lens that furthers, rather than breaks, the game's world. By delivering hints as part of the story, players remain fully engaged in the world you and your colleagues have worked so hard to create.</p>
-            <br>
-            <p><b>This lesson aims covers:</b></p><br>
-            <ul class="topic-list">
-                <li>Understand how story and character shape effective hinting</li>
-                <li>Practice giving hints that preserve immersion</li>
-                <li>Recognize hints that enhance vs. disrupt the story</li>
-                <li>Identify when stepping out of character is necessary</li>
-            </ul>
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Work+Sans:wght@400;500;600;700;800&display=swap');
 
-            <button class="next-btn" onclick="showSection(2)">
-                <span>→</span>
-            </button>
-        </div>
+/* CSS Variables for Secret City Brand */
+:root {
+    --yellow: #FDB913;
+    --gold: #FDB913;
+    --teal: #1a4d5c;
+    --secret-blue: #1a4d5c;
+    --black: #1a1a1a;
+    --white: #FFFFFF;
+    --off-white: #F8F8F8;
+    --gray: #666666;
+    --heading-font: 'Work Sans', sans-serif;
+    --body-font: 'Quicksand', sans-serif;
+}
 
-        <!-- Section 2: Why It Matters -->
-        <div class="intro-section" id="section2">
-            <h2 class="section-title">Why Immersion Matters</h2>
-            <br>
-            <p>Hints should feel like seamless moments within the story, not interruptions that remind players they're in a game.</p>
-            <br>
-            <p>As a Clue Staff, your character is woven into the world of the game; your hints should reflect that. When you stay in character, you reinforce the narrative, making players feel like true protagonists on a quest, rather than participants being guided by an outside force.</p>
-            <br>
-            <p>This approach keeps the magic alive and ensures players remain emotionally invested in their journey.</p>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-            <button class="next-btn" onclick="showSection(3)">
-                <span>→</span>
-            </button>
-        </div>
+body {
+    font-family: var(--body-font);
+    background: var(--white);
+    color: var(--black);
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
 
-        <!-- Section 3: Principles -->
-        <div class="intro-section" id="section3">
-            <h2 class="section-title">Principles of Immersive Hinting</h2>
-            <br>
-            <p>Expand each principle to learn how to keep your hints in-world and story-driven.</p>
+/* ============================
+   LAYOUT
+   ============================ */
 
-            <div class="accordion">
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <span>Stay in Character</span>
-                        <span class="accordion-icon">+</span>
-                    </button>
-                    <div class="accordion-content">
-                        <p>Maintaining your role, voice, and demeanor ensures that every hint feels authentic to the story. Whether you're a shifty bartender or an eccentric alchemist, your character should be the lens through which all hints are delivered.</p>
-                        <p>Staying in character helps players suspend disbelief and deepens their emotional connection to the experience.</p>
-                    </div>
-                </div>
+.intro-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
 
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <span>Use Story-Driven Language</span>
-                        <span class="accordion-icon">+</span>
-                    </button>
-                    <div class="accordion-content">
-                        <p>Frame your hints using language and references that belong in the game's world. Instead of giving direct instructions, weave your guidance into the narrative — refer to objects, events, or lore that make sense for your character.</p>
-                        <p>This keeps the illusion intact and makes hints feel like natural story beats.</p>
-                    </div>
-                </div>
+.crawl-wrapper {
+    margin-bottom: 3rem;
+}
 
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <span>Make the Players the Heroes</span>
-                        <span class="accordion-icon">+</span>
-                    </button>
-                    <div class="accordion-content">
-                        <p>Always position the players as the protagonists. Your hints should empower them to make discoveries and solve challenges, rather than making your character the source of all answers.</p>
-                        <p>Even though <strong>you</strong> know the answers, <strong>your character</strong> depends on the players to figure them out! Frame your guidance as support for their journey.</p>
-                    </div>
-                </div>
-            </div>
+.crawl {
+    width: 100%;
+}
 
-            <button class="next-btn" onclick="showSection(4)">
-                <span>→</span>
-            </button>
-        </div>
+.module-intro {
+    max-width: 700px;
+    margin: 0 auto;
+}
 
-        <!-- Section 4: Examples -->
-        <div class="intro-section" id="section4">
-            <h2 class="section-title">Immersive vs. Non-Immersive</h2>
-            <br>
-            <p>Tap each card to see how the same hint can be delivered in or out of character. Notice how the immersive version keeps players engaged in the story.</p>
+.module-intro > p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
 
-            <div class="flip-cards">
-                <div class="flip-card" onclick="flipCard(this)">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <p class="flip-scenario">Player doesn't know to roll the dice in the dice box</p>
-                            <span class="flip-prompt">Tap to flip</span>
-                        </div>
-                        <div class="flip-card-back">
-                            <p><strong>Immersive:</strong> "Hmm... Rocco was always very particular about where he ran his dice games, but he never let me see where he played."</p>
-                            <p><strong>Non-immersive:</strong> "You need to roll the dice inside that box."</p>
-                        </div>
-                    </div>
-                </div>
+/* Centered layout mode */
+body.centered-layout .intro-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
 
-                <div class="flip-card" onclick="flipCard(this)">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <p class="flip-scenario">Team is running out of time</p>
-                            <span class="flip-prompt">Tap to flip</span>
-                        </div>
-                        <div class="flip-card-back">
-                            <p><strong>Immersive:</strong> "The evil alchemist and his minions are nearly upon us! Hurry!"</p>
-                            <p><strong>Non-immersive:</strong> "You have about two minutes left."</p>
-                        </div>
-                    </div>
-                </div>
+/* Normal flow for landing pages */
+body:not(.dark-mode):not(.centered-layout) .intro-container {
+    display: block;
+}
 
-                <div class="flip-card" onclick="flipCard(this)">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <p class="flip-scenario">Player is ignoring a clue</p>
-                            <span class="flip-prompt">Tap to flip</span>
-                        </div>
-                        <div class="flip-card-back">
-                            <p><strong>Immersive:</strong> "I sense that parchment holds secrets yet untold..."</p>
-                            <p><strong>Non-immersive:</strong> "Check the paper again."</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+/* ============================
+   TYPOGRAPHY
+   ============================ */
 
-            <button class="next-btn" onclick="showSection(5)">
-                <span>→</span>
-            </button>
-        </div>
+.title h1 {
+    font-family: var(--heading-font);
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--black);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
 
-        <!-- Section 5: When to Break Character -->
-        <div class="intro-section" id="section5">
-            <h2 class="section-title">When to Break Character</h2>
-            <br>
-            <p>While immersion is a top priority, player safety and well-being always come first. Expand each scenario to see the best practice response.</p>
+/* Yellow accent underline */
+.title h1::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: var(--yellow);
+    margin-top: 1rem;
+}
 
-            <div class="accordion">
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <span>Technical Issues</span>
-                        <span class="accordion-icon">+</span>
-                    </button>
-                    <div class="accordion-content">
-                        <p><strong>Usually stay in character</strong> by weaving the issue into the story.</p>
-                        <p>For example: "The evil alchemist's magic seems to be interfering with our environment — give me a moment to commune with the ancient forces."</p>
-                        <p>Only break character if absolutely necessary.</p>
-                    </div>
-                </div>
+.subtitle {
+    font-family: var(--heading-font);
+    font-size: 1rem;
+    color: var(--teal);
+    margin-bottom: 3rem;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    text-transform: uppercase;
+}
 
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <span>Emotional Distress</span>
-                        <span class="accordion-icon">+</span>
-                    </button>
-                    <div class="accordion-content">
-                        <p><strong>Break character briefly</strong> to support the player.</p>
-                        <p>If someone is visibly upset or anxious, step out of character to offer reassurance and options, then return to the story when appropriate.</p>
-                    </div>
-                </div>
+.content {
+    font-family: var(--body-font);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--gray);
+    font-weight: 400;
+}
 
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <span>Safety Concerns</span>
-                        <span class="accordion-icon">+</span>
-                    </button>
-                    <div class="accordion-content">
-                        <p><strong>Break character immediately</strong> if there is any risk to player safety.</p>
-                        <p>Address the situation directly and clearly, prioritizing well-being over immersion.</p>
-                    </div>
-                </div>
+.content p {
+    margin-bottom: 1.5rem;
+    color: var(--black);
+}
 
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <span>Time Pressure</span>
-                        <span class="accordion-icon">+</span>
-                    </button>
-                    <div class="accordion-content">
-                        <p><strong>Do not break character.</strong> Use in-character urgency to communicate time limits.</p>
-                        <p>For example: "Markoth's minions are nearly upon us!"</p>
-                    </div>
-                </div>
-            </div>
+.module-intro p {
+    line-height: 1.9;
+}
 
-            <button class="next-btn" onclick="showSection(6)">
-                <span>→</span>
-            </button>
-        </div>
+.list-lead {
+    font-weight: 600;
+    color: var(--teal);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.01em;
+}
 
-        <!-- Section 6: Wrap-up -->
-        <div class="intro-section" id="section6">
-            <h2 class="section-title">Putting It Together</h2>
-            <br>
-            <p>Narrative-based hinting keeps players immersed and makes every clue feel like part of the adventure.</p>
-            <br>
-            <p>Delivering hints in character enhances the story, while knowing when to break character ensures player safety and comfort.</p>
-            <br>
-            <p>Striking this balance is key to creating memorable, engaging escape room experiences.</p>
+/* ============================
+   LISTS
+   ============================ */
 
-            <a href="section4quiz.html" class="quiz-btn">Check your understanding</a>
-        </div>
+.content ul,
+.intro-section ul {
+    list-style: none;
+    margin: 0 0 1.5rem 1.5rem;
+    padding: 0;
+}
 
-        <!-- Navigation Dots -->
-        <div class="nav-dots">
-            <span class="dot active" onclick="showSection(1)"></span>
-            <span class="dot" onclick="showSection(2)"></span>
-            <span class="dot" onclick="showSection(3)"></span>
-            <span class="dot" onclick="showSection(4)"></span>
-            <span class="dot" onclick="showSection(5)"></span>
-            <span class="dot" onclick="showSection(6)"></span>
-        </div>
-    </div>
-</div>
+.content li,
+.intro-section li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.25rem;
+    position: relative;
+}
 
-<script>
-// Section navigation
-function showSection(sectionNumber) {
-    document.querySelectorAll('.intro-section').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+.content li::before,
+.intro-section li::before {
+    content: "›";
+    position: absolute;
+    left: 0;
+    color: var(--teal);
+    font-weight: 600;
+}
+
+/* Topic list with arrow bullets */
+.topic-list {
+    list-style: none;
+    margin: 0;
+}
+
+.topic-list li {
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+    color: var(--gray);
+    font-weight: 500;
+    position: relative;
+    line-height: 1.8;
+}
+
+.topic-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--yellow);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* ============================
+   BUTTONS
+   ============================ */
+
+/* Begin/Primary Button */
+.begin-btn {
+    font-family: var(--heading-font);
+    width: 100%;
+    max-width: 300px;
+    display: block;
+    margin: 3rem auto 0;
+    padding: 1.2rem 3rem;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.begin-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--yellow);
+}
+
+.begin-btn:hover {
+    background: var(--teal);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.begin-btn:active {
+    transform: translateY(0);
+}
+
+/* Next Arrow Button */
+.next-btn {
+    display: block;
+    margin: 3rem auto 0;
+    width: 60px;
+    height: 60px;
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.next-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--yellow);
+    transform: scale(0);
+    transition: transform 0.3s ease;
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.next-btn:hover::before {
+    transform: scale(1);
+}
+
+.next-btn span {
+    position: relative;
+    z-index: 1;
+}
+
+.next-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.next-btn:active {
+    transform: translateY(0);
+}
+
+/* Quiz Button */
+.quiz-btn {
+    font-family: var(--heading-font);
+    display: block;
+    margin: 3rem auto 0;
+    padding: 1.2rem 3rem;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    background: var(--teal);
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    text-align: center;
+    max-width: 400px;
+}
+
+.quiz-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--yellow);
+}
+
+.quiz-btn:hover {
+    background: var(--black);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.quiz-btn:active {
+    transform: translateY(0);
+}
+
+/* ============================
+   NAVIGATION
+   ============================ */
+
+/* Navigation Dots */
+.nav-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 3rem;
+    padding-top: 2rem;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot:hover {
+    background: var(--gray);
+    transform: scale(1.2);
+}
+
+.dot.active {
+    background: var(--yellow);
+    width: 32px;
+    border-radius: 6px;
+}
+
+/* Step Navigation */
+.step-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.step-arrow {
+    font-size: 1.3rem;
+    color: #999;
+    cursor: pointer;
+    user-select: none;
+    padding: 0.25rem;
+    transition: color 0.2s ease;
+}
+
+.step-arrow:hover {
+    color: var(--teal);
+}
+
+.step-arrow.disabled {
+    color: #ddd;
+    cursor: default;
+}
+
+.step-dot {
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #fff;
+}
+
+.step-dot:hover {
+    border-color: var(--teal);
+}
+
+.step-dot.active {
+    border-color: var(--teal);
+    background: var(--teal);
+    color: #fff;
+    font-weight: 700;
+}
+
+.step-dot.completed {
+    border-color: var(--yellow);
+    background: var(--yellow);
+    color: var(--black);
+}
+
+/* ============================
+   SECTIONS
+   ============================ */
+
+.intro-section {
+    display: none;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.intro-section.active {
+    display: block;
+    opacity: 1;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Failure Points Section */
+.failure-points {
+    margin: 3rem 0;
+    padding: 2rem;
+    background: var(--off-white);
+    border-left: 4px solid var(--yellow);
+}
+
+.failure-points p {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--black);
+}
+
+.failure-points ul {
+    list-style: none;
+    margin: 0;
+}
+
+.failure-points li {
+    margin-bottom: 1rem;
+    padding-left: 0;
+    color: var(--gray);
+    line-height: 1.8;
+}
+
+.failure-points li::before {
+    display: none;
+}
+
+.failure-points li b {
+    color: var(--teal);
+    font-weight: 600;
+}
+
+/* Topics Section */
+.module-topics {
+    margin: 3rem 0;
+}
+
+.module-topics > p {
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    color: var(--black);
+    font-size: 1.1rem;
+}
+
+/* Note Box */
+.note-box {
+    background: rgba(244, 196, 48, 0.15);
+    border-left: 4px solid var(--yellow);
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+}
+
+.note-box p {
+    margin: 0;
+}
+
+/* ============================
+   STEP CAROUSEL
+   ============================ */
+
+.step-carousel {
+    margin: 2rem 0;
+}
+
+.step-card {
+    display: none;
+    background: rgba(244, 196, 48, 0.15);
+    border: 1px solid var(--yellow);
+    border-left: 4px solid var(--yellow);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: left;
+}
+
+.step-card.active {
+    display: block;
+}
+
+.step-badge {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--teal);
+    margin-bottom: 1rem;
+}
+
+.step-card h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--black);
+}
+
+.step-card p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* ============================
+   ACCORDION
+   ============================ */
+
+.accordion {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+}
+
+.accordion-item {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.accordion-item:last-child {
+    border-bottom: none;
+}
+
+.accordion-header {
+    width: 100%;
+    padding: 1.25rem 1.5rem;
+    background: #fff;
+    border: none;
+    border-left: 4px solid var(--yellow);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--body-font);
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-align: left;
+    color: var(--teal);
+    transition: background 0.2s ease;
+}
+
+.accordion-header:hover {
+    background: rgba(244, 196, 48, 0.08);
+}
+
+.accordion-icon {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--yellow);
+    transition: transform 0.3s ease;
+}
+
+.accordion-item.active .accordion-icon {
+    transform: rotate(45deg);
+}
+
+.accordion-item.active .accordion-header {
+    background: rgba(244, 196, 48, 0.1);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    background: #fff;
+    transition: max-height 0.3s ease;
+}
+
+.accordion-content p {
+    padding: 0 1.5rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.accordion-content p:first-child {
+    padding-top: 1rem;
+}
+
+.accordion-content p:last-child {
+    padding-bottom: 1.5rem;
+    margin-bottom: 0;
+}
+
+.accordion-content ul {
+    padding: 0 1.5rem 1.5rem;
+}
+
+.accordion-content li {
+    margin-bottom: 0.75rem;
+    padding-left: 1.25rem;
+    position: relative;
+}
+
+.accordion-content li::before {
+    position: absolute;
+    left: 0;
+    color: var(--black);
+}
+
+/* ============================
+   DARK MODE (Golden Rule)
+   ============================ */
+
+body.dark-mode {
+    background: #0a0a0a;
+    transition: background 0.6s ease;
+}
+
+body.dark-mode .intro-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+body.dark-mode .nav-dots {
+    display: none;
+}
+
+/* Golden Rule Section */
+.golden-rule-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: auto;
+    width: 100%;
+}
+
+.golden-rule {
+    font-family: var(--heading-font);
+    font-size: 4rem;
+    font-weight: 800;
+    background: linear-gradient(
+        135deg,
+        #ffd700 0%,
+        #ffed4e 25%,
+        #ffd700 50%,
+        #ffed4e 75%,
+        #ffd700 100%
+    );
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s ease-in-out infinite, float 3s ease-in-out infinite;
+    cursor: pointer;
+    text-align: center;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.5),
+                 0 0 60px rgba(255, 215, 0, 0.3);
+    transition: transform 0.3s ease;
+    margin: 0;
+}
+
+.golden-rule:hover {
+    transform: scale(1.05);
+}
+
+@keyframes shimmer {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Rule Revealed Styling */
+.rule-title {
+    font-family: var(--heading-font);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.rule-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--yellow);
+    margin-top: 0.5rem;
+}
+
+.rule-statement {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--teal);
+    font-style: italic;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.rule-statement-large {
+    font-family: var(--heading-font);
+    font-size: 3.5rem;
+    font-weight: 1000;
+    color: var(--black);
+    text-align: center;
+    line-height: 1.4;
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+/* ============================
+   RESPONSIVE
+   ============================ */
+
+@media (max-width: 768px) {
+    body {
+        padding: 1.5rem;
+    }
     
-    document.getElementById('section' + sectionNumber).classList.add('active');
-    document.querySelectorAll('.dot')[sectionNumber - 1].classList.add('active');
+    .title h1 {
+        font-size: 2.5rem;
+    }
+    
+    .subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .content {
+        font-size: 1rem;
+    }
+    
+    .begin-btn {
+        font-size: 0.9rem;
+        padding: 1rem 2.5rem;
+    }
+    
+    .quiz-btn {
+        font-size: 0.9rem;
+        padding: 1rem 2.5rem;
+    }
+    
+    .failure-points {
+        padding: 1.5rem;
+    }
+    
+    .module-intro > p {
+        font-size: 0.95rem;
+    }
+    
+    .golden-rule {
+        font-size: 2.5rem;
+    }
+    
+    .rule-statement {
+        font-size: 1.2rem;
+    }
+    
+    .rule-statement-large {
+        font-size: 1.8rem;
+    }
 }
 
-// Accordion
-document.querySelectorAll('.accordion-header').forEach(button => {
-    button.addEventListener('click', () => {
-        const item = button.parentElement;
-        const content = button.nextElementSibling;
-        const icon = button.querySelector('.accordion-icon');
-        const isActive = item.classList.contains('active');
+/* ============================
+   FLIP CARDS
+   ============================ */
 
-        const accordion = item.parentElement;
-        accordion.querySelectorAll('.accordion-item').forEach(i => {
-            i.classList.remove('active');
-            i.querySelector('.accordion-content').style.maxHeight = null;
-            i.querySelector('.accordion-icon').textContent = '+';
-        });
-
-        if (!isActive) {
-            item.classList.add('active');
-            content.style.maxHeight = content.scrollHeight + 'px';
-            icon.textContent = '−';
-        }
-    });
-});
-
-// Flip cards
-function flipCard(card) {
-    card.classList.toggle('flipped');
+.flip-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1.5rem 0;
 }
-</script>
-</body>
-</html>
+
+.flip-card {
+    background: transparent;
+    perspective: 1000px;
+    cursor: pointer;
+    height: 180px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.flip-card-front {
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    border-top: 4px solid var(--gold);
+    text-align: center;
+}
+
+.flip-card-back {
+    background: var(--teal);
+    color: #fff;
+    transform: rotateY(180deg);
+    font-size: 0.9rem;
+    overflow-y: auto;
+}
+
+.flip-card-back p {
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+}
+
+.flip-card-back p:last-child {
+    margin-bottom: 0;
+}
+
+.flip-scenario {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.flip-prompt {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+@media (max-width: 600px) {
+    .flip-card {
+        height: 200px;
+    }
+    
+    .flip-card-back {
+        font-size: 0.85rem;
+        padding: 1rem;
+    }
+}
