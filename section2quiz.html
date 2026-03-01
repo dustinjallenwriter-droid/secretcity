@@ -28,15 +28,15 @@
 
             <!-- Tap zones - three options -->
             <div class="tap-zones tap-zones-triple">
-                <button class="tap-zone" id="divideZone" onclick="sortCard('divide')">
+                <button class="tap-zone" id="divideZone" onclick="sortCard('divide', this)">
                     <span class="zone-icon">⚔</span>
                     <span class="zone-label">Divide & Conquer</span>
                 </button>
-                <button class="tap-zone" id="communicateZone" onclick="sortCard('communicate')">
+                <button class="tap-zone" id="communicateZone" onclick="sortCard('communicate', this)">
                     <span class="zone-icon">💬</span>
                     <span class="zone-label">Communication</span>
                 </button>
-                <button class="tap-zone" id="thoroughZone" onclick="sortCard('thorough')">
+                <button class="tap-zone" id="thoroughZone" onclick="sortCard('thorough', this)">
                     <span class="zone-icon">🔍</span>
                     <span class="zone-label">Be Thorough</span>
                 </button>
@@ -124,9 +124,13 @@ function showCurrentCard() {
     }
 }
 
-function sortCard(chosenCategory) {
+function sortCard(chosenCategory, btn) {
     document.activeElement.blur();
     if (currentCardIndex >= sortCards.length) return;
+    
+    // Flash the tapped button
+    btn.classList.add('flash');
+    setTimeout(() => btn.classList.remove('flash'), 300);
     
     const card = sortCards[currentCardIndex];
     const cardElement = document.getElementById('currentCard');
