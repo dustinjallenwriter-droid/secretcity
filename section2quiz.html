@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Check Your Understanding | The Art of Hinting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+<div class="quiz-container">
+    <div class="quiz-header">
+        <h1>Check your understanding</h1>
+        <p>Use the following activities to apply what you've learned about player cues, group dynamics, and universal reminders in realistic scenarios.</p>
+    </div>
+
+    <!-- Question 1: Universal Reminders -->
+    <div class="quiz-question active" id="question1">
+        <div class="question-card">
+            <div class="scenario">
+                <p>All six players are crowded around a letter puzzle. Meanwhile, two other puzzles in the room remain completely untouched. Some players are just watching over shoulders, not actively participating.</p>
+                <p class="scenario-prompt">Which universal reminder should you consider voicing?</p>
+            </div>
+
+            <div class="options">
+                <label class="option">
+                    <input type="radio" name="q1" value="a">
+                    <span class="option-text">Communication</span>
+                </label>
+                <label class="option">
+                    <input type="radio" name="q1" value="b">
+                    <span class="option-text">Be Thorough</span>
+                </label>
+                <label class="option">
+                    <input type="radio" name="q1" value="c" data-correct="true">
+                    <span class="option-text">Divide & Conquer</span>
+                </label>
+            </div>
+
+            <button class="submit-btn" onclick="submitAnswer(1)">Submit</button>
+        </div>
+
+        <div class="feedback" id="feedback1">
+            <div class="feedback-icon">
+                <span class="icon-circle"><span class="checkmark">✓</span></span>
+            </div>
+            <p class="feedback-label">Correct</p>
+            <p class="feedback-text">This scenario highlights the need to divide tasks among players. With everyone focused on one puzzle, others go unsolved and some players become passive spectators.</p>
+        </div>
+    </div>
+
+    <!-- Question 2: Group Dynamics -->
+    <div class="quiz-question" id="question2">
+        <div class="question-card">
+            <div class="scenario">
+                <p>You notice one player has solved a puzzle and pocketed a key, but hasn't told anyone. Another pair is now trying to solve the same puzzle again, not realizing it's already done.</p>
+                <p class="scenario-prompt">Which universal reminder fits this situation?</p>
+            </div>
+
+            <div class="options">
+                <label class="option">
+                    <input type="radio" name="q2" value="a" data-correct="true">
+                    <span class="option-text">Communication</span>
+                </label>
+                <label class="option">
+                    <input type="radio" name="q2" value="b">
+                    <span class="option-text">Divide & Conquer</span>
+                </label>
+                <label class="option">
+                    <input type="radio" name="q2" value="c">
+                    <span class="option-text">Be Thorough</span>
+                </label>
+            </div>
+
+            <button class="submit-btn" onclick="submitAnswer(2)">Submit</button>
+        </div>
+
+        <div class="feedback" id="feedback2">
+            <div class="feedback-icon">
+                <span class="icon-circle"><span class="checkmark">✓</span></span>
+            </div>
+            <p class="feedback-label">Correct</p>
+            <p class="feedback-text">When players aren't sharing discoveries, the team wastes time duplicating work. A gentle reminder to communicate keeps everyone on the same page.</p>
+        </div>
+    </div>
+
+    <!-- Question 3: Matching Dynamics to Reminders -->
+    <div class="quiz-question" id="question3">
+        <div class="question-card">
+            <div class="scenario">
+                <p>Players are rushing through the room, picking things up and putting them down quickly. They've walked past an obvious clue three times without noticing it. They seem excited but scattered.</p>
+                <p class="scenario-prompt">Which universal reminder would help here?</p>
+            </div>
+
+            <div class="options">
+                <label class="option">
+                    <input type="radio" name="q3" value="a">
+                    <span class="option-text">Divide & Conquer</span>
+                </label>
+                <label class="option">
+                    <input type="radio" name="q3" value="b" data-correct="true">
+                    <span class="option-text">Be Thorough</span>
+                </label>
+                <label class="option">
+                    <input type="radio" name="q3" value="c">
+                    <span class="option-text">Communication</span>
+                </label>
+            </div>
+
+            <button class="submit-btn" onclick="submitAnswer(3)">Submit</button>
+        </div>
+
+        <div class="feedback" id="feedback3">
+            <div class="feedback-icon">
+                <span class="icon-circle"><span class="checkmark">✓</span></span>
+            </div>
+            <p class="feedback-label">Correct</p>
+            <p class="feedback-text">When players are rushing and missing clues, encouraging them to slow down and be thorough helps them catch what they've overlooked.</p>
+        </div>
+    </div>
+
+    <!-- Quiz Navigation -->
+    <div class="quiz-nav">
+        <div class="quiz-progress">
+            <span class="progress-dot active" data-q="1">1</span>
+            <span class="progress-dot" data-q="2">2</span>
+            <span class="progress-dot" data-q="3">3</span>
+        </div>
+    </div>
+
+    <!-- Continue Button (shown after all questions complete) -->
+    <button class="continue-btn" id="continueBtn" onclick="window.location.href='section3.html'">Continue</button>
+</div>
+
+<script src="quiz.js"></script>
+</body>
+</html>
