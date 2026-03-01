@@ -29,11 +29,11 @@
             </div>
 
             <div class="tap-zones">
-                <button class="tap-zone" id="immersiveZone" onclick="sortCard1('immersive')">
+                <button class="tap-zone" id="immersiveZone" onclick="sortCard1('immersive', this)">
                     <span class="zone-icon">🎭</span>
                     <span class="zone-label">Immersive</span>
                 </button>
-                <button class="tap-zone" id="breakingZone" onclick="sortCard1('breaking')">
+                <button class="tap-zone" id="breakingZone" onclick="sortCard1('breaking', this)">
                     <span class="zone-icon">🚫</span>
                     <span class="zone-label">Breaks Immersion</span>
                 </button>
@@ -65,11 +65,11 @@
             </div>
 
             <div class="tap-zones">
-                <button class="tap-zone" id="stayZone" onclick="sortCard2('stay')">
+                <button class="tap-zone" id="stayZone" onclick="sortCard2('stay', this)">
                     <span class="zone-icon">🎭</span>
                     <span class="zone-label">Stay in Character</span>
                 </button>
-                <button class="tap-zone" id="breakZone" onclick="sortCard2('break')">
+                <button class="tap-zone" id="breakZone" onclick="sortCard2('break', this)">
                     <span class="zone-icon">🙋</span>
                     <span class="zone-label">Break Character</span>
                 </button>
@@ -133,9 +133,13 @@ function showCard1() {
     }
 }
 
-function sortCard1(choice) {
+function sortCard1(choice, btn) {
     document.activeElement.blur();
     if (cardIndex1 >= cards1.length) return;
+    
+    // Flash the tapped button
+    btn.classList.add('flash');
+    setTimeout(() => btn.classList.remove('flash'), 300);
     
     const card = cards1[cardIndex1];
     const cardEl = document.getElementById('currentCard1');
@@ -216,9 +220,13 @@ function showCard2() {
     }
 }
 
-function sortCard2(choice) {
+function sortCard2(choice, btn) {
     document.activeElement.blur();
     if (cardIndex2 >= cards2.length) return;
+    
+    // Flash the tapped button
+    btn.classList.add('flash');
+    setTimeout(() => btn.classList.remove('flash'), 300);
     
     const card = cards2[cardIndex2];
     const cardEl = document.getElementById('currentCard2');
