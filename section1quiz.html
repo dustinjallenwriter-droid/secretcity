@@ -14,75 +14,69 @@
 <div class="quiz-container">
     <div class="quiz-header">
         <h1>Check your understanding</h1>
-        <p>Now it's your turn to apply what you've learned about timing, stewing, and the First Ten Minutes Rule. Use the following activities to test your knowledge and reinforce your skills.</p>
+        <p>Apply what you've learned about timing, stewing, and the First Ten Minutes Rule.</p>
     </div>
 
-    <!-- Question 1: Scenario Multiple Choice -->
+    <!-- Activity 1: First 10 Minutes Scenarios -->
     <div class="quiz-question active" id="question1">
-        <div class="question-card">
-            <div class="scenario">
-                <p>You're 7 minutes into a game. Two players are stuck, trying to combine pieces from two separate puzzles, looking frustrated, while others explore. They call you over to ask for advice.</p>
-                <p class="scenario-prompt">What do you do?</p>
+        <h2 class="question-title">First 10 Minutes Check</h2>
+        <p class="question-intro">You're 7 minutes into a 60-minute game. A pair of players is confused, trying to combine pieces from two different puzzles. For each possible response below, decide: does it align with the "first 10 minutes" philosophy?</p>
+
+        <div class="sort-activity">
+            <div class="current-card-container">
+                <p class="card-counter"><span id="cardNumber1">1</span> of <span id="totalCards1">4</span></p>
+                <div class="current-card" id="currentCard1"></div>
             </div>
 
-            <div class="options">
-                <label class="option">
-                    <input type="radio" name="q1" value="a">
-                    <span class="option-text">Jump in with a question-based hint: "And where did you find the bookmarks???"</span>
-                </label>
-                <label class="option">
-                    <input type="radio" name="q1" value="b" data-correct="true">
-                    <span class="option-text">Continue observing; frustration is normal this early: "Hmm… Well, we enlisted you for a reason. I'm sure you can figure it out!"</span>
-                </label>
-                <label class="option">
-                    <input type="radio" name="q1" value="c">
-                    <span class="option-text">Take a jab at them for some tough-love motivation: "I see we don't know how to read. That sucks."</span>
-                </label>
-                <label class="option">
-                    <input type="radio" name="q1" value="d">
-                    <span class="option-text">Distract them with character work: "Hey, put those down and listen to me sing an autobiographical song."</span>
-                </label>
+            <div class="tap-zones">
+                <button class="tap-zone" id="yesZone1" onclick="sortCard1('yes')">
+                    <span class="zone-icon">👍</span>
+                    <span class="zone-label">Yes</span>
+                </button>
+                <button class="tap-zone" id="noZone1" onclick="sortCard1('no')">
+                    <span class="zone-icon">👎</span>
+                    <span class="zone-label">No</span>
+                </button>
             </div>
 
-            <button class="submit-btn" onclick="submitAnswer(1)">Submit</button>
+            <div class="sort-progress">
+                <div class="sort-progress-bar" id="sortProgressBar1"></div>
+            </div>
         </div>
 
         <div class="feedback" id="feedback1">
             <div class="feedback-icon">
                 <span class="icon-circle"><span class="checkmark">✓</span></span>
             </div>
-            <p class="feedback-label">Correct</p>
-            <p class="feedback-text">This is the best choice. The first ten minutes are for players to stew and work through challenges on their own, unless something is seriously wrong.</p>
+            <p class="feedback-label">Well done!</p>
+            <p class="feedback-text" id="feedback1Text">You understand when to hold back and let players work through early challenges.</p>
         </div>
     </div>
 
-    <!-- Question 2: Tap to Sort -->
+    <!-- Activity 2: Productive vs Unproductive -->
     <div class="quiz-question" id="question2">
         <h2 class="question-title">Productive or Unproductive?</h2>
         <p class="question-intro">For each player behavior below, tap the category it belongs to.</p>
 
         <div class="sort-activity">
-            <!-- Current card display -->
             <div class="current-card-container">
-                <p class="card-counter"><span id="cardNumber">1</span> of <span id="totalCards">6</span></p>
-                <div class="current-card" id="currentCard"></div>
+                <p class="card-counter"><span id="cardNumber2">1</span> of <span id="totalCards2">6</span></p>
+                <div class="current-card" id="currentCard2"></div>
             </div>
 
-            <!-- Tap zones -->
             <div class="tap-zones">
-                <button class="tap-zone" id="productiveZone" onclick="sortCard('productive')">
+                <button class="tap-zone" id="productiveZone" onclick="sortCard2('productive')">
                     <span class="zone-icon">✓</span>
                     <span class="zone-label">Productive Stewing</span>
                 </button>
-                <button class="tap-zone" id="unproductiveZone" onclick="sortCard('unproductive')">
+                <button class="tap-zone" id="unproductiveZone" onclick="sortCard2('unproductive')">
                     <span class="zone-icon">✗</span>
                     <span class="zone-label">Unproductive Frustration</span>
                 </button>
             </div>
 
-            <!-- Progress indicator -->
             <div class="sort-progress">
-                <div class="sort-progress-bar" id="sortProgressBar"></div>
+                <div class="sort-progress-bar" id="sortProgressBar2"></div>
             </div>
         </div>
 
@@ -95,42 +89,39 @@
         </div>
     </div>
 
-    <!-- Question 3: Conceptual Multiple Choice -->
+    <!-- Activity 3: Player Satisfaction -->
     <div class="quiz-question" id="question3">
-        <div class="question-card">
-            <div class="scenario">
-                <p>One group receives frequent hints and completes the game, but feels they wouldn't have solved it without you. Another group struggles, doesn't finish, but feels they would've escaped if they had 30 more seconds.</p>
-                <p class="scenario-prompt">Which scenario is more likely to result in higher player satisfaction?</p>
+        <h2 class="question-title">Satisfied or Disappointed?</h2>
+        <p class="question-intro">Based on what you've learned, predict how each group likely felt after their experience.</p>
+
+        <div class="sort-activity">
+            <div class="current-card-container">
+                <p class="card-counter"><span id="cardNumber3">1</span> of <span id="totalCards3">4</span></p>
+                <div class="current-card" id="currentCard3"></div>
             </div>
 
-            <div class="options">
-                <label class="option">
-                    <input type="radio" name="q3" value="a" data-correct="true">
-                    <span class="option-text">The group that didn't quite win but felt accomplished</span>
-                </label>
-                <label class="option">
-                    <input type="radio" name="q3" value="b">
-                    <span class="option-text">The group that received frequent hints and won</span>
-                </label>
-                <label class="option">
-                    <input type="radio" name="q3" value="c">
-                    <span class="option-text">Both groups will be equally satisfied</span>
-                </label>
-                <label class="option">
-                    <input type="radio" name="q3" value="d">
-                    <span class="option-text">Neither group will be satisfied</span>
-                </label>
+            <div class="tap-zones">
+                <button class="tap-zone" id="satisfiedZone" onclick="sortCard3('satisfied')">
+                    <span class="zone-icon">😊</span>
+                    <span class="zone-label">Satisfied</span>
+                </button>
+                <button class="tap-zone" id="disappointedZone" onclick="sortCard3('disappointed')">
+                    <span class="zone-icon">😞</span>
+                    <span class="zone-label">Disappointed</span>
+                </button>
             </div>
 
-            <button class="submit-btn" onclick="submitAnswer(3)">Submit</button>
+            <div class="sort-progress">
+                <div class="sort-progress-bar" id="sortProgressBar3"></div>
+            </div>
         </div>
 
         <div class="feedback" id="feedback3">
             <div class="feedback-icon">
                 <span class="icon-circle"><span class="checkmark">✓</span></span>
             </div>
-            <p class="feedback-label">Correct</p>
-            <p class="feedback-text">Players value genuine challenge and earned success more than simply winning with heavy hinting.</p>
+            <p class="feedback-label">Well done!</p>
+            <p class="feedback-text" id="feedback3Text">You understand how hinting choices impact player satisfaction.</p>
         </div>
     </div>
 
@@ -143,10 +134,304 @@
         </div>
     </div>
 
-    <!-- Continue Button (shown after all questions complete) -->
+    <!-- Continue Button -->
     <button class="continue-btn" id="continueBtn" onclick="window.location.href='section2.html'">Continue</button>
 </div>
 
-<script src="quiz.js"></script>
+<script>
+let completedQuestions = [];
+const totalQuestions = 3;
+
+// ========== ACTIVITY 1: First 10 Minutes ==========
+const cards1 = [
+    { text: "Jump in with a direct hint: \"Those two pieces don't go together.\"", category: "no" },
+    { text: "Let them stew: \"Hmm, well, we enlisted you for a reason. I'm sure you can figure it out!\"", category: "yes" },
+    { text: "Re-state relevant info from the intro without giving new information.", category: "yes" },
+    { text: "Redirect their attention: \"Have you explored everything in the room yet?\"", category: "yes" }
+];
+let cardIndex1 = 0;
+let score1 = 0;
+
+function initActivity1() {
+    cardIndex1 = 0;
+    score1 = 0;
+    document.getElementById('totalCards1').textContent = cards1.length;
+    updateProgress1();
+    showCard1();
+}
+
+function showCard1() {
+    if (cardIndex1 < cards1.length) {
+        document.getElementById('currentCard1').textContent = cards1[cardIndex1].text;
+        document.getElementById('currentCard1').className = 'current-card';
+        document.getElementById('cardNumber1').textContent = cardIndex1 + 1;
+    }
+}
+
+function sortCard1(choice) {
+    document.activeElement.blur();
+    if (cardIndex1 >= cards1.length) return;
+    
+    const card = cards1[cardIndex1];
+    const cardEl = document.getElementById('currentCard1');
+    const isCorrect = card.category === choice;
+    
+    if (isCorrect) {
+        cardEl.classList.add('card-correct');
+        score1++;
+    } else {
+        cardEl.classList.add('card-incorrect');
+    }
+    
+    setTimeout(() => {
+        cardIndex1++;
+        updateProgress1();
+        
+        if (cardIndex1 < cards1.length) {
+            showCard1();
+        } else {
+            finishActivity1();
+        }
+    }, 600);
+}
+
+function updateProgress1() {
+    const progress = (cardIndex1 / cards1.length) * 100;
+    document.getElementById('sortProgressBar1').style.width = progress + '%';
+}
+
+function finishActivity1() {
+    const feedback = document.getElementById('feedback1');
+    const feedbackText = document.getElementById('feedback1Text');
+    
+    document.querySelector('#question1 .current-card-container').style.display = 'none';
+    document.querySelector('#question1 .tap-zones').style.display = 'none';
+    
+    feedback.classList.add('show');
+    
+    if (score1 === cards1.length) {
+        feedbackText.textContent = `Perfect! You correctly identified all ${cards1.length} responses.`;
+    } else if (score1 >= cards1.length - 1) {
+        feedbackText.textContent = `Nice work! You got ${score1} out of ${cards1.length} correct.`;
+    } else {
+        feedback.classList.add('incorrect');
+        feedback.querySelector('.feedback-label').textContent = 'Not quite';
+        feedback.querySelector('.checkmark').textContent = '✗';
+        feedbackText.textContent = `You got ${score1} out of ${cards1.length} correct. Remember: the first 10 minutes are for letting players stew.`;
+    }
+    
+    markCompleted(1);
+}
+
+// ========== ACTIVITY 2: Productive vs Unproductive ==========
+const cards2 = [
+    { text: "Ignoring each other and looking at you for help", category: "unproductive" },
+    { text: "Animated discussion", category: "productive" },
+    { text: "Extended silence and checking phones", category: "unproductive" },
+    { text: "Physical engagement with game pieces", category: "productive" },
+    { text: "Players pointing out and discussing potential puzzle pieces around the room", category: "productive" },
+    { text: "Arms crossed, heads down", category: "unproductive" }
+];
+let cardIndex2 = 0;
+let score2 = 0;
+
+function initActivity2() {
+    cardIndex2 = 0;
+    score2 = 0;
+    document.getElementById('totalCards2').textContent = cards2.length;
+    updateProgress2();
+    showCard2();
+}
+
+function showCard2() {
+    if (cardIndex2 < cards2.length) {
+        document.getElementById('currentCard2').textContent = cards2[cardIndex2].text;
+        document.getElementById('currentCard2').className = 'current-card';
+        document.getElementById('cardNumber2').textContent = cardIndex2 + 1;
+    }
+}
+
+function sortCard2(choice) {
+    document.activeElement.blur();
+    if (cardIndex2 >= cards2.length) return;
+    
+    const card = cards2[cardIndex2];
+    const cardEl = document.getElementById('currentCard2');
+    const isCorrect = card.category === choice;
+    
+    if (isCorrect) {
+        cardEl.classList.add('card-correct');
+        score2++;
+    } else {
+        cardEl.classList.add('card-incorrect');
+    }
+    
+    setTimeout(() => {
+        cardIndex2++;
+        updateProgress2();
+        
+        if (cardIndex2 < cards2.length) {
+            showCard2();
+        } else {
+            finishActivity2();
+        }
+    }, 600);
+}
+
+function updateProgress2() {
+    const progress = (cardIndex2 / cards2.length) * 100;
+    document.getElementById('sortProgressBar2').style.width = progress + '%';
+}
+
+function finishActivity2() {
+    const feedback = document.getElementById('feedback2');
+    const feedbackText = document.getElementById('feedback2Text');
+    
+    document.querySelector('#question2 .current-card-container').style.display = 'none';
+    document.querySelector('#question2 .tap-zones').style.display = 'none';
+    
+    feedback.classList.add('show');
+    
+    if (score2 === cards2.length) {
+        feedbackText.textContent = `Perfect! You correctly identified all ${cards2.length} behaviors.`;
+    } else if (score2 >= cards2.length - 1) {
+        feedbackText.textContent = `Nice work! You got ${score2} out of ${cards2.length} correct.`;
+    } else {
+        feedback.classList.add('incorrect');
+        feedback.querySelector('.feedback-label').textContent = 'Not quite';
+        feedback.querySelector('.checkmark').textContent = '✗';
+        feedbackText.textContent = `You got ${score2} out of ${cards2.length} correct. Review the signs of productive stewing versus unproductive frustration.`;
+    }
+    
+    markCompleted(2);
+}
+
+// ========== ACTIVITY 3: Player Satisfaction ==========
+const cards3 = [
+    { text: "Players win the game with no hints at all, but consistent in-character engagement throughout.", category: "satisfied" },
+    { text: "Players lose the game on the final puzzle after receiving a few subtle in-character hints throughout the experience.", category: "satisfied" },
+    { text: "Players win the game with time to spare because Clue Staff jumped in to provide hints every time they began moving in the wrong direction.", category: "disappointed" },
+    { text: "Players lose the game without making it through half the puzzles. Clue Staff provided zero hints; players never asked, but pulled out their phones within the first half hour and started discussing where they'd go for drinks after.", category: "disappointed" }
+];
+let cardIndex3 = 0;
+let score3 = 0;
+
+function initActivity3() {
+    cardIndex3 = 0;
+    score3 = 0;
+    document.getElementById('totalCards3').textContent = cards3.length;
+    updateProgress3();
+    showCard3();
+}
+
+function showCard3() {
+    if (cardIndex3 < cards3.length) {
+        document.getElementById('currentCard3').textContent = cards3[cardIndex3].text;
+        document.getElementById('currentCard3').className = 'current-card';
+        document.getElementById('cardNumber3').textContent = cardIndex3 + 1;
+    }
+}
+
+function sortCard3(choice) {
+    document.activeElement.blur();
+    if (cardIndex3 >= cards3.length) return;
+    
+    const card = cards3[cardIndex3];
+    const cardEl = document.getElementById('currentCard3');
+    const isCorrect = card.category === choice;
+    
+    if (isCorrect) {
+        cardEl.classList.add('card-correct');
+        score3++;
+    } else {
+        cardEl.classList.add('card-incorrect');
+    }
+    
+    setTimeout(() => {
+        cardIndex3++;
+        updateProgress3();
+        
+        if (cardIndex3 < cards3.length) {
+            showCard3();
+        } else {
+            finishActivity3();
+        }
+    }, 600);
+}
+
+function updateProgress3() {
+    const progress = (cardIndex3 / cards3.length) * 100;
+    document.getElementById('sortProgressBar3').style.width = progress + '%';
+}
+
+function finishActivity3() {
+    const feedback = document.getElementById('feedback3');
+    const feedbackText = document.getElementById('feedback3Text');
+    
+    document.querySelector('#question3 .current-card-container').style.display = 'none';
+    document.querySelector('#question3 .tap-zones').style.display = 'none';
+    
+    feedback.classList.add('show');
+    
+    if (score3 === cards3.length) {
+        feedbackText.textContent = `Perfect! You correctly predicted all ${cards3.length} outcomes.`;
+    } else if (score3 >= cards3.length - 1) {
+        feedbackText.textContent = `Nice work! You got ${score3} out of ${cards3.length} correct.`;
+    } else {
+        feedback.classList.add('incorrect');
+        feedback.querySelector('.feedback-label').textContent = 'Not quite';
+        feedback.querySelector('.checkmark').textContent = '✗';
+        feedbackText.textContent = `You got ${score3} out of ${cards3.length} correct. Remember: players value earned challenge over easy wins.`;
+    }
+    
+    markCompleted(3);
+}
+
+// ========== NAVIGATION ==========
+function markCompleted(questionNum) {
+    if (!completedQuestions.includes(questionNum)) {
+        completedQuestions.push(questionNum);
+    }
+    
+    const dot = document.querySelector(`.progress-dot[data-q="${questionNum}"]`);
+    dot.classList.remove('active');
+    dot.classList.add('completed');
+    
+    if (completedQuestions.length === totalQuestions) {
+        document.getElementById('continueBtn').classList.add('show');
+    } else {
+        setTimeout(() => {
+            showQuestion(questionNum + 1);
+        }, 2000);
+    }
+}
+
+function showQuestion(questionNum) {
+    document.querySelectorAll('.quiz-question').forEach(q => q.classList.remove('active'));
+    document.getElementById(`question${questionNum}`).classList.add('active');
+    
+    document.querySelectorAll('.progress-dot').forEach(dot => {
+        const dotNum = parseInt(dot.dataset.q);
+        if (!completedQuestions.includes(dotNum)) {
+            dot.classList.remove('active');
+        }
+        if (dotNum === questionNum && !completedQuestions.includes(dotNum)) {
+            dot.classList.add('active');
+        }
+    });
+    
+    if (questionNum === 2) {
+        initActivity2();
+    }
+    if (questionNum === 3) {
+        initActivity3();
+    }
+}
+
+// Initialize on load
+document.addEventListener('DOMContentLoaded', () => {
+    initActivity1();
+});
+</script>
 </body>
 </html>
