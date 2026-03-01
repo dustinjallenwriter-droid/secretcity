@@ -297,11 +297,13 @@
 @media (hover: none) and (pointer: coarse) {
     .tap-zone {
         outline: none !important;
+        transition: none !important;
     }
     
     .tap-zone:hover,
     .tap-zone:focus,
-    .tap-zone:focus-visible {
+    .tap-zone:focus-visible,
+    .tap-zone:focus-within {
         border-color: #e0e0e0 !important;
         background: #fff !important;
         transform: none !important;
@@ -309,9 +311,9 @@
         outline: none !important;
     }
     
+    /* Only show feedback via opacity on tap */
     .tap-zone:active {
-        border-color: var(--gold) !important;
-        background: rgba(244, 196, 48, 0.15) !important;
+        opacity: 0.7;
     }
 }
 
