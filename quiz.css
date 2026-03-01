@@ -295,17 +295,23 @@
 
 /* Remove hover/focus styles on touch devices */
 @media (hover: none) and (pointer: coarse) {
-    .tap-zone:hover {
-        border-color: #e0e0e0;
-        background: #fff;
-        transform: none;
-        box-shadow: none;
+    .tap-zone {
+        outline: none !important;
     }
     
-    .tap-zone:focus {
-        outline: none;
-        border-color: #e0e0e0;
-        background: #fff;
+    .tap-zone:hover,
+    .tap-zone:focus,
+    .tap-zone:focus-visible {
+        border-color: #e0e0e0 !important;
+        background: #fff !important;
+        transform: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+    }
+    
+    .tap-zone:active {
+        border-color: var(--gold) !important;
+        background: rgba(244, 196, 48, 0.15) !important;
     }
 }
 
