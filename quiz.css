@@ -309,13 +309,26 @@
         box-shadow: none !important;
         outline: none !important;
     }
-    
-    /* Scale down briefly on tap - this state doesn't persist */
-    .tap-zone:active {
-        transform: scale(0.95) !important;
+}
+
+/* Flash animation for tap feedback */
+@keyframes tapFlash {
+    0% {
         border-color: #e0e0e0 !important;
         background: #fff !important;
     }
+    50% {
+        border-color: #FDB913 !important;
+        background: rgba(244, 196, 48, 0.15) !important;
+    }
+    100% {
+        border-color: #e0e0e0 !important;
+        background: #fff !important;
+    }
+}
+
+.tap-zone.flash {
+    animation: tapFlash 0.3s ease !important;
 }
 
 .zone-icon {
