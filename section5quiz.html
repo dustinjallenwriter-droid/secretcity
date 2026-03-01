@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Check Your Understanding | The Art of Hinting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+<div class="quiz-container">
+    <div class="quiz-header">
+        <h1>Scenario Practice</h1>
+        <p>Now that you know the theory, it's time to apply your knowledge. What would you do?</p>
+    </div>
+
+    <!-- Scenario 1: ESL + Phone Translation -->
+    <div class="quiz-question active" id="question1">
+        <div class="scenario-card">
+            <p class="scenario-text">You've got an experienced group of confident players, but English is not their first language. You notice they're struggling to read the instructions for a puzzle that requires understanding a written component. You try reading it out loud for them, but it's still a struggle... They ask if they can use their phone camera to translate the written instructions.</p>
+            <p class="scenario-prompt">What should you say?</p>
+        </div>
+
+        <div class="tap-zones scenario-choices">
+            <button class="tap-zone scenario-option" onclick="checkScenario(1, 'correct')">
+                <span class="option-text">"Yes, we really gotta get out of here, so as long as it's just for translating, go ahead and use that thing!"</span>
+            </button>
+            <button class="tap-zone scenario-option" onclick="checkScenario(1, 'incorrect')">
+                <span class="option-text">"No! I don't trust that strange device! Put it away!"</span>
+            </button>
+        </div>
+
+        <div class="feedback" id="feedback1">
+            <div class="feedback-icon">
+                <span class="icon-circle"><span class="checkmark">✓</span></span>
+            </div>
+            <p class="feedback-label">Correct</p>
+            <p class="feedback-text">Accommodating language needs while staying in character creates an inclusive experience. The player's enjoyment matters more than strict "no phones" rules.</p>
+        </div>
+    </div>
+
+    <!-- Scenario 2: Young Players -->
+    <div class="quiz-question" id="question2">
+        <div class="scenario-card">
+            <p class="scenario-text">A family group with two kids (ages 8 and 10) is playing. The kids are getting visibly frustrated with a complex puzzle involving multiple steps. The parents are trying to help but the kids are starting to lose interest and one is close to tears.</p>
+            <p class="scenario-prompt">What's your best approach?</p>
+        </div>
+
+        <div class="tap-zones scenario-choices">
+            <button class="tap-zone scenario-option" onclick="checkScenario(2, 'incorrect')">
+                <span class="option-text">Wait it out — they need to learn that puzzles are hard, and the parents can handle it.</span>
+            </button>
+            <button class="tap-zone scenario-option" onclick="checkScenario(2, 'correct')">
+                <span class="option-text">Step in earlier with encouragement: "You're so close! What if we focus on just this one part first?"</span>
+            </button>
+        </div>
+
+        <div class="feedback" id="feedback2">
+            <div class="feedback-icon">
+                <span class="icon-circle"><span class="checkmark">✓</span></span>
+            </div>
+            <p class="feedback-label">Correct</p>
+            <p class="feedback-text">With young players, intervene earlier if frustration appears. Prioritize encouragement over challenge, and break complex tasks into smaller wins.</p>
+        </div>
+    </div>
+
+    <!-- Scenario 3: Experienced Players -->
+    <div class="quiz-question" id="question3">
+        <div class="scenario-card">
+            <p class="scenario-text">A group tells you upfront that they're "escape room enthusiasts" who have completed over 50 rooms. They're 25 minutes in and slightly stuck on a puzzle, but actively discussing theories and seem engaged.</p>
+            <p class="scenario-prompt">What's your best approach?</p>
+        </div>
+
+        <div class="tap-zones scenario-choices">
+            <button class="tap-zone scenario-option" onclick="checkScenario(3, 'correct')">
+                <span class="option-text">Hold back — they're engaged and working through it. Only intervene if they ask or if progress completely stalls.</span>
+            </button>
+            <button class="tap-zone scenario-option" onclick="checkScenario(3, 'incorrect')">
+                <span class="option-text">Jump in with a hint — 25 minutes is a long time to be stuck and you don't want them to run out of time.</span>
+            </button>
+        </div>
+
+        <div class="feedback" id="feedback3">
+            <div class="feedback-icon">
+                <span class="icon-circle"><span class="checkmark">✓</span></span>
+            </div>
+            <p class="feedback-label">Correct</p>
+            <p class="feedback-text">Experienced players often prefer minimal intervention. They're enjoying the challenge — let them lead, and respect their expertise.</p>
+        </div>
+    </div>
+
+    <!-- Quiz Navigation -->
+    <div class="quiz-nav">
+        <div class="quiz-progress">
+            <span class="progress-dot active" data-q="1">1</span>
+            <span class="progress-dot" data-q="2">2</span>
+            <span class="progress-dot" data-q="3">3</span>
+        </div>
+    </div>
+
+    <!-- Continue Button -->
+    <button class="continue-btn" id="continueBtn" onclick="window.location.href='section6.html'">Continue</button>
+</div>
+
+<script>
+let completedQuestions = [];
+const totalQuestions = 3;
+let currentQuestion = 1;
+
+function checkScenario(questionNum, result) {
+    document.activeElement.blur();
+    
+    const feedback = document.getElementById(`feedback${questionNum}`);
+    const buttons = document.querySelectorAll(`#question${questionNum} .scenario-option`);
+    
+    // Disable buttons
+    buttons.forEach(btn => btn.disabled = true);
+    
+    // Show feedback
+    feedback.classList.add('show');
+    
+    if (result === 'incorrect') {
+        feedback.classList.add('incorrect');
+        feedback.querySelector('.feedback-label').textContent = 'Not quite';
+        feedback.querySelector('.checkmark').textContent = '✗';
+    }
+    
+    // Mark completed and advance
+    markCompleted(questionNum);
+}
+
+function markCompleted(questionNum) {
+    if (!completedQuestions.includes(questionNum)) {
+        completedQuestions.push(questionNum);
+    }
+    
+    const dot = document.querySelector(`.progress-dot[data-q="${questionNum}"]`);
+    dot.classList.remove('active');
+    dot.classList.add('completed');
+    
+    if (completedQuestions.length === totalQuestions) {
+        document.getElementById('continueBtn').classList.add('show');
+    } else {
+        setTimeout(() => {
+            showQuestion(questionNum + 1);
+        }, 2000);
+    }
+}
+
+function showQuestion(questionNum) {
+    currentQuestion = questionNum;
+    
+    document.querySelectorAll('.quiz-question').forEach(q => q.classList.remove('active'));
+    document.getElementById(`question${questionNum}`).classList.add('active');
+    
+    document.querySelectorAll('.progress-dot').forEach(dot => {
+        const dotNum = parseInt(dot.dataset.q);
+        if (!completedQuestions.includes(dotNum)) {
+            dot.classList.remove('active');
+        }
+        if (dotNum === questionNum && !completedQuestions.includes(dotNum)) {
+            dot.classList.add('active');
+        }
+    });
+}
+
+// Mobile touch support
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.tap-zone').forEach(zone => {
+        zone.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            zone.click();
+        });
+    });
+});
+</script>
+</body>
+</html>
