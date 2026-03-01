@@ -56,41 +56,42 @@
         </div>
     </div>
 
-    <!-- Question 2: Drag and Drop Sorting -->
+    <!-- Question 2: Tap to Sort -->
     <div class="quiz-question" id="question2">
         <h2 class="question-title">Productive or Unproductive?</h2>
-        <p class="question-intro">Sort the following player behaviors into either <strong>Productive Stewing</strong> or <strong>Unproductive Frustration</strong>. This will help you sharpen your ability to read the room and respond appropriately.</p>
+        <p class="question-intro">For each player behavior below, tap the category it belongs to.</p>
 
         <div class="sort-activity">
-            <div class="card-stack" id="cardStack">
-                <div class="sort-card" data-category="unproductive" draggable="true">Ignoring each other and looking at you for help</div>
-                <div class="sort-card" data-category="productive" draggable="true">Animated discussion</div>
-                <div class="sort-card" data-category="unproductive" draggable="true">Extended silence and checking phones</div>
-                <div class="sort-card" data-category="productive" draggable="true">Physical engagement with game pieces</div>
-                <div class="sort-card" data-category="productive" draggable="true">Players pointing at puzzle elements</div>
-                <div class="sort-card" data-category="unproductive" draggable="true">Arms crossed, heads down</div>
+            <!-- Current card display -->
+            <div class="current-card-container">
+                <p class="card-counter"><span id="cardNumber">1</span> of <span id="totalCards">6</span></p>
+                <div class="current-card" id="currentCard"></div>
             </div>
 
-            <div class="drop-zones">
-                <div class="drop-zone" id="productiveZone" data-category="productive">
+            <!-- Tap zones -->
+            <div class="tap-zones">
+                <button class="tap-zone" id="productiveZone" onclick="sortCard('productive')">
+                    <span class="zone-icon">✓</span>
                     <span class="zone-label">Productive Stewing</span>
-                    <div class="zone-cards"></div>
-                </div>
-                <div class="drop-zone" id="unproductiveZone" data-category="unproductive">
+                </button>
+                <button class="tap-zone" id="unproductiveZone" onclick="sortCard('unproductive')">
+                    <span class="zone-icon">✗</span>
                     <span class="zone-label">Unproductive Frustration</span>
-                    <div class="zone-cards"></div>
-                </div>
+                </button>
+            </div>
+
+            <!-- Progress indicator -->
+            <div class="sort-progress">
+                <div class="sort-progress-bar" id="sortProgressBar"></div>
             </div>
         </div>
-
-        <button class="submit-btn" onclick="checkSorting()">Submit</button>
 
         <div class="feedback" id="feedback2">
             <div class="feedback-icon">
                 <span class="icon-circle"><span class="checkmark">✓</span></span>
             </div>
             <p class="feedback-label">Well done!</p>
-            <p class="feedback-text">You correctly identified the signs of productive stewing versus unproductive frustration. Use these cues to guide your hinting decisions.</p>
+            <p class="feedback-text" id="feedback2Text">You correctly identified the signs of productive stewing versus unproductive frustration.</p>
         </div>
     </div>
 
