@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Check Your Understanding | The Art of Hinting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+<div class="quiz-container">
+    <div class="quiz-header">
+        <h1>Check your understanding</h1>
+        <p>Apply what you've learned about question-based hinting.</p>
+    </div>
+
+    <!-- Activity: Question or Answer? -->
+    <div class="quiz-question active" id="question1">
+        <h2 class="question-title">Good Question or Giving It Away?</h2>
+        <p class="question-intro">A group is 20 minutes in and making good progress — they're in the early stages of the hint ladder. For each question below, decide: does it align with question-based hinting, or does it give too much away?</p>
+
+        <div class="sort-activity">
+            <div class="current-card-container">
+                <p class="card-counter"><span id="cardNumber">1</span> of <span id="totalCards">7</span></p>
+                <div class="current-card" id="currentCard"></div>
+            </div>
+
+            <div class="tap-zones">
+                <button class="tap-zone" id="goodZone" onclick="sortCard('good')">
+                    <span class="zone-icon">👍</span>
+                    <span class="zone-label">Good Question</span>
+                </button>
+                <button class="tap-zone" id="tooMuchZone" onclick="sortCard('toomuch')">
+                    <span class="zone-icon">👎</span>
+                    <span class="zone-label">Giving It Away</span>
+                </button>
+            </div>
+
+            <div class="sort-progress">
+                <div class="sort-progress-bar" id="sortProgressBar"></div>
+            </div>
+        </div>
+
+        <div class="feedback" id="feedback1">
+            <div class="feedback-icon">
+                <span class="icon-circle"><span class="checkmark">✓</span></span>
+            </div>
+            <p class="feedback-label">Well done!</p>
+            <p class="feedback-text" id="feedbackText">You can tell the difference between questions that empower players and questions that give it away.</p>
+        </div>
+    </div>
+
+    <!-- Quiz Navigation -->
+    <div class="quiz-nav">
+        <div class="quiz-progress">
+            <span class="progress-dot active" data-q="1">1</span>
+        </div>
+    </div>
+
+    <!-- Continue Button -->
+    <button class="continue-btn" id="continueBtn" onclick="window.location.href='section4.html'">Continue</button>
+</div>
+
+<script>
+const cards = [
+    { text: "\"What information do we have so far?\"", category: "good" },
+    { text: "\"Did you try looking closely at that weird painting?\"", category: "toomuch" },
+    { text: "\"And what was it we were trying to do again?\"", category: "good" },
+    { text: "\"How about the box in the corner?\"", category: "toomuch" },
+    { text: "\"What do we think this is going to lead us to?\"", category: "good" },
+    { text: "\"Have you considered that maybe the numbers on the clock are the combination?\"", category: "toomuch" },
+    { text: "\"Have you ever looked under a rug?\"", category: "toomuch" }
+];
+
+let cardIndex = 0;
+let score = 0;
+
+function init() {
+    document.getElementById('totalCards').textContent = cards.length;
+    updateProgress();
+    showCard();
+}
+
+function showCard() {
+    if (cardIndex < cards.length) {
+        document.getElementById('currentCard').textContent = cards[cardIndex].text;
+        document.getElementById('currentCard').className = 'current-card';
+        document.getElementById('cardNumber').textContent = cardIndex + 1;
+    }
+}
+
+function sortCard(choice) {
+    document.activeElement.blur();
+    if (cardIndex >= cards.length) return;
+    
+    const card = cards[cardIndex];
+    const cardEl = document.getElementById('currentCard');
+    const isCorrect = card.category === choice;
+    
+    if (isCorrect) {
+        cardEl.classList.add('card-correct');
+        score++;
+    } else {
+        cardEl.classList.add('card-incorrect');
+    }
+    
+    setTimeout(() => {
+        cardIndex++;
+        updateProgress();
+        
+        if (cardIndex < cards.length) {
+            showCard();
+        } else {
+            finish();
+        }
+    }, 600);
+}
+
+function updateProgress() {
+    const progress = (cardIndex / cards.length) * 100;
+    document.getElementById('sortProgressBar').style.width = progress + '%';
+}
+
+function finish() {
+    const feedback = document.getElementById('feedback1');
+    const feedbackText = document.getElementById('feedbackText');
+    
+    document.querySelector('.current-card-container').style.display = 'none';
+    document.querySelector('.tap-zones').style.display = 'none';
+    
+    feedback.classList.add('show');
+    
+    if (score === cards.length) {
+        feedbackText.textContent = `Perfect! You correctly identified all ${cards.length} hints.`;
+    } else if (score >= cards.length - 2) {
+        feedbackText.textContent = `Nice work! You got ${score} out of ${cards.length} correct.`;
+    } else {
+        feedback.classList.add('incorrect');
+        feedback.querySelector('.feedback-label').textContent = 'Not quite';
+        feedback.querySelector('.checkmark').textContent = '✗';
+        feedbackText.textContent = `You got ${score} out of ${cards.length} correct. Remember: even questions can give too much away if they point directly to the solution.`;
+    }
+    
+    document.querySelector('.progress-dot').classList.remove('active');
+    document.querySelector('.progress-dot').classList.add('completed');
+    document.getElementById('continueBtn').classList.add('show');
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
