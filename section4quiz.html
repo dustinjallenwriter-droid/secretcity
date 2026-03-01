@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Check Your Understanding | The Art of Hinting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+<div class="quiz-container">
+    <div class="quiz-header">
+        <h1>Check your understanding</h1>
+        <p>Apply what you've learned about staying in character while hinting.</p>
+    </div>
+
+    <!-- Activity 1: Immersive or Not? -->
+    <div class="quiz-question active" id="question1">
+        <h2 class="question-title">Immersive or Not?</h2>
+        <p class="question-intro">For each hint below, decide: does it maintain immersion, or does it break the story?</p>
+
+        <div class="sort-activity">
+            <div class="current-card-container">
+                <p class="card-counter"><span id="cardNumber1">1</span> of <span id="totalCards1">6</span></p>
+                <div class="current-card" id="currentCard1"></div>
+            </div>
+
+            <div class="tap-zones">
+                <button class="tap-zone" id="immersiveZone" onclick="sortCard1('immersive')">
+                    <span class="zone-icon">🎭</span>
+                    <span class="zone-label">Immersive</span>
+                </button>
+                <button class="tap-zone" id="breakingZone" onclick="sortCard1('breaking')">
+                    <span class="zone-icon">🚫</span>
+                    <span class="zone-label">Breaks Immersion</span>
+                </button>
+            </div>
+
+            <div class="sort-progress">
+                <div class="sort-progress-bar" id="sortProgressBar1"></div>
+            </div>
+        </div>
+
+        <div class="feedback" id="feedback1">
+            <div class="feedback-icon">
+                <span class="icon-circle"><span class="checkmark">✓</span></span>
+            </div>
+            <p class="feedback-label">Well done!</p>
+            <p class="feedback-text" id="feedback1Text">You can tell the difference between immersive hints and ones that break the story.</p>
+        </div>
+    </div>
+
+    <!-- Activity 2: Break Character? -->
+    <div class="quiz-question" id="question2">
+        <h2 class="question-title">Break Character?</h2>
+        <p class="question-intro">For each situation, decide: should you break character to address it, or stay in character?</p>
+
+        <div class="sort-activity">
+            <div class="current-card-container">
+                <p class="card-counter"><span id="cardNumber2">1</span> of <span id="totalCards2">6</span></p>
+                <div class="current-card" id="currentCard2"></div>
+            </div>
+
+            <div class="tap-zones">
+                <button class="tap-zone" id="stayZone" onclick="sortCard2('stay')">
+                    <span class="zone-icon">🎭</span>
+                    <span class="zone-label">Stay in Character</span>
+                </button>
+                <button class="tap-zone" id="breakZone" onclick="sortCard2('break')">
+                    <span class="zone-icon">🙋</span>
+                    <span class="zone-label">Break Character</span>
+                </button>
+            </div>
+
+            <div class="sort-progress">
+                <div class="sort-progress-bar" id="sortProgressBar2"></div>
+            </div>
+        </div>
+
+        <div class="feedback" id="feedback2">
+            <div class="feedback-icon">
+                <span class="icon-circle"><span class="checkmark">✓</span></span>
+            </div>
+            <p class="feedback-label">Well done!</p>
+            <p class="feedback-text" id="feedback2Text">You know when to prioritize player well-being over immersion.</p>
+        </div>
+    </div>
+
+    <!-- Quiz Navigation -->
+    <div class="quiz-nav">
+        <div class="quiz-progress">
+            <span class="progress-dot active" data-q="1">1</span>
+            <span class="progress-dot" data-q="2">2</span>
+        </div>
+    </div>
+
+    <!-- Continue Button -->
+    <button class="continue-btn" id="continueBtn" onclick="window.location.href='section5.html'">Continue</button>
+</div>
+
+<script>
+let completedQuestions = [];
+const totalQuestions = 2;
+
+// ========== ACTIVITY 1: Immersive or Not ==========
+const cards1 = [
+    { text: "\"The evil alchemist and his minions are nearly upon us! Hurry!\"", category: "immersive" },
+    { text: "\"You have about two minutes left.\"", category: "breaking" },
+    { text: "\"I sense that parchment holds secrets yet untold...\"", category: "immersive" },
+    { text: "\"Check the paper again.\"", category: "breaking" },
+    { text: "\"Rocco was always particular about where he ran his dice games, but he never let me see where he played.\"", category: "immersive" },
+    { text: "\"You need to roll the dice inside that box.\"", category: "breaking" }
+];
+let cardIndex1 = 0;
+let score1 = 0;
+
+function initActivity1() {
+    cardIndex1 = 0;
+    score1 = 0;
+    document.getElementById('totalCards1').textContent = cards1.length;
+    updateProgress1();
+    showCard1();
+}
+
+function showCard1() {
+    if (cardIndex1 < cards1.length) {
+        document.getElementById('currentCard1').textContent = cards1[cardIndex1].text;
+        document.getElementById('currentCard1').className = 'current-card';
+        document.getElementById('cardNumber1').textContent = cardIndex1 + 1;
+    }
+}
+
+function sortCard1(choice) {
+    document.activeElement.blur();
+    if (cardIndex1 >= cards1.length) return;
+    
+    const card = cards1[cardIndex1];
+    const cardEl = document.getElementById('currentCard1');
+    const isCorrect = card.category === choice;
+    
+    if (isCorrect) {
+        cardEl.classList.add('card-correct');
+        score1++;
+    } else {
+        cardEl.classList.add('card-incorrect');
+    }
+    
+    setTimeout(() => {
+        cardIndex1++;
+        updateProgress1();
+        
+        if (cardIndex1 < cards1.length) {
+            showCard1();
+        } else {
+            finishActivity1();
+        }
+    }, 600);
+}
+
+function updateProgress1() {
+    const progress = (cardIndex1 / cards1.length) * 100;
+    document.getElementById('sortProgressBar1').style.width = progress + '%';
+}
+
+function finishActivity1() {
+    const feedback = document.getElementById('feedback1');
+    const feedbackText = document.getElementById('feedback1Text');
+    
+    document.querySelector('#question1 .current-card-container').style.display = 'none';
+    document.querySelector('#question1 .tap-zones').style.display = 'none';
+    
+    feedback.classList.add('show');
+    
+    if (score1 === cards1.length) {
+        feedbackText.textContent = `Perfect! You correctly identified all ${cards1.length} hints.`;
+    } else if (score1 >= cards1.length - 1) {
+        feedbackText.textContent = `Nice work! You got ${score1} out of ${cards1.length} correct.`;
+    } else {
+        feedback.classList.add('incorrect');
+        feedback.querySelector('.feedback-label').textContent = 'Not quite';
+        feedback.querySelector('.checkmark').textContent = '✗';
+        feedbackText.textContent = `You got ${score1} out of ${cards1.length} correct. Remember: immersive hints use story language, not game instructions.`;
+    }
+    
+    markCompleted(1);
+}
+
+// ========== ACTIVITY 2: Break Character? ==========
+const cards2 = [
+    { text: "A prop stops working mid-game.", category: "stay" },
+    { text: "A player is visibly anxious and struggling to breathe.", category: "break" },
+    { text: "The team has only 3 minutes left.", category: "stay" },
+    { text: "A player trips and seems to have hurt their ankle.", category: "break" },
+    { text: "A light flickers unexpectedly.", category: "stay" },
+    { text: "A player quietly tells you they're feeling claustrophobic and need to leave.", category: "break" }
+];
+let cardIndex2 = 0;
+let score2 = 0;
+
+function initActivity2() {
+    cardIndex2 = 0;
+    score2 = 0;
+    document.getElementById('totalCards2').textContent = cards2.length;
+    updateProgress2();
+    showCard2();
+}
+
+function showCard2() {
+    if (cardIndex2 < cards2.length) {
+        document.getElementById('currentCard2').textContent = cards2[cardIndex2].text;
+        document.getElementById('currentCard2').className = 'current-card';
+        document.getElementById('cardNumber2').textContent = cardIndex2 + 1;
+    }
+}
+
+function sortCard2(choice) {
+    document.activeElement.blur();
+    if (cardIndex2 >= cards2.length) return;
+    
+    const card = cards2[cardIndex2];
+    const cardEl = document.getElementById('currentCard2');
+    const isCorrect = card.category === choice;
+    
+    if (isCorrect) {
+        cardEl.classList.add('card-correct');
+        score2++;
+    } else {
+        cardEl.classList.add('card-incorrect');
+    }
+    
+    setTimeout(() => {
+        cardIndex2++;
+        updateProgress2();
+        
+        if (cardIndex2 < cards2.length) {
+            showCard2();
+        } else {
+            finishActivity2();
+        }
+    }, 600);
+}
+
+function updateProgress2() {
+    const progress = (cardIndex2 / cards2.length) * 100;
+    document.getElementById('sortProgressBar2').style.width = progress + '%';
+}
+
+function finishActivity2() {
+    const feedback = document.getElementById('feedback2');
+    const feedbackText = document.getElementById('feedback2Text');
+    
+    document.querySelector('#question2 .current-card-container').style.display = 'none';
+    document.querySelector('#question2 .tap-zones').style.display = 'none';
+    
+    feedback.classList.add('show');
+    
+    if (score2 === cards2.length) {
+        feedbackText.textContent = `Perfect! You correctly identified all ${cards2.length} situations.`;
+    } else if (score2 >= cards2.length - 1) {
+        feedbackText.textContent = `Nice work! You got ${score2} out of ${cards2.length} correct.`;
+    } else {
+        feedback.classList.add('incorrect');
+        feedback.querySelector('.feedback-label').textContent = 'Not quite';
+        feedback.querySelector('.checkmark').textContent = '✗';
+        feedbackText.textContent = `You got ${score2} out of ${cards2.length} correct. Remember: player safety and well-being always come first.`;
+    }
+    
+    markCompleted(2);
+}
+
+// ========== NAVIGATION ==========
+function markCompleted(questionNum) {
+    if (!completedQuestions.includes(questionNum)) {
+        completedQuestions.push(questionNum);
+    }
+    
+    const dot = document.querySelector(`.progress-dot[data-q="${questionNum}"]`);
+    dot.classList.remove('active');
+    dot.classList.add('completed');
+    
+    if (completedQuestions.length === totalQuestions) {
+        document.getElementById('continueBtn').classList.add('show');
+    } else {
+        setTimeout(() => {
+            showQuestion(questionNum + 1);
+        }, 2000);
+    }
+}
+
+function showQuestion(questionNum) {
+    document.querySelectorAll('.quiz-question').forEach(q => q.classList.remove('active'));
+    document.getElementById(`question${questionNum}`).classList.add('active');
+    
+    document.querySelectorAll('.progress-dot').forEach(dot => {
+        const dotNum = parseInt(dot.dataset.q);
+        if (!completedQuestions.includes(dotNum)) {
+            dot.classList.remove('active');
+        }
+        if (dotNum === questionNum && !completedQuestions.includes(dotNum)) {
+            dot.classList.add('active');
+        }
+    });
+    
+    if (questionNum === 2) {
+        initActivity2();
+    }
+}
+
+// Initialize on load
+document.addEventListener('DOMContentLoaded', () => {
+    initActivity1();
+});
+</script>
+</body>
+</html>
