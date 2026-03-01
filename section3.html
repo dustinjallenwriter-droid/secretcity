@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Questions > Answers | The Art of Hinting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="intro-container">
+    <div class="module-intro">
+        <!-- Section 1: Intro -->
+        <div class="intro-section active" id="section1">
+            <h2 class="section-title">Questions > Answers</h2>
+            <br>
+            <p>In this lesson, you'll discover how question-based hinting empowers teams to solve puzzles on their own terms. You'll gain practical tools to use questions to guide players toward achieving their own success.</p>
+            <br>
+            <p>These objectives will guide you through the essential skills for mastering question-based hinting:</p>
+            <ul class="topic-list">
+                <li>Understand why questions are more effective than answers</li>
+                <li>Practice using open-ended question stems to prompt player thinking</li>
+                <li>Apply the escalating hint ladder to scaffold problem-solving</li>
+                <li>Identify and avoid common mistakes in hinting</li>
+            </ul>
+
+            <button class="next-btn" onclick="showSection(2)">
+                <span>→</span>
+            </button>
+        </div>
+
+        <!-- Section 2: Why Questions Work -->
+        <div class="intro-section" id="section2">
+            <h2 class="section-title">Why Questions Work</h2>
+            <br>
+            <p>When you ask the right questions instead of providing answers:</p>
+            
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Players do the cognitive work</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Questions force players to think through the problem themselves. This builds their problem-solving skills and keeps them mentally engaged with the game.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Players own their success</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>When players arrive at the solution themselves, they get to celebrate a genuine win. The victory feels earned, not handed to them.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Players realize what they already know</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Most players are closer to the solution than they realize. They just need to organize, articulate, and discuss with their team. Questions help them surface that knowledge.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Questions feel collaborative, not instructional</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Players interpret question-based hints as support, not instruction. Their answer feels self-generated rather than gifted by the Clue Staff.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="note-box">
+                <p><strong>Bonus:</strong> When you ask instead of tell, you gain insight into what the team actually needs, allowing you to tailor your support and maintain the excitement of the game.</p>
+            </div>
+
+            <button class="next-btn" onclick="showSection(3)">
+                <span>→</span>
+            </button>
+        </div>
+
+        <!-- Section 3: Question Toolkit -->
+        <div class="intro-section" id="section3">
+            <h2 class="section-title">Your Question Toolkit</h2>
+            <br>
+            <p>Explore these categories of questions to guide players without giving away solutions. Each type serves a unique purpose in helping teams move forward.</p>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Assessment Questions</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Use these to gauge where the team is at:</p>
+                        <ul>
+                            <li>"How are we doing over here?"</li>
+                            <li>"What are we thinking?"</li>
+                            <li>"Do we have any theories?"</li>
+                            <li>"What progress have we made?"</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Information Organization Questions</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Help players take stock of what they know:</p>
+                        <ul>
+                            <li>"What information do we have?"</li>
+                            <li>"What information do we need?"</li>
+                            <li>"Is there something we're missing?"</li>
+                            <li>"What do you think the red letters mean?"</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Process Questions</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Guide players through their thinking:</p>
+                        <ul>
+                            <li>"Okay, talk me through what we know so far?"</li>
+                            <li>"What do we think this is going to lead us to?"</li>
+                            <li>"What's our main objective again?"</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Pattern Recognition Questions</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Draw attention to details without revealing them:</p>
+                        <ul>
+                            <li>"Do we notice anything interesting about this element?"</li>
+                            <li>"Does anything stand out about the items?"</li>
+                            <li>"Is anything similar between these items? Different or unusual?"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <button class="next-btn" onclick="showSection(4)">
+                <span>→</span>
+            </button>
+        </div>
+
+        <!-- Section 4: Escalating Hint Ladder -->
+        <div class="intro-section" id="section4">
+            <h2 class="section-title">The Escalating Hint Ladder</h2>
+            <br>
+            <p>Hints should always start broad and only become more specific if absolutely necessary. This approach maximizes player satisfaction by giving them every opportunity to solve puzzles independently.</p>
+
+            <div class="step-carousel">
+                <div class="step-card active" data-step="1">
+                    <span class="step-badge">Step 1</span>
+                    <h3>Start with Assessment</h3>
+                    <p>"How are we doing over here?" — Gauge where they're at before offering anything.</p>
+                </div>
+                <div class="step-card" data-step="2">
+                    <span class="step-badge">Step 2</span>
+                    <h3>Ask About Their Thinking</h3>
+                    <p>"What are we thinking?" or "Do we have any theories?" — Let them articulate their current approach.</p>
+                </div>
+                <div class="step-card" data-step="3">
+                    <span class="step-badge">Step 3</span>
+                    <h3>Prompt Information Organization</h3>
+                    <p>"What information do we have? What do we still need?" — Help them take stock.</p>
+                </div>
+                <div class="step-card" data-step="4">
+                    <span class="step-badge">Step 4</span>
+                    <h3>Guide Attention</h3>
+                    <p>"Do we notice anything interesting about this?" — Draw focus without revealing.</p>
+                </div>
+                <div class="step-card" data-step="5">
+                    <span class="step-badge">Step 5</span>
+                    <h3>Narrow Focus (If Needed)</h3>
+                    <p>"What about the red letters specifically?" — Only get specific if broader hints haven't worked.</p>
+                </div>
+            </div>
+
+            <div class="step-nav">
+                <span class="step-arrow" onclick="prevStep()">‹</span>
+                <span class="step-dot active" onclick="goToStep(1)">1</span>
+                <span class="step-dot" onclick="goToStep(2)">2</span>
+                <span class="step-dot" onclick="goToStep(3)">3</span>
+                <span class="step-dot" onclick="goToStep(4)">4</span>
+                <span class="step-dot" onclick="goToStep(5)">5</span>
+                <span class="step-arrow" onclick="nextStep()">›</span>
+            </div>
+
+            <button class="next-btn" onclick="showSection(5)">
+                <span>→</span>
+            </button>
+        </div>
+
+        <!-- Section 5: Wrap-up -->
+        <div class="intro-section" id="section5">
+            <h2 class="section-title">Putting It Together</h2>
+            <br>
+            <p>Even experienced Clue Staff can sometimes give away too much or too little. It's an honest mistake that happens all the time, and it never feels great to diminish player satisfaction.</p>
+            <br>
+            <p>Using questions to guide players preserves the challenge and excitement of the escape room. Escalate your hints only as needed, and avoid common pitfalls by focusing on player-driven discovery.</p>
+            <br>
+            <p>With practice, you'll become a master at supporting teams without ever giving away the solution.</p>
+
+            <a href="section3quiz.html" class="quiz-btn">Check your understanding</a>
+        </div>
+
+        <!-- Navigation Dots -->
+        <div class="nav-dots">
+            <span class="dot active" onclick="showSection(1)"></span>
+            <span class="dot" onclick="showSection(2)"></span>
+            <span class="dot" onclick="showSection(3)"></span>
+            <span class="dot" onclick="showSection(4)"></span>
+            <span class="dot" onclick="showSection(5)"></span>
+        </div>
+    </div>
+</div>
+
+<script>
+// Section navigation
+function showSection(sectionNumber) {
+    document.querySelectorAll('.intro-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+    
+    document.getElementById('section' + sectionNumber).classList.add('active');
+    document.querySelectorAll('.dot')[sectionNumber - 1].classList.add('active');
+}
+
+// Accordion
+document.querySelectorAll('.accordion-header').forEach(button => {
+    button.addEventListener('click', () => {
+        const item = button.parentElement;
+        const content = button.nextElementSibling;
+        const icon = button.querySelector('.accordion-icon');
+        const isActive = item.classList.contains('active');
+
+        const accordion = item.parentElement;
+        accordion.querySelectorAll('.accordion-item').forEach(i => {
+            i.classList.remove('active');
+            i.querySelector('.accordion-content').style.maxHeight = null;
+            i.querySelector('.accordion-icon').textContent = '+';
+        });
+
+        if (!isActive) {
+            item.classList.add('active');
+            content.style.maxHeight = content.scrollHeight + 'px';
+            icon.textContent = '−';
+        }
+    });
+});
+
+// Step carousel
+let currentStep = 1;
+const totalSteps = 5;
+
+function goToStep(step) {
+    currentStep = step;
+    document.querySelectorAll('.step-card').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.step-dot').forEach(d => d.classList.remove('active'));
+    
+    document.querySelector(`.step-card[data-step="${step}"]`).classList.add('active');
+    document.querySelectorAll('.step-dot')[step - 1].classList.add('active');
+}
+
+function nextStep() {
+    if (currentStep < totalSteps) goToStep(currentStep + 1);
+}
+
+function prevStep() {
+    if (currentStep > 1) goToStep(currentStep - 1);
+}
+</script>
+</body>
+</html>
