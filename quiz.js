@@ -1,450 +1,204 @@
-.quiz-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
-    font-family: var(--body-font);
-}
+let completedQuestions = [];
+let currentQuestion = 1;
+const totalQuestions = 3;
 
-.quiz-header {
-    margin-bottom: 2rem;
-}
+// Sorting activity state
+const sortCards = [
+    { text: "Ignoring each other and looking at you for help", category: "unproductive" },
+    { text: "Animated discussion", category: "productive" },
+    { text: "Extended silence and checking phones", category: "unproductive" },
+    { text: "Physical engagement with game pieces", category: "productive" },
+    { text: "Players pointing at puzzle elements", category: "productive" },
+    { text: "Arms crossed, heads down", category: "unproductive" }
+];
+let currentCardIndex = 0;
+let sortScore = 0;
 
-.quiz-header h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-}
-
-.quiz-header p {
-    color: #444;
-    line-height: 1.6;
-}
-
-/* Question containers */
-.quiz-question {
-    display: none;
-}
-
-.quiz-question.active {
-    display: block;
-}
-
-.question-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-}
-
-.question-intro {
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-}
-
-/* Question card (for MC questions) */
-.question-card {
-    background: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 12px;
-    padding: 2rem;
-    margin-bottom: 1rem;
-}
-
-.scenario {
-    margin-bottom: 1.5rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.scenario p {
-    margin-bottom: 1rem;
-    line-height: 1.6;
-}
-
-.scenario-prompt {
-    font-weight: 600;
-    margin-bottom: 0 !important;
-}
-
-/* Options */
-.options {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.option {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 1rem 1.25rem;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.option:hover {
-    border-color: #ccc;
-    background: #fafafa;
-}
-
-.option input[type="radio"] {
-    appearance: none;
-    width: 24px;
-    height: 24px;
-    border: 2px solid #ccc;
-    border-radius: 50%;
-    margin: 0;
-    flex-shrink: 0;
-    position: relative;
-    cursor: pointer;
-}
-
-.option input[type="radio"]:checked {
-    border-color: var(--gold);
-}
-
-.option input[type="radio"]:checked::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 12px;
-    height: 12px;
-    background: var(--gold);
-    border-radius: 50%;
-}
-
-.option.selected {
-    border-color: var(--secret-blue);
-    background: rgba(244, 196, 48, 0.1);
-}
-
-.option-text {
-    line-height: 1.5;
-}
-
-/* Submit button */
-.submit-btn {
-    display: block;
-    margin: 0 auto;
-    padding: 0.75rem 2.5rem;
-    background: var(--gold);
-    color: var(--black);
-    border: none;
-    border-radius: 25px;
-    font-size: 1rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.submit-btn:hover {
-    background: #e5b82e;
-    transform: translateY(-1px);
-}
-
-/* Feedback */
-.feedback {
-    display: none;
-    background: #f5f5f5;
-    padding: 2rem;
-    text-align: center;
-    border-radius: 8px;
-    margin-top: 1rem;
-}
-
-.feedback.show {
-    display: block;
-}
-
-.feedback-icon {
-    margin-bottom: 0.5rem;
-}
-
-.icon-circle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 60px;
-    height: 60px;
-    border: 3px solid var(--black);
-    border-radius: 50%;
-}
-
-.checkmark {
-    color: var(--gold);
-    font-size: 2rem;
-}
-
-.feedback-label {
-    font-weight: 700;
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-}
-
-.feedback-text {
-    color: #444;
-    line-height: 1.6;
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-/* Incorrect feedback */
-.feedback.incorrect .icon-circle {
-    border-color: #c00;
-}
-
-.feedback.incorrect .checkmark {
-    color: #c00;
-}
-
-/* ============================
-   TAP-TO-SORT ACTIVITY
-   ============================ */
-
-.sort-activity {
-    margin: 2rem 0;
-}
-
-/* Card counter */
-.card-counter {
-    text-align: center;
-    font-size: 0.9rem;
-    color: #666;
-    margin-bottom: 1rem;
-}
-
-/* Current card display */
-.current-card-container {
-    margin-bottom: 1.5rem;
-}
-
-.current-card {
-    background: #fff;
-    border: 2px solid #e0e0e0;
-    border-top: 4px solid var(--gold);
-    border-radius: 12px;
-    padding: 2rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-    text-align: center;
-    min-height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.current-card.card-correct {
-    border-color: #28a745;
-    background: rgba(40, 167, 69, 0.1);
-    border-top-color: #28a745;
-}
-
-.current-card.card-incorrect {
-    border-color: #dc3545;
-    background: rgba(220, 53, 69, 0.1);
-    border-top-color: #dc3545;
-}
-
-/* Tap zones */
-.tap-zones {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-}
-
-.tap-zone {
-    flex: 1;
-    max-width: 200px;
-    padding: 1.5rem 1rem;
-    border: 2px solid #e0e0e0;
-    border-radius: 12px;
-    background: #fff;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.tap-zone:hover {
-    border-color: var(--gold);
-    background: rgba(244, 196, 48, 0.05);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* Disable hover effects on touch devices */
-@media (hover: none) {
-    .tap-zone:hover {
-        border-color: #e0e0e0;
-        background: #fff;
-        transform: none;
-        box-shadow: none;
-    }
-}
-
-.tap-zone:active {
-    transform: translateY(0);
-    border-color: var(--gold);
-    background: rgba(244, 196, 48, 0.1);
-}
-
-.zone-icon {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-#productiveZone .zone-icon {
-    color: #28a745;
-}
-
-#unproductiveZone .zone-icon {
-    color: #dc3545;
-}
-
-.tap-zone .zone-label {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #333;
-    text-align: center;
-}
-
-/* Progress bar */
-.sort-progress {
-    margin-top: 1.5rem;
-    height: 6px;
-    background: #e0e0e0;
-    border-radius: 3px;
-    overflow: hidden;
-}
-
-.sort-progress-bar {
-    height: 100%;
-    background: var(--gold);
-    width: 0%;
-    transition: width 0.3s ease;
-}
-
-/* Quiz navigation */
-.quiz-nav {
-    display: flex;
-    justify-content: center;
-    margin-top: 2rem;
-}
-
-.quiz-progress {
-    display: flex;
-    gap: 0.75rem;
-    align-items: center;
-}
-
-.progress-dot {
-    width: 2rem;
-    height: 2rem;
-    border: 2px solid #ccc;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.9rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.progress-dot.active {
-    border-color: var(--secret-blue);
-    background: var(--secret-blue);
-    color: #fff;
-}
-
-.progress-dot.completed {
-    border-color: var(--gold);
-    background: var(--gold);
-    color: var(--black);
-}
-
-/* Continue button */
-.continue-btn {
-    display: none;
-    width: 100%;
-    max-width: 600px;
-    margin: 2rem auto 0;
-    padding: 1rem;
-    background: var(--gold);
-    color: var(--black);
-    border: none;
-    font-size: 1rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.continue-btn.show {
-    display: block;
-}
-
-.continue-btn:hover {
-    background: #e5b82e;
-}
-
-/* Triple tap zones (for 3 options) */
-.tap-zones-triple {
-    flex-wrap: wrap;
-}
-
-.tap-zones-triple .tap-zone {
-    max-width: 150px;
-    padding: 1rem 0.75rem;
-}
-
-.tap-zones-triple .zone-icon {
-    font-size: 1.3rem;
-}
-
-.tap-zones-triple .zone-label {
-    font-size: 0.85rem;
-}
-
-/* Mobile adjustments */
-@media (max-width: 600px) {
-    .tap-zones {
-        gap: 0.75rem;
+// Multiple choice submission
+function submitAnswer(questionNum) {
+    const selected = document.querySelector(`input[name="q${questionNum}"]:checked`);
+    if (!selected) return;
+    
+    const isCorrect = selected.dataset.correct === 'true';
+    const feedback = document.getElementById(`feedback${questionNum}`);
+    
+    // Show feedback
+    feedback.classList.add('show');
+    if (!isCorrect) {
+        feedback.classList.add('incorrect');
+        feedback.querySelector('.feedback-label').textContent = 'Incorrect';
+        feedback.querySelector('.checkmark').textContent = '✗';
     }
     
-    .tap-zone {
-        padding: 1.25rem 0.75rem;
+    // Disable further input
+    document.querySelectorAll(`input[name="q${questionNum}"]`).forEach(input => {
+        input.disabled = true;
+    });
+    
+    // Hide submit button
+    const submitBtn = document.querySelector(`#question${questionNum} .submit-btn`);
+    submitBtn.style.display = 'none';
+    
+    // Mark as completed
+    markCompleted(questionNum);
+}
+
+// Mark question completed and move to next
+function markCompleted(questionNum) {
+    if (!completedQuestions.includes(questionNum)) {
+        completedQuestions.push(questionNum);
     }
     
-    .tap-zone .zone-label {
-        font-size: 0.85rem;
-    }
+    // Update progress dots
+    const dot = document.querySelector(`.progress-dot[data-q="${questionNum}"]`);
+    dot.classList.remove('active');
+    dot.classList.add('completed');
     
-    .current-card {
-        padding: 1.5rem;
-        font-size: 1rem;
-    }
-    
-    .tap-zones-triple .tap-zone {
-        max-width: 100px;
-        padding: 0.75rem 0.5rem;
-    }
-    
-    .tap-zones-triple .zone-icon {
-        font-size: 1.1rem;
-    }
-    
-    .tap-zones-triple .zone-label {
-        font-size: 0.75rem;
+    // Check if all done
+    if (completedQuestions.length === totalQuestions) {
+        document.getElementById('continueBtn').classList.add('show');
+    } else {
+        // Auto-advance after delay
+        setTimeout(() => {
+            const nextQ = questionNum + 1;
+            if (nextQ <= totalQuestions) {
+                showQuestion(nextQ);
+            }
+        }, 2000);
     }
 }
+
+function showQuestion(questionNum) {
+    currentQuestion = questionNum;
+    
+    // Hide all questions
+    document.querySelectorAll('.quiz-question').forEach(q => {
+        q.classList.remove('active');
+    });
+    
+    // Show selected question
+    document.getElementById(`question${questionNum}`).classList.add('active');
+    
+    // Update progress dots
+    document.querySelectorAll('.progress-dot').forEach(dot => {
+        const dotNum = parseInt(dot.dataset.q);
+        if (!completedQuestions.includes(dotNum)) {
+            dot.classList.remove('active');
+        }
+        if (dotNum === questionNum && !completedQuestions.includes(dotNum)) {
+            dot.classList.add('active');
+        }
+    });
+    
+    // Initialize sorting if question 2
+    if (questionNum === 2) {
+        initSorting();
+    }
+}
+
+// Initialize sorting activity
+function initSorting() {
+    currentCardIndex = 0;
+    sortScore = 0;
+    document.getElementById('totalCards').textContent = sortCards.length;
+    updateProgressBar();
+    showCurrentCard();
+}
+
+// Show the current card
+function showCurrentCard() {
+    const cardElement = document.getElementById('currentCard');
+    const cardNumberElement = document.getElementById('cardNumber');
+    
+    if (currentCardIndex < sortCards.length) {
+        cardElement.textContent = sortCards[currentCardIndex].text;
+        cardElement.className = 'current-card';
+        cardNumberElement.textContent = currentCardIndex + 1;
+    }
+}
+
+// Handle sorting a card
+function sortCard(chosenCategory) {
+    document.activeElement.blur();
+    if (currentCardIndex >= sortCards.length) return;
+    
+    const card = sortCards[currentCardIndex];
+    const cardElement = document.getElementById('currentCard');
+    const isCorrect = card.category === chosenCategory;
+    
+    // Visual feedback on card
+    if (isCorrect) {
+        cardElement.classList.add('card-correct');
+        sortScore++;
+    } else {
+        cardElement.classList.add('card-incorrect');
+    }
+    
+    // Brief pause to show feedback, then next card
+    setTimeout(() => {
+        currentCardIndex++;
+        updateProgressBar();
+        
+        if (currentCardIndex < sortCards.length) {
+            showCurrentCard();
+        } else {
+            finishSorting();
+        }
+    }, 600);
+}
+
+// Update progress bar
+function updateProgressBar() {
+    const progress = (currentCardIndex / sortCards.length) * 100;
+    document.getElementById('sortProgressBar').style.width = progress + '%';
+}
+
+// Finish sorting and show feedback
+function finishSorting() {
+    const feedback = document.getElementById('feedback2');
+    const feedbackText = document.getElementById('feedback2Text');
+    const cardContainer = document.querySelector('.current-card-container');
+    const tapZones = document.querySelector('.tap-zones');
+    
+    // Hide the card and zones
+    cardContainer.style.display = 'none';
+    tapZones.style.display = 'none';
+    
+    // Show feedback
+    feedback.classList.add('show');
+    
+    if (sortScore === sortCards.length) {
+        feedbackText.textContent = `Perfect! You correctly identified all ${sortCards.length} behaviors.`;
+    } else if (sortScore >= sortCards.length - 1) {
+        feedbackText.textContent = `Nice work! You got ${sortScore} out of ${sortCards.length} correct.`;
+    } else {
+        feedback.classList.add('incorrect');
+        feedback.querySelector('.feedback-label').textContent = 'Not quite';
+        feedback.querySelector('.checkmark').textContent = '✗';
+        feedbackText.textContent = `You got ${sortScore} out of ${sortCards.length} correct. Review the signs of productive stewing versus unproductive frustration.`;
+    }
+    
+    // Mark completed
+    markCompleted(2);
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+    // Click to select options
+    document.querySelectorAll('.option').forEach(option => {
+        option.addEventListener('click', () => {
+            const input = option.querySelector('input');
+            input.checked = true;
+            
+            // Update visual selection
+            const parent = option.closest('.options');
+            parent.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+            option.classList.add('selected');
+        });
+    });
+    
+    // Initialize sorting if starting on question 2
+    if (document.querySelector('#question2.active')) {
+        initSorting();
+    }
+});
