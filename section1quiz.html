@@ -24,7 +24,7 @@
 
         <div class="sort-activity">
             <div class="current-card-container">
-                <p class="card-counter"><span id="cardNumber1">1</span> of <span id="totalCards1">4</span></p>
+                <p class="card-counter"><span id="cardNumber1">1</span> of <span id="totalCards1">6</span></p>
                 <div class="current-card" id="currentCard1"></div>
             </div>
 
@@ -146,10 +146,10 @@ const totalQuestions = 3;
 const cards1 = [
     { text: "Jump in with a direct hint: \"Those two pieces don't go together.\"", category: "no" },
     { text: "Let them stew: \"Hmm, well, we enlisted you for a reason. I'm sure you can figure it out!\"", category: "yes" },
-    { text: "Take a jab at them for motivation: \"I see we don't know how to read. That sucks.\"", category: "no" },
-    { text: "In character, re-state relevant info from the intro scenes without giving new information.", category: "yes" },
+    { text: "Take a jab at them for some tough-love motivation: \"I see we don't know how to read. That sucks.\"", category: "no" },
+    { text: "Re-state relevant info from the intro without giving new information.", category: "yes" },
     { text: "Distract them with character work: \"Hey, put those down and listen to me sing an autobiographical song.\"", category: "no" },
-    { text: "Stand back and observe for a few more minutes. Say nothing unless asked. It's early.", category: "yes" }
+    { text: "Stand back and observe. Say nothing. It's early.", category: "yes" }
 ];
 let cardIndex1 = 0;
 let score1 = 0;
@@ -173,6 +173,10 @@ function showCard1() {
 function sortCard1(choice) {
     document.activeElement.blur();
     if (cardIndex1 >= cards1.length) return;
+    
+    // Flash the tapped button
+    event.currentTarget.classList.add('flash');
+    setTimeout(() => event.currentTarget.classList.remove('flash'), 300);
     
     const card = cards1[cardIndex1];
     const cardEl = document.getElementById('currentCard1');
@@ -257,6 +261,10 @@ function sortCard2(choice) {
     document.activeElement.blur();
     if (cardIndex2 >= cards2.length) return;
     
+    // Flash the tapped button
+    event.currentTarget.classList.add('flash');
+    setTimeout(() => event.currentTarget.classList.remove('flash'), 300);
+    
     const card = cards2[cardIndex2];
     const cardEl = document.getElementById('currentCard2');
     const isCorrect = card.category === choice;
@@ -337,6 +345,10 @@ function showCard3() {
 function sortCard3(choice) {
     document.activeElement.blur();
     if (cardIndex3 >= cards3.length) return;
+    
+    // Flash the tapped button
+    event.currentTarget.classList.add('flash');
+    setTimeout(() => event.currentTarget.classList.remove('flash'), 300);
     
     const card = cards3[cardIndex3];
     const cardEl = document.getElementById('currentCard3');
