@@ -208,7 +208,7 @@
                 <span class="step-arrow" onclick="nextStep()">›</span>
             </div>
 
-            <button class="next-btn" onclick="showSection(5)">
+            <button class="next-btn" id="ladderNextBtn" onclick="showSection(5)" style="display: none;">
                 <span>→</span>
             </button>
         </div>
@@ -297,6 +297,14 @@ function goToStep(step) {
     
     document.querySelector(`.step-card[data-step="${step}"]`).classList.add('active');
     document.querySelectorAll('.step-dot')[step - 1].classList.add('active');
+    
+    // Show next button only on step 5
+    const ladderNextBtn = document.getElementById('ladderNextBtn');
+    if (step === totalSteps) {
+        ladderNextBtn.style.display = 'block';
+    } else {
+        ladderNextBtn.style.display = 'none';
+    }
 }
 
 function nextStep() {
