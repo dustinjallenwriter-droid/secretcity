@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -23,710 +24,722 @@
     --body-font: 'Quicksand', sans-serif;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+- {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
 
 body {
-    font-family: var(--body-font);
-    background: var(--dark-bg);
-    color: var(--white);
-    min-height: 100vh;
-    margin: 0;
+font-family: var(–body-font);
+background: var(–dark-bg);
+color: var(–white);
+min-height: 100vh;
+margin: 0;
 }
 
 /* ============================
-   INTRO SCREEN
-   ============================ */
+INTRO SCREEN
+============================ */
 .intro-screen {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    text-align: center;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 2rem;
+text-align: center;
 }
 
 .intro-screen h1 {
-    font-family: var(--heading-font);
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 0.5rem;
-    background: linear-gradient(135deg, #ffd700, #FDB913, #ffd700);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+font-family: var(–heading-font);
+font-size: 2.5rem;
+font-weight: 800;
+margin-bottom: 0.5rem;
+background: linear-gradient(135deg, #ffd700, #FDB913, #ffd700);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
 }
 
 .intro-screen .subtitle {
-    font-size: 1rem;
-    color: var(--gold);
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    margin-bottom: 2rem;
+font-size: 1rem;
+color: var(–gold);
+text-transform: uppercase;
+letter-spacing: 0.2em;
+margin-bottom: 2rem;
 }
 
 .intro-screen p {
-    max-width: 500px;
-    line-height: 1.8;
-    color: var(--off-white);
-    margin-bottom: 1.5rem;
+max-width: 500px;
+line-height: 1.8;
+color: var(–off-white);
+margin-bottom: 1.5rem;
 }
 
 .name-input-group {
-    margin: 2rem 0;
-    text-align: left;
-    width: 100%;
-    max-width: 300px;
+margin: 2rem 0;
+text-align: left;
+width: 100%;
+max-width: 300px;
 }
 
 .name-input-group label {
-    display: block;
-    font-size: 0.85rem;
-    color: var(--gold);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 0.5rem;
+display: block;
+font-size: 0.85rem;
+color: var(–gold);
+text-transform: uppercase;
+letter-spacing: 0.1em;
+margin-bottom: 0.5rem;
 }
 
 .name-input-group input {
-    width: 100%;
-    padding: 1rem;
-    font-size: 1.1rem;
-    font-family: var(--body-font);
-    background: var(--dark-card);
-    border: 2px solid var(--dark-border);
-    border-radius: 8px;
-    color: var(--white);
-    transition: border-color 0.2s ease;
+width: 100%;
+padding: 1rem;
+font-size: 1.1rem;
+font-family: var(–body-font);
+background: var(–dark-card);
+border: 2px solid var(–dark-border);
+border-radius: 8px;
+color: var(–white);
+transition: border-color 0.2s ease;
 }
 
 .name-input-group input:focus {
-    outline: none;
-    border-color: var(--gold);
+outline: none;
+border-color: var(–gold);
 }
 
 .begin-challenge-btn {
-    font-family: var(--heading-font);
-    padding: 1.2rem 3rem;
-    font-size: 1rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    background: transparent;
-    color: var(--gold);
-    border: 2px solid var(--gold);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 1rem;
+font-family: var(–heading-font);
+padding: 1.2rem 3rem;
+font-size: 1rem;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 0.15em;
+background: transparent;
+color: var(–gold);
+border: 2px solid var(–gold);
+cursor: pointer;
+transition: all 0.3s ease;
+margin-top: 1rem;
 }
 
 .begin-challenge-btn:hover {
-    background: var(--gold);
-    color: var(--dark-bg);
+background: var(–gold);
+color: var(–dark-bg);
 }
 
 .begin-challenge-btn:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
+opacity: 0.4;
+cursor: not-allowed;
 }
 
 /* ============================
-   PHASE TRANSITION
-   ============================ */
+PHASE TRANSITION
+============================ */
 .phase-transition {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--dark-bg);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.5s ease;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: var(–dark-bg);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+z-index: 100;
+opacity: 0;
+pointer-events: none;
+transition: opacity 0.5s ease;
 }
 
 .phase-transition.active {
-    opacity: 1;
-    pointer-events: auto;
+opacity: 1;
+pointer-events: auto;
 }
 
 .phase-transition .phase-label {
-    font-size: 0.9rem;
-    color: var(--gold);
-    text-transform: uppercase;
-    letter-spacing: 0.3em;
-    margin-bottom: 1rem;
+font-size: 0.9rem;
+color: var(–gold);
+text-transform: uppercase;
+letter-spacing: 0.3em;
+margin-bottom: 1rem;
 }
 
 .phase-transition h2 {
-    font-family: var(--heading-font);
-    font-size: 3rem;
-    font-weight: 800;
-    color: var(--white);
-    text-align: center;
+font-family: var(–heading-font);
+font-size: 3rem;
+font-weight: 800;
+color: var(–white);
+text-align: center;
 }
 
 .phase-transition .phase-time {
-    font-size: 1.2rem;
-    color: var(--gray);
-    margin-top: 1rem;
+font-size: 1.2rem;
+color: var(–gray);
+margin-top: 1rem;
 }
 
 /* ============================
-   QUIZ CONTAINER
-   ============================ */
+QUIZ CONTAINER
+============================ */
 .quiz-container {
-    display: none;
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 2rem;
-    padding-bottom: 120px;
+display: none;
+max-width: 700px;
+margin: 0 auto;
+padding: 2rem;
+padding-bottom: 120px;
 }
 
 .quiz-container.active {
-    display: block;
+display: block;
 }
 
 /* ============================
-   TIMELINE
-   ============================ */
+TIMELINE
+============================ */
 .timeline-container {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: var(--dark-card);
-    border-top: 1px solid var(--dark-border);
-    padding: 1rem 2rem;
-    z-index: 50;
+position: fixed;
+bottom: 0;
+left: 0;
+width: 100%;
+background: var(–dark-card);
+border-top: 1px solid var(–dark-border);
+padding: 1rem 2rem;
+z-index: 50;
 }
 
 .timeline-labels {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.75rem;
-    color: var(--gray);
-    margin-bottom: 0.5rem;
+display: flex;
+justify-content: space-between;
+font-size: 0.75rem;
+color: var(–gray);
+margin-bottom: 0.5rem;
 }
 
 .timeline-track {
-    height: 8px;
-    background: var(--dark-border);
-    border-radius: 4px;
-    position: relative;
-    overflow: hidden;
+height: 8px;
+background: var(–dark-border);
+border-radius: 4px;
+position: relative;
+overflow: hidden;
 }
 
 .timeline-progress {
-    height: 100%;
-    background: linear-gradient(90deg, var(--teal), var(--gold));
-    width: 0%;
-    transition: width 0.5s ease;
-    border-radius: 4px;
+height: 100%;
+background: linear-gradient(90deg, var(–teal), var(–gold));
+width: 0%;
+transition: width 0.5s ease;
+border-radius: 4px;
 }
 
 .timeline-marker {
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 16px;
-    height: 16px;
-    background: var(--gold);
-    border-radius: 50%;
-    border: 3px solid var(--dark-bg);
-    transition: left 0.5s ease;
-    left: 0%;
+position: absolute;
+top: 50%;
+transform: translate(-50%, -50%);
+width: 16px;
+height: 16px;
+background: var(–gold);
+border-radius: 50%;
+border: 3px solid var(–dark-bg);
+transition: left 0.5s ease;
+left: 0%;
 }
 
 .timeline-phase-markers {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 0.5rem;
-    font-size: 0.7rem;
-    color: var(--gray);
+display: flex;
+justify-content: space-between;
+margin-top: 0.5rem;
+font-size: 0.7rem;
+color: var(–gray);
 }
 
 .timeline-phase-markers span {
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+text-transform: uppercase;
+letter-spacing: 0.05em;
 }
 
 .timeline-phase-markers span.active {
-    color: var(--gold);
+color: var(–gold);
 }
 
 /* ============================
-   QUESTION CARD
-   ============================ */
+QUESTION CARD
+============================ */
 .question-card {
-    display: none;
-    animation: fadeIn 0.4s ease;
+display: none;
+animation: fadeIn 0.4s ease;
 }
 
 .question-card.active {
-    display: block;
+display: block;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+from { opacity: 0; transform: translateY(10px); }
+to { opacity: 1; transform: translateY(0); }
 }
 
 .question-header {
-    margin-bottom: 1.5rem;
+margin-bottom: 1.5rem;
 }
 
 .question-number {
-    font-size: 0.85rem;
-    color: var(--gold);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    margin-bottom: 0.5rem;
+font-size: 0.85rem;
+color: var(–gold);
+text-transform: uppercase;
+letter-spacing: 0.15em;
+margin-bottom: 0.5rem;
 }
 
 .question-context {
-    background: var(--dark-card);
-    border: 1px solid var(--dark-border);
-    border-left: 4px solid var(--gold);
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.7;
+background: var(–dark-card);
+border: 1px solid var(–dark-border);
+border-left: 4px solid var(–gold);
+border-radius: 8px;
+padding: 1.5rem;
+margin-bottom: 1.5rem;
+line-height: 1.7;
 }
 
 .question-instruction {
-    font-size: 0.95rem;
-    color: var(--off-white);
-    margin-bottom: 1rem;
+font-size: 0.95rem;
+color: var(–off-white);
+margin-bottom: 1rem;
 }
 
 /* ============================
-   SORT ACTIVITY (Phase 1 & 2)
-   ============================ */
+SORT ACTIVITY (Phase 1 & 2)
+============================ */
 .sort-activity {
-    margin-bottom: 1.5rem;
+margin-bottom: 1.5rem;
 }
 
 .card-counter {
-    text-align: center;
-    font-size: 0.85rem;
-    color: var(--gray);
-    margin-bottom: 1rem;
+text-align: center;
+font-size: 0.85rem;
+color: var(–gray);
+margin-bottom: 1rem;
 }
 
 .current-card {
-    background: var(--dark-card);
-    border: 2px solid var(--dark-border);
-    border-top: 4px solid var(--gold);
-    border-radius: 12px;
-    padding: 1.5rem;
-    font-size: 1.05rem;
-    text-align: center;
-    min-height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-    line-height: 1.6;
-    transition: all 0.3s ease;
+background: var(–dark-card);
+border: 2px solid var(–dark-border);
+border-top: 4px solid var(–gold);
+border-radius: 12px;
+padding: 1.5rem;
+font-size: 1.05rem;
+text-align: center;
+min-height: 80px;
+display: flex;
+align-items: center;
+justify-content: center;
+margin-bottom: 1rem;
+line-height: 1.6;
+transition: all 0.3s ease;
 }
 
 .current-card.card-correct {
-    border-color: var(--correct);
-    background: rgba(40, 167, 69, 0.15);
-    border-top-color: var(--correct);
+border-color: var(–correct);
+background: rgba(40, 167, 69, 0.15);
+border-top-color: var(–correct);
 }
 
 .current-card.card-incorrect {
-    border-color: var(--incorrect);
-    background: rgba(220, 53, 69, 0.15);
-    border-top-color: var(--incorrect);
+border-color: var(–incorrect);
+background: rgba(220, 53, 69, 0.15);
+border-top-color: var(–incorrect);
 }
 
 .tap-zones {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
+display: flex;
+gap: 1rem;
+justify-content: center;
 }
 
 .tap-zone {
-    flex: 1;
-    max-width: 180px;
-    padding: 1.25rem 1rem;
-    border: 2px solid var(--dark-border);
-    border-radius: 12px;
-    background: var(--dark-card);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    -webkit-tap-highlight-color: transparent;
+flex: 1;
+max-width: 180px;
+padding: 1.25rem 1rem;
+border: 2px solid var(–dark-border);
+border-radius: 12px;
+background: var(–dark-card);
+cursor: pointer;
+transition: all 0.2s ease;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 0.5rem;
+-webkit-tap-highlight-color: transparent;
 }
 
 .tap-zone:hover {
-    border-color: var(--gold);
-    background: rgba(253, 185, 19, 0.1);
+border-color: var(–gold);
+background: rgba(253, 185, 19, 0.1);
 }
 
 .tap-zone .zone-icon {
-    font-size: 1.8rem;
+font-size: 1.8rem;
 }
 
 .tap-zone .zone-label {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--off-white);
+font-size: 0.85rem;
+font-weight: 600;
+color: var(–off-white);
 }
 
 /* Flash animation */
 @keyframes tapFlash {
-    0% { border-color: var(--dark-border); background: var(--dark-card); }
-    50% { border-color: var(--gold); background: rgba(253, 185, 19, 0.2); }
-    100% { border-color: var(--dark-border); background: var(--dark-card); }
+0% { border-color: var(–dark-border); background: var(–dark-card); }
+50% { border-color: var(–gold); background: rgba(253, 185, 19, 0.2); }
+100% { border-color: var(–dark-border); background: var(–dark-card); }
 }
 
 .tap-zone.flash {
-    animation: tapFlash 0.3s ease;
+animation: tapFlash 0.3s ease;
 }
 
 /* Remove hover/focus styles on touch devices */
 @media (hover: none) and (pointer: coarse) {
-    .tap-zone {
-        outline: none !important;
-    }
-    
-    .tap-zone:hover,
-    .tap-zone:focus,
-    .tap-zone:focus-visible,
-    .tap-zone:focus-within {
-        border-color: var(--dark-border) !important;
-        background: var(--dark-card) !important;
-        transform: none !important;
-        box-shadow: none !important;
-        outline: none !important;
-    }
-    
-    .tf-btn {
-        outline: none !important;
-    }
-    
-    .tf-btn:hover,
-    .tf-btn:focus,
-    .tf-btn:focus-visible,
-    .tf-btn:focus-within {
-        border-color: var(--dark-border) !important;
-        background: var(--dark-card) !important;
-        transform: none !important;
-        box-shadow: none !important;
-        outline: none !important;
-    }
+.tap-zone {
+outline: none !important;
+}
+
+```
+.tap-zone:hover,
+.tap-zone:focus,
+.tap-zone:focus-visible,
+.tap-zone:focus-within {
+    border-color: var(--dark-border) !important;
+    background: var(--dark-card) !important;
+    transform: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.tf-btn {
+    outline: none !important;
+}
+
+.tf-btn:hover,
+.tf-btn:focus,
+.tf-btn:focus-visible,
+.tf-btn:focus-within {
+    border-color: var(--dark-border) !important;
+    background: var(--dark-card) !important;
+    transform: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+```
+
 }
 
 /* Progress bar */
 .sort-progress {
-    margin-top: 1rem;
-    height: 4px;
-    background: var(--dark-border);
-    border-radius: 2px;
-    overflow: hidden;
+margin-top: 1rem;
+height: 4px;
+background: var(–dark-border);
+border-radius: 2px;
+overflow: hidden;
 }
 
 .sort-progress-bar {
-    height: 100%;
-    background: var(--gold);
-    width: 0%;
-    transition: width 0.3s ease;
+height: 100%;
+background: var(–gold);
+width: 0%;
+transition: width 0.3s ease;
 }
 
 /* ============================
-   TRUE/FALSE (Phase 3)
-   ============================ */
+TRUE/FALSE (Phase 3)
+============================ */
 .statement-card {
-    background: var(--dark-card);
-    border: 1px solid var(--dark-border);
-    border-radius: 12px;
-    padding: 2rem;
-    margin-bottom: 1.5rem;
-    font-size: 1.1rem;
-    line-height: 1.7;
-    text-align: center;
+background: var(–dark-card);
+border: 1px solid var(–dark-border);
+border-radius: 12px;
+padding: 2rem;
+margin-bottom: 1.5rem;
+font-size: 1.1rem;
+line-height: 1.7;
+text-align: center;
 }
 
 .tf-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
+display: flex;
+gap: 1rem;
+justify-content: center;
 }
 
 .tf-btn {
-    flex: 1;
-    max-width: 150px;
-    padding: 1.25rem;
-    border: 2px solid var(--dark-border);
-    border-radius: 12px;
-    background: var(--dark-card);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: var(--body-font);
-    -webkit-tap-highlight-color: transparent;
+flex: 1;
+max-width: 150px;
+padding: 1.25rem;
+border: 2px solid var(–dark-border);
+border-radius: 12px;
+background: var(–dark-card);
+cursor: pointer;
+transition: all 0.2s ease;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 0.5rem;
+font-family: var(–body-font);
+-webkit-tap-highlight-color: transparent;
 }
 
 .tf-btn:hover {
-    border-color: var(--gold);
-    background: rgba(253, 185, 19, 0.1);
+border-color: var(–gold);
+background: rgba(253, 185, 19, 0.1);
 }
 
 .tf-btn .btn-icon {
-    font-size: 1.5rem;
+font-size: 1.5rem;
 }
 
 .tf-btn .btn-label {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--off-white);
+font-size: 0.9rem;
+font-weight: 600;
+color: var(–off-white);
 }
 
 .tf-btn.flash {
-    animation: tapFlash 0.3s ease;
+animation: tapFlash 0.3s ease;
 }
 
 .tf-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+opacity: 0.5;
+cursor: not-allowed;
 }
 
 /* Feedback */
 .question-feedback {
-    display: none;
-    background: var(--dark-card);
-    border: 1px solid var(--dark-border);
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-top: 1rem;
-    text-align: center;
+display: none;
+background: var(–dark-card);
+border: 1px solid var(–dark-border);
+border-radius: 8px;
+padding: 1.5rem;
+margin-top: 1rem;
+text-align: center;
 }
 
 .question-feedback.show {
-    display: block;
+display: block;
 }
 
 .question-feedback.correct {
-    border-color: var(--correct);
+border-color: var(–correct);
 }
 
 .question-feedback.incorrect {
-    border-color: var(--incorrect);
+border-color: var(–incorrect);
 }
 
 .feedback-icon {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
+font-size: 2rem;
+margin-bottom: 0.5rem;
 }
 
 .feedback-text {
-    color: var(--off-white);
-    line-height: 1.6;
+color: var(–off-white);
+line-height: 1.6;
 }
 
 /* ============================
-   CERTIFICATE
-   ============================ */
+CERTIFICATE
+============================ */
 .certificate-screen {
-    display: none;
-    min-height: 100vh;
-    padding: 2rem;
-    text-align: center;
+display: none;
+min-height: 100vh;
+padding: 2rem;
+text-align: center;
 }
 
 .certificate-screen.active {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
 }
 
 .certificate {
-    background: var(--dark-card);
-    border: 3px solid var(--gold);
-    border-radius: 12px;
-    padding: 3rem 2rem;
-    max-width: 500px;
-    width: 100%;
+background: var(–dark-card);
+border: 3px solid var(–gold);
+border-radius: 12px;
+padding: 3rem 2rem;
+max-width: 500px;
+width: 100%;
 }
 
 .certificate-header {
-    font-size: 0.8rem;
-    color: var(--gold);
-    text-transform: uppercase;
-    letter-spacing: 0.3em;
-    margin-bottom: 0.5rem;
+font-size: 0.8rem;
+color: var(–gold);
+text-transform: uppercase;
+letter-spacing: 0.3em;
+margin-bottom: 0.5rem;
 }
 
 .certificate h2 {
-    font-family: var(--heading-font);
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: var(--white);
-    margin-bottom: 2rem;
+font-family: var(–heading-font);
+font-size: 1.8rem;
+font-weight: 800;
+color: var(–white);
+margin-bottom: 2rem;
 }
 
 .certificate-divider {
-    width: 60px;
-    height: 3px;
-    background: var(--gold);
-    margin: 0 auto 2rem;
+width: 60px;
+height: 3px;
+background: var(–gold);
+margin: 0 auto 2rem;
 }
 
 .certificate-label {
-    font-size: 0.85rem;
-    color: var(--gray);
-    margin-bottom: 0.5rem;
+font-size: 0.85rem;
+color: var(–gray);
+margin-bottom: 0.5rem;
 }
 
 .certificate-name {
-    font-family: var(--heading-font);
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--gold);
-    margin-bottom: 2rem;
+font-family: var(–heading-font);
+font-size: 2rem;
+font-weight: 700;
+color: var(–gold);
+margin-bottom: 2rem;
 }
 
 .certificate-score {
-    font-size: 3rem;
-    font-weight: 800;
-    color: var(--white);
-    margin-bottom: 0.5rem;
+font-size: 3rem;
+font-weight: 800;
+color: var(–white);
+margin-bottom: 0.5rem;
 }
 
 .certificate-score.pass {
-    color: var(--correct);
+color: var(–correct);
 }
 
 .certificate-score.fail {
-    color: var(--incorrect);
+color: var(–incorrect);
 }
 
 .certificate-percentage {
-    font-size: 1.2rem;
-    color: var(--gray);
-    margin-bottom: 1.5rem;
+font-size: 1.2rem;
+color: var(–gray);
+margin-bottom: 1.5rem;
 }
 
 .certificate-status {
-    display: inline-block;
-    padding: 0.5rem 1.5rem;
-    border-radius: 20px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 2rem;
+display: inline-block;
+padding: 0.5rem 1.5rem;
+border-radius: 20px;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 0.1em;
+margin-bottom: 2rem;
 }
 
 .certificate-status.pass {
-    background: rgba(40, 167, 69, 0.2);
-    color: var(--correct);
-    border: 1px solid var(--correct);
+background: rgba(40, 167, 69, 0.2);
+color: var(–correct);
+border: 1px solid var(–correct);
 }
 
 .certificate-status.fail {
-    background: rgba(220, 53, 69, 0.2);
-    color: var(--incorrect);
-    border: 1px solid var(--incorrect);
+background: rgba(220, 53, 69, 0.2);
+color: var(–incorrect);
+border: 1px solid var(–incorrect);
 }
 
 .certificate-date {
-    font-size: 0.9rem;
-    color: var(--gray);
-    margin-bottom: 2rem;
+font-size: 0.9rem;
+color: var(–gray);
+margin-bottom: 2rem;
 }
 
 .certificate-instruction {
-    font-size: 0.85rem;
-    color: var(--off-white);
-    background: rgba(253, 185, 19, 0.1);
-    border: 1px solid var(--gold);
-    border-radius: 8px;
-    padding: 1rem;
-    line-height: 1.6;
+font-size: 0.85rem;
+color: var(–off-white);
+background: rgba(253, 185, 19, 0.1);
+border: 1px solid var(–gold);
+border-radius: 8px;
+padding: 1rem;
+line-height: 1.6;
 }
 
 /* ============================
-   RESPONSIVE
-   ============================ */
+RESPONSIVE
+============================ */
 @media (max-width: 600px) {
-    .intro-screen h1 {
-        font-size: 2rem;
-    }
-    
-    .phase-transition h2 {
-        font-size: 2rem;
-    }
-    
-    .tap-zone {
-        padding: 1rem 0.75rem;
-    }
-    
-    .tap-zone .zone-icon {
-        font-size: 1.5rem;
-    }
-    
-    .tap-zone .zone-label {
-        font-size: 0.75rem;
-    }
-    
-    .certificate {
-        padding: 2rem 1.5rem;
-    }
-    
-    .certificate-name {
-        font-size: 1.5rem;
-    }
-    
-    .certificate-score {
-        font-size: 2.5rem;
-    }
+.intro-screen h1 {
+font-size: 2rem;
+}
+
+```
+.phase-transition h2 {
+    font-size: 2rem;
+}
+
+.tap-zone {
+    padding: 1rem 0.75rem;
+}
+
+.tap-zone .zone-icon {
+    font-size: 1.5rem;
+}
+
+.tap-zone .zone-label {
+    font-size: 0.75rem;
+}
+
+.certificate {
+    padding: 2rem 1.5rem;
+}
+
+.certificate-name {
+    font-size: 1.5rem;
+}
+
+.certificate-score {
+    font-size: 2.5rem;
+}
+```
+
 }
 
 /* Hide elements */
 .hidden {
-    display: none !important;
+display: none !important;
 }
 </style>
+
 </head>
 <body>
 
 <!-- INTRO SCREEN -->
+
 <div class="intro-screen" id="introScreen">
     <h1>The Ultimate Hinting Challenge</h1>
     <p class="subtitle">Final Exam</p>
-    
-    <p>You're about to experience a simulated 60-minute escape room — from opening moments to the final seconds.</p>
-    <p>20 questions across three phases will test everything you've learned about the art of hinting.</p>
-    
-    <div class="name-input-group">
-        <label for="playerName">Your Name</label>
-        <input type="text" id="playerName" placeholder="Enter your name" autocomplete="off">
-    </div>
-    
-    <button class="begin-challenge-btn" id="beginBtn" disabled>Begin Challenge</button>
+
+```
+<p>You're about to experience a simulated 60-minute escape room — from opening moments to the final seconds.</p>
+<p>20 questions across three phases will test everything you've learned about the art of hinting.</p>
+
+<div class="name-input-group">
+    <label for="playerName">Your Name</label>
+    <input type="text" id="playerName" placeholder="Enter your name" autocomplete="off">
+</div>
+
+<button class="begin-challenge-btn" id="beginBtn" disabled>Begin Challenge</button>
+```
+
 </div>
 
 <!-- PHASE TRANSITION -->
+
 <div class="phase-transition" id="phaseTransition">
     <p class="phase-label" id="phaseLabel">Phase 1 of 3</p>
     <h2 id="phaseTitle">Beginning the Game</h2>
@@ -734,11 +747,13 @@ body {
 </div>
 
 <!-- QUIZ CONTAINER -->
+
 <div class="quiz-container" id="quizContainer">
     <!-- Questions will be injected here -->
 </div>
 
 <!-- TIMELINE -->
+
 <div class="timeline-container" id="timelineContainer" style="display: none;">
     <div class="timeline-labels">
         <span>0:00</span>
@@ -756,25 +771,29 @@ body {
 </div>
 
 <!-- CERTIFICATE SCREEN -->
+
 <div class="certificate-screen" id="certificateScreen">
     <div class="certificate">
         <p class="certificate-header">The Art of Hinting</p>
         <h2>Certificate of Completion</h2>
         <div class="certificate-divider"></div>
-        
-        <p class="certificate-label">This certifies that</p>
-        <p class="certificate-name" id="certName"></p>
-        
-        <p class="certificate-label">has completed The Ultimate Hinting Challenge</p>
-        
-        <p class="certificate-score" id="certScore"></p>
-        <p class="certificate-percentage" id="certPercentage"></p>
-        <p class="certificate-status" id="certStatus"></p>
-        
-        <p class="certificate-date" id="certDate"></p>
-        
-        <p class="certificate-instruction">📸 Please screenshot this certificate and send to your manager.</p>
-    </div>
+
+```
+    <p class="certificate-label">This certifies that</p>
+    <p class="certificate-name" id="certName"></p>
+    
+    <p class="certificate-label">has completed The Ultimate Hinting Challenge</p>
+    
+    <p class="certificate-score" id="certScore"></p>
+    <p class="certificate-percentage" id="certPercentage"></p>
+    <p class="certificate-status" id="certStatus"></p>
+    
+    <p class="certificate-date" id="certDate"></p>
+    
+    <p class="certificate-instruction">📸 Please screenshot this certificate and send to your manager.</p>
+</div>
+```
+
 </div>
 
 <script>
@@ -1045,6 +1064,7 @@ let currentCardIndex = 0;
 let score = 0;
 let questionScore = 0;
 let currentPhase = -1;
+let justTransitioned = false;
 
 // ============================
 // INIT
@@ -1072,6 +1092,7 @@ function startChallenge() {
 // ============================
 function showPhaseTransition(phaseIndex) {
     currentPhase = phaseIndex;
+    justTransitioned = true;
     const phase = phases[phaseIndex];
     
     document.getElementById('phaseLabel').textContent = phase.label;
@@ -1103,12 +1124,15 @@ function showQuestion(index) {
     // Update timeline
     updateTimeline(q.timelinePosition);
     
-    // Check if we need a phase transition
-    if (index > 0 && q.phase !== questions[index - 1].phase) {
+    // Check if we need a phase transition (but not if we just did one)
+    if (!justTransitioned && index > 0 && q.phase !== questions[index - 1].phase) {
         container.classList.remove('active');
         showPhaseTransition(q.phase);
         return;
     }
+    
+    // Reset the flag
+    justTransitioned = false;
     
     currentCardIndex = 0;
     questionScore = 0;
@@ -1301,5 +1325,6 @@ function showCertificate() {
     document.getElementById('certificateScreen').classList.add('active');
 }
 </script>
+
 </body>
 </html>
