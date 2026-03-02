@@ -340,6 +340,16 @@ body {
     transition: all 0.3s ease;
 }
 
+.current-card.card-new {
+    animation: cardPulse 0.4s ease;
+}
+
+@keyframes cardPulse {
+    0% { transform: scale(0.97); opacity: 0.7; border-color: var(--gold); }
+    50% { transform: scale(1.01); border-color: var(--gold); }
+    100% { transform: scale(1); opacity: 1; border-color: var(--dark-border); }
+}
+
 .current-card.card-correct {
     border-color: var(--correct);
     background: rgba(40, 167, 69, 0.15);
@@ -541,6 +551,27 @@ body {
 .feedback-text {
     color: var(--off-white);
     line-height: 1.6;
+}
+
+.continue-feedback-btn {
+    margin-top: 1.5rem;
+    padding: 0.75rem 2rem;
+    background: transparent;
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    color: var(--gold);
+    font-family: var(--heading-font);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.continue-feedback-btn:hover {
+    background: var(--gold);
+    color: var(--dark-bg);
 }
 
 /* ============================
@@ -848,7 +879,7 @@ const questions = [
     },
     {
         phase: 0,
-        context: "You're 8 minutes in. A young child is trying to decode an inscription while their parents battle a separate logic puzzle. The child looks increasingly frustrated and confused.",
+        context: "You're 8 minutes in. A child, around age 7, is trying to decode an inscription while their parents battle a separate logic puzzle. The child looks increasingly frustrated and confused.",
         type: "sort",
         cards: [
             { text: "Intervene early with encouragement and try to set them up with the puzzle logic: \"You're doing great! Let's take it one step at a time.\"", correct: true },
@@ -865,7 +896,7 @@ const questions = [
         cards: [
             { text: "Tell them the combination directly — they're clearly lost.", correct: false },
             { text: "Re-state relevant information from the intro without adding anything new.", correct: true },
-            { text: "Let them keep guessing — eventually they'll stumble onto it.", correct: true },
+            { text: "Let them keep guessing — eventually they'll stumble onto it.", correct: false },
             { text: "Remind them in character of their objective: \"Remember why we're here...\"", correct: true }
         ],
         timelinePosition: 12
@@ -915,6 +946,7 @@ const questions = [
             { text: "\"What have you observed about this mechanism so far?\"", correct: true },
             { text: "Since they're experts, break character and explain the mechanics directly.", correct: false },
             { text: "Intentionally misdirect them to add difficulty — they can handle it.", correct: false },
+            { text: "\"What happens when you turn this piece? What might that tell us?\"", correct: true }
         ],
         timelinePosition: 47
     },
@@ -985,7 +1017,7 @@ const questions = [
         type: "truefalse",
         statement: "Gazing intently at the mounted object and musing aloud, \"I've always wondered what secrets might lie behind such things...\" is an appropriate immersive hint.",
         correct: true,
-        explanation: "This is a great example of an in-character nudge that redirects attention without giving away the solution.",
+        explanation: "In-character nudges redirect attention without giving away the solution.",
         timelinePosition: 80
     },
     {
@@ -994,7 +1026,7 @@ const questions = [
         type: "truefalse",
         statement: "It's acceptable to break character for the sake of clarity when players aren't understanding your hints.",
         correct: false,
-        explanation: "Find creative ways to rephrase within character. Try different approaches: gestures, positioning, simpler language. Breaking immersion should be reserved for safety or genuine emotional distress.",
+        explanation: "Try gestures, positioning, or simpler language. Only break character for safety or emotional distress.",
         timelinePosition: 87
     },
     {
@@ -1003,7 +1035,7 @@ const questions = [
         type: "truefalse",
         statement: "Communicating urgency through in-character language like \"Time grows short! We must act swiftly!\" is an appropriate approach.",
         correct: true,
-        explanation: "In-character urgency maintains immersion while effectively conveying time pressure.",
+        explanation: "In-character urgency maintains immersion while conveying time pressure.",
         timelinePosition: 90
     },
     {
@@ -1012,7 +1044,7 @@ const questions = [
         type: "truefalse",
         statement: "It's acceptable to break character to calmly describe the technical issue and offer extra time as compensation.",
         correct: false,
-        explanation: "You can handle this in-world: \"Ah! Something interferes with our progress! Give me a moment... Fear not, we shall be granted additional time to compensate.\"",
+        explanation: "Handle it in-world: \"Something interferes! Give me a moment... We shall have extra time to compensate.\"",
         timelinePosition: 95
     },
     {
@@ -1021,7 +1053,7 @@ const questions = [
         type: "truefalse",
         statement: "It's appropriate to break character to check on the player, offer reassurance, and let them know they can step out if needed.",
         correct: true,
-        explanation: "Player well-being always takes priority over immersion. Safety and emotional distress are the only valid reasons to break character.",
+        explanation: "Player well-being always takes priority over immersion.",
         timelinePosition: 50
     },
     {
@@ -1030,7 +1062,7 @@ const questions = [
         type: "truefalse",
         statement: "A perfect game means you were actively engaged, consistently in character, contributing to narrative immersion — but never had to give a single direct hint.",
         correct: true,
-        explanation: "The ideal is facilitation through presence, engagement, and subtle guidance — letting players experience the full joy of discovery themselves.",
+        explanation: "The ideal is subtle guidance — letting players experience the full joy of discovery.",
         timelinePosition: 100
     }
 ];
@@ -1190,9 +1222,15 @@ function handleSort(isPositive, btn) {
     setTimeout(() => {
         if (currentCardIndex < q.cards.length) {
             // Next card
-            cardEl.className = 'current-card';
+            cardEl.className = 'current-card card-new';
             cardEl.textContent = q.cards[currentCardIndex].text;
             document.getElementById('cardNumber').textContent = currentCardIndex + 1;
+            
+            // Scroll card into view
+            cardEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Remove animation class after it completes
+            setTimeout(() => cardEl.classList.remove('card-new'), 400);
         } else {
             // Question complete
             finishQuestion();
@@ -1223,18 +1261,27 @@ function handleTrueFalse(answer, btn) {
     if (isCorrect) {
         feedback.classList.add('correct');
         icon.textContent = '✓';
+        text.textContent = '';
         questionScore = 1;
+        feedback.classList.add('show');
+        
+        // Auto-advance after short pause
+        setTimeout(() => {
+            finishQuestion();
+        }, 1000);
     } else {
         feedback.classList.add('incorrect');
         icon.textContent = '✗';
+        text.textContent = q.explanation;
+        feedback.classList.add('show');
+        
+        // Add continue button
+        const continueBtn = document.createElement('button');
+        continueBtn.className = 'continue-feedback-btn';
+        continueBtn.textContent = 'Continue';
+        continueBtn.onclick = () => finishQuestion();
+        feedback.appendChild(continueBtn);
     }
-    
-    text.textContent = q.explanation;
-    feedback.classList.add('show');
-    
-    setTimeout(() => {
-        finishQuestion();
-    }, 2500);
 }
 
 // ============================
