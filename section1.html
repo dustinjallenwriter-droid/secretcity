@@ -41,7 +41,8 @@
                 <span>→</span>
             </button>
         </div>
-   <!-- Section 4 - Productive struggle vs Frustration -->
+
+    <!-- Section 4 - Productive struggle vs Frustration -->
     <div class="intro-section" id="section4">
         <h2 class="section-title">Productive struggle vs. Frustration</h2>
         <p>Learning to distinguish between productive struggle and unproductive frustration is essential. Expand each section below to learn the signs:</p>
@@ -155,19 +156,40 @@
             <p>Intervene only for safety, technical issues, or fundamental misunderstandings. These are the rare cases where breaking the rule is justified.</p>
         </div>
 
-<div class="step-nav">
-    <span class="step-arrow disabled" id="prevArrow" onclick="prevStep()">‹</span>
-    <span class="step-dot active" data-step="1" onclick="showStep(1)">1</span>
-    <span class="step-dot" data-step="2" onclick="showStep(2)">2</span>
-    <span class="step-dot" data-step="3" onclick="showStep(3)">3</span>
-    <span class="step-dot" data-step="4" onclick="showStep(4)">4</span>
-    <span class="step-arrow" id="nextArrow" onclick="nextStep()">›</span>
-</div>
+        <div class="step-nav">
+            <span class="step-arrow disabled" id="prevArrow" onclick="prevStep()">‹</span>
+            <span class="step-dot active" data-step="1" onclick="showStep(1)">1</span>
+            <span class="step-dot" data-step="2" onclick="showStep(2)">2</span>
+            <span class="step-dot" data-step="3" onclick="showStep(3)">3</span>
+            <span class="step-dot" data-step="4" onclick="showStep(4)">4</span>
+            <span class="step-arrow" id="nextArrow" onclick="nextStep()">›</span>
+        </div>
     
-    <!-- Quiz button - appears only on step 4 -->
-    <a href="section1quiz.html" class="quiz-btn" id="quizBtn" style="display: none;">
-        Check your understanding
-    </a>
+        <button class="next-btn" onclick="showSection(7)" id="toSection7Btn" style="display: none;">
+            <span>→</span>
+        </button>
+    </div>
+</div>
+
+<!-- Section 7 - The Rest of the Golden Rule -->
+<div class="intro-section" id="section7">
+    <h2 class="section-title">The (rest of the) Golden Rule</h2>
+    <br>
+    <p class="rule-statement">"Do not hint unless absolutely necessary (... and it is never necessary to hint on the final puzzle)"</p>
+    <br>
+    <p>As teams approach the end of the game, you may find yourself hinting more heavily than usual to push them toward the final puzzle. This is part of the job. Whenever possible, we do want players to get to the final puzzle with enough time to attempt it.</p>
+    <br>
+    <p>But once they reach the final puzzle, <strong>you must stop hinting entirely</strong>.</p>
+    <br>
+    <p>If players feel like they only beat the final puzzle because of your help, their sense of accomplishment will be deflated.</p>
+    <br>
+    <p>Handing them the victory has no benefit to anyone — even if in the moment you think you're just being helpful.</p>
+
+    <div class="note-box">
+        <p><strong>The shift:</strong> Near the end of the game, you may escalate hints to push players toward the end. It's imperative you recognize when they've reached the final puzzle and stop completely.</p>
+    </div>
+
+    <a href="section1quiz.html" class="quiz-btn">Check your understanding</a>
 </div>
 
         <!-- Navigation Dots -->
@@ -176,11 +198,12 @@
             <span class="dot" onclick="showSection(2)"></span>
             <span class="dot" onclick="showSection(3)"></span>
             <span class="dot" onclick="showSection(4)"></span>
+            <span class="dot" onclick="showSection(5)"></span>
+            <span class="dot" onclick="showSection(6)"></span>
+            <span class="dot" onclick="showSection(7)"></span>
         </div>
     </div>
 </div>
-
-
 
 <script>
 let ruleRevealed = false;
@@ -210,7 +233,9 @@ function showSection(sectionNumber) {
     document.getElementById('section' + sectionNumber).classList.add('active');
     
     // Activate the corresponding dot
-    dots[sectionNumber - 1].classList.add('active');
+    if (dots[sectionNumber - 1]) {
+        dots[sectionNumber - 1].classList.add('active');
+    }
     
     // Remove dark mode when leaving section 1
     if (sectionNumber > 1) {
@@ -221,22 +246,26 @@ function showSection(sectionNumber) {
         ruleRevealed = false;
     }
 }
+
 document.querySelectorAll('.accordion-header').forEach(button => {
     button.addEventListener('click', () => {
         const item = button.parentElement;
         const content = button.nextElementSibling;
         const isActive = item.classList.contains('active');
 
-        // Close all items
-        document.querySelectorAll('.accordion-item').forEach(i => {
+        // Close all items in this accordion
+        const accordion = item.parentElement;
+        accordion.querySelectorAll('.accordion-item').forEach(i => {
             i.classList.remove('active');
             i.querySelector('.accordion-content').style.maxHeight = null;
+            i.querySelector('.accordion-icon').textContent = '+';
         });
 
         // Open clicked item if it wasn't already open
         if (!isActive) {
             item.classList.add('active');
             content.style.maxHeight = content.scrollHeight + 'px';
+            button.querySelector('.accordion-icon').textContent = '−';
         }
     });
 });
@@ -274,12 +303,12 @@ function showStep(stepNumber) {
     prevArrow.classList.toggle('disabled', currentStep === 1);
     nextArrow.classList.toggle('disabled', currentStep === totalSteps);
     
-    // Show quiz button only on step 4
-    const quizBtn = document.getElementById('quizBtn');
+    // Show next section button only on step 4
+    const toSection7Btn = document.getElementById('toSection7Btn');
     if (currentStep === totalSteps) {
-        quizBtn.style.display = 'block';
+        toSection7Btn.style.display = 'block';
     } else {
-        quizBtn.style.display = 'none';
+        toSection7Btn.style.display = 'none';
     }
 }
 
