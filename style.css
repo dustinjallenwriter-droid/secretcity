@@ -893,12 +893,13 @@ body.dark-mode .nav-dots {
 
 /* Text Content Card - for text-only sections */
 .text-content-card {
-    background: var(--off-white);
+    background: #f5f5f0;
+    border: 1px solid #e0e0e0;
     border-left: 4px solid var(--yellow);
     border-radius: 0 8px 8px 0;
     padding: 2rem;
     margin: 1rem 0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
 .text-content-card p {
@@ -914,5 +915,3 @@ body.dark-mode .nav-dots {
     font-weight: 600;
     color: var(--teal);
 }
-
-
