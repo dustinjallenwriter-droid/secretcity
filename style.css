@@ -890,3 +890,29 @@ body.dark-mode .nav-dots {
         padding: 1rem;
     }
 }
+
+/* Text Content Card - for text-only sections */
+.text-content-card {
+    background: var(--off-white);
+    border-left: 4px solid var(--yellow);
+    border-radius: 0 8px 8px 0;
+    padding: 2rem;
+    margin: 1rem 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.text-content-card p {
+    margin-bottom: 1.25rem;
+    line-height: 1.8;
+}
+
+.text-content-card p:last-child {
+    margin-bottom: 0;
+}
+
+.text-content-card .highlight {
+    font-weight: 600;
+    color: var(--teal);
+}
+
+
