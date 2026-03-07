@@ -124,7 +124,7 @@ body {
     margin-top: 1rem;
 }
 
-.begin-challenge-btn:hover {
+.begin-challenge-btn:hover:not(:disabled) {
     background: var(--gold);
     color: var(--dark-bg);
 }
@@ -391,6 +391,7 @@ body {
 
 .tap-zone .zone-icon {
     font-size: 1.8rem;
+    color: var(--off-white);
 }
 
 .tap-zone .zone-label {
@@ -503,6 +504,7 @@ body {
 
 .tf-btn .btn-icon {
     font-size: 1.5rem;
+    color: var(--off-white);
 }
 
 .tf-btn .btn-label {
@@ -546,6 +548,14 @@ body {
 .feedback-icon {
     font-size: 2rem;
     margin-bottom: 0.5rem;
+}
+
+.question-feedback.correct .feedback-icon {
+    color: var(--correct);
+}
+
+.question-feedback.incorrect .feedback-icon {
+    color: var(--incorrect);
 }
 
 .feedback-text {
@@ -696,6 +706,27 @@ body {
     line-height: 1.6;
 }
 
+.retry-btn {
+    margin-top: 1.5rem;
+    padding: 0.75rem 2rem;
+    background: transparent;
+    border: 2px solid var(--gray);
+    border-radius: 8px;
+    color: var(--gray);
+    font-family: var(--heading-font);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.retry-btn:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
 /* ============================
    RESPONSIVE
    ============================ */
@@ -747,14 +778,14 @@ body {
     <p class="subtitle">Final Exam</p>
     
     <p>You're about to experience a simulated 60-minute escape room — from opening moments to the final seconds.</p>
-    <p>20 questions across three phases will test everything you've learned about the art of hinting.</p>
+    <p>22 scenarios across three phases will test everything you've learned about the art of hinting.</p>
     
     <div class="name-input-group">
         <label for="playerName">Your Name</label>
-        <input type="text" id="playerName" placeholder="Enter your name" autocomplete="off">
+        <input type="text" id="playerName" placeholder="Enter your name" autocomplete="off" oninput="checkName()">
     </div>
     
-    <button class="begin-challenge-btn" id="beginBtn" disabled>Begin Challenge</button>
+    <button class="begin-challenge-btn" id="beginBtn" disabled onclick="startChallenge()">Begin Challenge</button>
 </div>
 
 <!-- PHASE TRANSITION -->
@@ -804,7 +835,9 @@ body {
         
         <p class="certificate-date" id="certDate"></p>
         
-        <p class="certificate-instruction">📸 Please screenshot this certificate and send to your manager.</p>
+        <p class="certificate-instruction">📸 Please screenshot this certificate and send to your manager, or try again to test your knowledge and improve your score.</p>
+        
+        <button class="retry-btn" onclick="retryChallenge()">Try Again</button>
     </div>
 </div>
 
@@ -813,7 +846,7 @@ body {
 // DATA
 // ============================
 
-const phases = [
+var phases = [
     { 
         label: "Phase 1 of 3", 
         title: "Beginning the Game", 
@@ -837,7 +870,7 @@ const phases = [
     }
 ];
 
-const questions = [
+var questions = [
     // PHASE 1: Questions 1-7
     {
         phase: 0,
@@ -1007,7 +1040,19 @@ const questions = [
         ],
         timelinePosition: 67
     },
-    // PHASE 3: Questions 15-20
+    {
+        phase: 1,
+        context: "You're 47 minutes in. The group has been making steady progress but hasn't yet discovered a door that leads to some vital information — they're not quite on track to win, and will need to open that door to reach the final puzzle. Time is running out.",
+        type: "sort",
+        cards: [
+            { text: "Casually lean near the unopened door while observing the group, making your presence near it obvious.", correct: true },
+            { text: "Don't budge, no matter how long it takes them. Discovering the door is part of the challenge.", correct: false },
+            { text: "Say in character: \"Are we confident we've seen all there is to see in this wretched dungeon?\"", correct: true },
+            { text: "Lean on the door and \"accidentally\" open it yourself, then wave them through to save time.", correct: false }
+        ],
+        timelinePosition: 78
+    },
+    // PHASE 3: Questions 16-22
     {
         phase: 2,
         context: "There are 12 minutes left. The group is working on the wrong element of a complex puzzle involving something mounted on the wall that they need to remove and examine.",
@@ -1037,11 +1082,20 @@ const questions = [
     },
     {
         phase: 2,
+        context: "It's someone's birthday and the group has been incredibly fun to host. They're on the final puzzle with 4 minutes left, making good progress — but suddenly they start second-guessing themselves and backtracking in the wrong direction. They really want to win.",
+        type: "truefalse",
+        statement: "It's okay to give them a gentle nudge like \"You were on the right track before — keep going that direction!\" since they're so close and it's a special occasion.",
+        correct: false,
+        explanation: "Never hint on the final puzzle. The accomplishment must be entirely theirs, or the win feels hollow.",
+        timelinePosition: 93
+    },
+    {
+        phase: 2,
         context: "There are 3 minutes left. A major mechanical puzzle component freezes. You know unplugging and rebooting takes 30 seconds.",
         type: "truefalse",
-        statement: "It's acceptable to break character to calmly describe the technical issue and offer extra time as compensation.",
+        statement: "You should immediately break character to calmly describe the technical issue and offer extra time as compensation.",
         correct: false,
-        explanation: "Handle it in-world: \"Something interferes! Give me a moment... We shall have extra time to compensate.\"",
+        explanation: "Handle it in-world: \"The fates are not cruel — give me one moment to barter with them. They will grant us time back to compensate, should it come to that.\"",
         timelinePosition: 95
     },
     {
@@ -1067,30 +1121,36 @@ const questions = [
 // ============================
 // STATE
 // ============================
-let playerName = "";
-let currentQuestion = 0;
-let currentCardIndex = 0;
-let score = 0;
-let questionScore = 0;
-let currentPhase = -1;
-let justTransitioned = false;
+var playerName = "";
+var currentQuestion = 0;
+var currentCardIndex = 0;
+var score = 0;
+var questionScore = 0;
+var currentPhase = -1;
+var justTransitioned = false;
+
+// Calculate total possible points (every card + every T/F)
+var totalPossiblePoints = 0;
+for (var i = 0; i < questions.length; i++) {
+    if (questions[i].type === 'sort') {
+        totalPossiblePoints += questions[i].cards.length;
+    } else {
+        totalPossiblePoints += 1;
+    }
+}
 
 // ============================
-// INIT
+// FUNCTIONS
 // ============================
-document.addEventListener('DOMContentLoaded', () => {
-    const nameInput = document.getElementById('playerName');
-    const beginBtn = document.getElementById('beginBtn');
-    
-    nameInput.addEventListener('input', () => {
-        playerName = nameInput.value.trim();
-        beginBtn.disabled = playerName.length === 0;
-    });
-    
-    beginBtn.addEventListener('click', startChallenge);
-});
+function checkName() {
+    var nameInput = document.getElementById('playerName');
+    var beginBtn = document.getElementById('beginBtn');
+    playerName = nameInput.value.trim();
+    beginBtn.disabled = playerName.length === 0;
+}
 
 function startChallenge() {
+    if (playerName.length === 0) return;
     document.getElementById('introScreen').classList.add('hidden');
     document.getElementById('timelineContainer').style.display = 'block';
     showPhaseTransition(0);
@@ -1102,7 +1162,7 @@ function startChallenge() {
 function showPhaseTransition(phaseIndex) {
     currentPhase = phaseIndex;
     justTransitioned = true;
-    const phase = phases[phaseIndex];
+    var phase = phases[phaseIndex];
     
     document.getElementById('phaseLabel').textContent = phase.label;
     document.getElementById('phaseTitle').textContent = phase.title;
@@ -1113,10 +1173,10 @@ function showPhaseTransition(phaseIndex) {
     document.getElementById('phase2Label').classList.toggle('active', phaseIndex === 1);
     document.getElementById('phase3Label').classList.toggle('active', phaseIndex === 2);
     
-    const transition = document.getElementById('phaseTransition');
+    var transition = document.getElementById('phaseTransition');
     transition.classList.add('active');
     
-    setTimeout(() => {
+    setTimeout(function() {
         transition.classList.remove('active');
         document.getElementById('quizContainer').classList.add('active');
         showQuestion(currentQuestion);
@@ -1127,8 +1187,8 @@ function showPhaseTransition(phaseIndex) {
 // QUESTIONS
 // ============================
 function showQuestion(index) {
-    const q = questions[index];
-    const container = document.getElementById('quizContainer');
+    var q = questions[index];
+    var container = document.getElementById('quizContainer');
     
     // Update timeline
     updateTimeline(q.timelinePosition);
@@ -1146,46 +1206,46 @@ function showQuestion(index) {
     currentCardIndex = 0;
     questionScore = 0;
     
-    let html = `<div class="question-card active" id="questionCard">`;
-    html += `<div class="question-header">`;
-    html += `<p class="question-number">Question ${index + 1} of ${questions.length}</p>`;
-    html += `</div>`;
-    html += `<div class="question-context">${q.context}</div>`;
+    var html = '<div class="question-card active" id="questionCard">';
+    html += '<div class="question-header">';
+    html += '<p class="question-number">Scenario ' + (index + 1) + ' of ' + questions.length + '</p>';
+    html += '</div>';
+    html += '<div class="question-context">' + q.context + '</div>';
     
     if (q.type === 'sort') {
-        html += `<p class="question-instruction">${phases[q.phase].instruction}</p>`;
-        html += `<div class="sort-activity">`;
-        html += `<p class="card-counter"><span id="cardNumber">1</span> of ${q.cards.length}</p>`;
-        html += `<div class="current-card" id="currentCard">${q.cards[0].text}</div>`;
-        html += `<div class="tap-zones">`;
-        html += `<button class="tap-zone" onclick="handleSort(true, this)">`;
-        html += `<span class="zone-icon">${phases[q.phase].buttonLabels.positive}</span>`;
-        html += `</button>`;
-        html += `<button class="tap-zone" onclick="handleSort(false, this)">`;
-        html += `<span class="zone-icon">${phases[q.phase].buttonLabels.negative}</span>`;
-        html += `</button>`;
-        html += `</div>`;
-        html += `<div class="sort-progress"><div class="sort-progress-bar" id="sortProgress"></div></div>`;
-        html += `</div>`;
+        html += '<p class="question-instruction">' + phases[q.phase].instruction + '</p>';
+        html += '<div class="sort-activity">';
+        html += '<p class="card-counter"><span id="cardNumber">1</span> of ' + q.cards.length + '</p>';
+        html += '<div class="current-card" id="currentCard">' + q.cards[0].text + '</div>';
+        html += '<div class="tap-zones">';
+        html += '<button class="tap-zone" onclick="handleSort(true, this)">';
+        html += '<span class="zone-icon">' + phases[q.phase].buttonLabels.positive + '</span>';
+        html += '</button>';
+        html += '<button class="tap-zone" onclick="handleSort(false, this)">';
+        html += '<span class="zone-icon">' + phases[q.phase].buttonLabels.negative + '</span>';
+        html += '</button>';
+        html += '</div>';
+        html += '<div class="sort-progress"><div class="sort-progress-bar" id="sortProgress"></div></div>';
+        html += '</div>';
     } else if (q.type === 'truefalse') {
-        html += `<div class="statement-card">${q.statement}</div>`;
-        html += `<div class="tf-buttons">`;
-        html += `<button class="tf-btn" onclick="handleTrueFalse(true, this)">`;
-        html += `<span class="btn-icon">✓</span>`;
-        html += `<span class="btn-label">True</span>`;
-        html += `</button>`;
-        html += `<button class="tf-btn" onclick="handleTrueFalse(false, this)">`;
-        html += `<span class="btn-icon">✗</span>`;
-        html += `<span class="btn-label">False</span>`;
-        html += `</button>`;
-        html += `</div>`;
-        html += `<div class="question-feedback" id="tfFeedback">`;
-        html += `<p class="feedback-icon" id="tfFeedbackIcon"></p>`;
-        html += `<p class="feedback-text" id="tfFeedbackText"></p>`;
-        html += `</div>`;
+        html += '<div class="statement-card">' + q.statement + '</div>';
+        html += '<div class="tf-buttons">';
+        html += '<button class="tf-btn" onclick="handleTrueFalse(true, this)">';
+        html += '<span class="btn-icon">✓</span>';
+        html += '<span class="btn-label">True</span>';
+        html += '</button>';
+        html += '<button class="tf-btn" onclick="handleTrueFalse(false, this)">';
+        html += '<span class="btn-icon">✗</span>';
+        html += '<span class="btn-label">False</span>';
+        html += '</button>';
+        html += '</div>';
+        html += '<div class="question-feedback" id="tfFeedback">';
+        html += '<p class="feedback-icon" id="tfFeedbackIcon"></p>';
+        html += '<p class="feedback-text" id="tfFeedbackText"></p>';
+        html += '</div>';
     }
     
-    html += `</div>`;
+    html += '</div>';
     container.innerHTML = html;
 }
 
@@ -1194,16 +1254,16 @@ function showQuestion(index) {
 // ============================
 function handleSort(isPositive, btn) {
     document.activeElement.blur();
-    const q = questions[currentQuestion];
-    const card = q.cards[currentCardIndex];
-    const cardEl = document.getElementById('currentCard');
+    var q = questions[currentQuestion];
+    var card = q.cards[currentCardIndex];
+    var cardEl = document.getElementById('currentCard');
     
     // Flash button
     btn.classList.add('flash');
-    setTimeout(() => btn.classList.remove('flash'), 300);
+    setTimeout(function() { btn.classList.remove('flash'); }, 300);
     
     // Check answer
-    const isCorrect = (isPositive === card.correct);
+    var isCorrect = (isPositive === card.correct);
     if (isCorrect) {
         cardEl.classList.add('card-correct');
         questionScore++;
@@ -1213,10 +1273,10 @@ function handleSort(isPositive, btn) {
     
     // Update progress
     currentCardIndex++;
-    const progress = (currentCardIndex / q.cards.length) * 100;
+    var progress = (currentCardIndex / q.cards.length) * 100;
     document.getElementById('sortProgress').style.width = progress + '%';
     
-    setTimeout(() => {
+    setTimeout(function() {
         if (currentCardIndex < q.cards.length) {
             // Next card
             cardEl.className = 'current-card card-new';
@@ -1227,7 +1287,7 @@ function handleSort(isPositive, btn) {
             cardEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
             
             // Remove animation class after it completes
-            setTimeout(() => cardEl.classList.remove('card-new'), 400);
+            setTimeout(function() { cardEl.classList.remove('card-new'); }, 400);
         } else {
             // Question complete
             finishQuestion();
@@ -1240,20 +1300,23 @@ function handleSort(isPositive, btn) {
 // ============================
 function handleTrueFalse(answer, btn) {
     document.activeElement.blur();
-    const q = questions[currentQuestion];
-    const isCorrect = (answer === q.correct);
+    var q = questions[currentQuestion];
+    var isCorrect = (answer === q.correct);
     
     // Flash button
     btn.classList.add('flash');
-    setTimeout(() => btn.classList.remove('flash'), 300);
+    setTimeout(function() { btn.classList.remove('flash'); }, 300);
     
     // Disable buttons
-    document.querySelectorAll('.tf-btn').forEach(b => b.disabled = true);
+    var buttons = document.querySelectorAll('.tf-btn');
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].disabled = true;
+    }
     
     // Show feedback
-    const feedback = document.getElementById('tfFeedback');
-    const icon = document.getElementById('tfFeedbackIcon');
-    const text = document.getElementById('tfFeedbackText');
+    var feedback = document.getElementById('tfFeedback');
+    var icon = document.getElementById('tfFeedbackIcon');
+    var text = document.getElementById('tfFeedbackText');
     
     if (isCorrect) {
         feedback.classList.add('correct');
@@ -1263,7 +1326,7 @@ function handleTrueFalse(answer, btn) {
         feedback.classList.add('show');
         
         // Auto-advance after short pause
-        setTimeout(() => {
+        setTimeout(function() {
             finishQuestion();
         }, 1000);
     } else {
@@ -1273,10 +1336,10 @@ function handleTrueFalse(answer, btn) {
         feedback.classList.add('show');
         
         // Add continue button
-        const continueBtn = document.createElement('button');
+        var continueBtn = document.createElement('button');
         continueBtn.className = 'continue-feedback-btn';
         continueBtn.textContent = 'Continue';
-        continueBtn.onclick = () => finishQuestion();
+        continueBtn.onclick = function() { finishQuestion(); };
         feedback.appendChild(continueBtn);
     }
 }
@@ -1285,19 +1348,8 @@ function handleTrueFalse(answer, btn) {
 // QUESTION COMPLETION
 // ============================
 function finishQuestion() {
-    const q = questions[currentQuestion];
-    
-    // Calculate score for this question
-    if (q.type === 'sort') {
-        // For sort questions, count as 1 point if they got majority correct
-        const threshold = Math.ceil(q.cards.length / 2);
-        if (questionScore >= threshold) {
-            score++;
-        }
-    } else {
-        // For T/F, it's just 1 or 0
-        score += questionScore;
-    }
+    // Add all correct answers from this question to total score
+    score += questionScore;
     
     currentQuestion++;
     
@@ -1312,8 +1364,8 @@ function finishQuestion() {
 // TIMELINE
 // ============================
 function updateTimeline(position) {
-    const progress = document.getElementById('timelineProgress');
-    const marker = document.getElementById('timelineMarker');
+    var progress = document.getElementById('timelineProgress');
+    var marker = document.getElementById('timelineMarker');
     
     progress.style.width = position + '%';
     marker.style.left = position + '%';
@@ -1326,20 +1378,39 @@ function showCertificate() {
     document.getElementById('quizContainer').classList.remove('active');
     document.getElementById('timelineContainer').style.display = 'none';
     
-    const percentage = Math.round((score / questions.length) * 100);
-    const passed = percentage >= 80;
+    var percentage = Math.round((score / totalPossiblePoints) * 100);
+    var passed = percentage >= 60;
+    
+    // Determine grade and message
+    var grade, message;
+    if (percentage >= 85) {
+        grade = 'A+';
+        message = 'Amazing work!';
+    } else if (percentage >= 78) {
+        grade = 'A';
+        message = 'Excellent!';
+    } else if (percentage >= 70) {
+        grade = 'B';
+        message = 'Good job!';
+    } else if (percentage >= 60) {
+        grade = 'C';
+        message = 'You passed the challenge!';
+    } else {
+        grade = '';
+        message = 'Unfortunately, you did not pass the Ultimate Hinting Challenge.';
+    }
     
     document.getElementById('certName').textContent = playerName;
-    document.getElementById('certScore').textContent = `${score}/${questions.length}`;
+    document.getElementById('certScore').textContent = grade;
     document.getElementById('certScore').classList.add(passed ? 'pass' : 'fail');
-    document.getElementById('certPercentage').textContent = `${percentage}%`;
+    document.getElementById('certPercentage').textContent = message;
     
-    const status = document.getElementById('certStatus');
+    var status = document.getElementById('certStatus');
     status.textContent = passed ? 'PASSED' : 'NOT YET PASSED';
     status.classList.add(passed ? 'pass' : 'fail');
     
-    const today = new Date();
-    const dateStr = today.toLocaleDateString('en-US', { 
+    var today = new Date();
+    var dateStr = today.toLocaleDateString('en-US', { 
         year: 'numeric', 
         month: 'long', 
         day: 'numeric' 
@@ -1347,6 +1418,24 @@ function showCertificate() {
     document.getElementById('certDate').textContent = dateStr;
     
     document.getElementById('certificateScreen').classList.add('active');
+}
+
+function retryChallenge() {
+    // Reset state
+    currentQuestion = 0;
+    currentCardIndex = 0;
+    score = 0;
+    questionScore = 0;
+    currentPhase = -1;
+    justTransitioned = false;
+    
+    // Reset certificate classes
+    document.getElementById('certScore').classList.remove('pass', 'fail');
+    document.getElementById('certStatus').classList.remove('pass', 'fail');
+    
+    // Hide certificate, show intro
+    document.getElementById('certificateScreen').classList.remove('active');
+    document.getElementById('introScreen').classList.remove('hidden');
 }
 </script>
 </body>
