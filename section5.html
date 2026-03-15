@@ -9,30 +9,73 @@
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="has-progress-bar">
+
+<!-- Progress Bar & TOC -->
+<div class="progress-bar-container">
+    <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progressFill" style="width: 83%;"></div>
+    </div>
+</div>
+
+<button class="lesson-indicator" id="lessonIndicator" onclick="toggleTOC()">Lesson 5 of 5</button>
+
+<div class="toc-overlay" id="tocOverlay" onclick="closeTOC()"></div>
+
+<div class="toc-dropdown" id="tocDropdown">
+    <div class="toc-header">
+        <h3>The Art of Hinting</h3>
+    </div>
+    <ul class="toc-list">
+        <li><a href="section1.html" class="toc-link completed"><span class="toc-status">✓</span> Lesson 1: The Golden Rule</a></li>
+        <li><a href="section2.html" class="toc-link completed"><span class="toc-status">✓</span> Lesson 2: Group Dynamics</a></li>
+        <li><a href="section3.html" class="toc-link completed"><span class="toc-status">✓</span> Lesson 3: Questions > Statements</a></li>
+        <li><a href="section4.html" class="toc-link completed"><span class="toc-status">✓</span> Lesson 4: Staying in Character</a></li>
+        <li><a href="section5.html" class="toc-link current"><span class="toc-status">→</span> Lesson 5: Adapting Your Approach</a></li>
+        <li><div class="toc-divider"></div></li>
+        <li><a href="section6.html" class="toc-link"><span class="toc-status">★</span> Final Exam</a></li>
+    </ul>
+</div>
+<!-- End Progress Bar & TOC -->
+
 <div class="intro-container">
     <div class="module-intro">
         <!-- Section 1: Intro -->
         <div class="intro-section active" id="section1">
-            <h2 class="section-title">Lesson 5: Adapting Your Approach</h2>
+            <h2 class="section-title">Adapting Your Approach</h2>
             <br>
-            <p>Every group that enters an escape room brings its own unique dynamics and needs. As Clue Staff, your ability to adapt your hinting and hosting style for children, families, ESL groups, accessibility requirements, and other special cases is essential.</p>
+            <p>Every group that enters an escape room brings its own unique dynamics and needs. Sometimes, this diversity demands flexibility.</p>
             <br>
-            <p><b>In this lesson, you'll learn how to:</b></p><br>
-            <ul class="topic-list">
-                <li>Spot unique group needs that require a flexible approach</li>
-                <li>Modify hinting strategies for young players, families, and English language learners</li>
-                <li>Accommodate accessibility requirements while maintaining immersion</li>
-                <li>Tailor your approach for highly experienced or small groups</li>
-            </ul>
-            
+            <p>As Clue Staff, your ability to adapt your hinting and hosting style for children, families, ESL groups, accessibility requirements, and other special cases is essential.</p>
+            <br>
+            <p>This lesson will help you recognize anomalies and make sure every player enjoys a positive and immersive experience — no matter the situation.</p>
+
             <button class="next-btn" onclick="showSection(2)">
                 <span>→</span>
             </button>
         </div>
 
-        <!-- Section 2: Common Anomalies -->
+        <!-- Section 2: Objectives -->
         <div class="intro-section" id="section2">
+            <h2 class="section-title">Learning Objectives</h2>
+            <br>
+            <p>These objectives will guide you through the skills needed to recognize and respond to special situations:</p>
+
+            <ul class="topic-list">
+                <li>Spot unique group needs and situations that require a flexible approach</li>
+                <li>Modify hinting strategies for young players, families, and English language learners</li>
+                <li>Maintain immersion while ensuring all accommodations are met with dignity</li>
+                <li>Tailor your approach for highly experienced or small groups</li>
+                <li>Use core hinting strategies with thoughtful adjustments in special situations</li>
+            </ul>
+
+            <button class="next-btn" onclick="showSection(3)">
+                <span>→</span>
+            </button>
+        </div>
+
+        <!-- Section 3: Common Anomalies -->
+        <div class="intro-section" id="section3">
             <h2 class="section-title">Common Anomalies</h2>
             <br>
             <p>Expand each item to learn about the challenges and best practices for each group type.</p>
@@ -92,20 +135,19 @@
                 </div>
             </div>
 
-            <button class="next-btn" onclick="showSection(3)">
+            <button class="next-btn" onclick="showSection(4)">
                 <span>→</span>
             </button>
         </div>
 
-        <!-- Section 3: Key Takeaways -->
-        <div class="intro-section" id="section3">
+        <!-- Section 4: Key Takeaways -->
+        <div class="intro-section" id="section4">
             <h2 class="section-title">Key Takeaways</h2>
-            
-            <div class="text-content-card">
-                <p>Flexibility is key to supporting every group that enters your game. By recognizing anomalies and adapting your approach, you ensure that all players — regardless of age, language, ability, or experience — have a rewarding and memorable adventure.</p>
-                <p>Remember to apply core hinting principles with empathy and creativity in every special situation.</p>
-            </div>
-            
+            <br>
+            <p>Flexibility is key to supporting every group that enters your game. By recognizing anomalies and adapting your approach, you ensure that all players — regardless of age, language, ability, or experience — have a rewarding and memorable adventure.</p>
+            <br>
+            <p>Remember to apply core hinting principles with empathy and creativity in every special situation.</p>
+            <br>
             <p class="rule-statement-large" style="font-size: 1.8rem; margin-top: 2rem;">Embrace adaptability and call on your empathy — your flexibility can make an escape room experience unforgettably inclusive.</p>
 
             <a href="section5quiz.html" class="quiz-btn">Check your understanding</a>
@@ -116,6 +158,7 @@
             <span class="dot active" onclick="showSection(1)"></span>
             <span class="dot" onclick="showSection(2)"></span>
             <span class="dot" onclick="showSection(3)"></span>
+            <span class="dot" onclick="showSection(4)"></span>
         </div>
     </div>
 </div>
@@ -152,6 +195,19 @@ document.querySelectorAll('.accordion-header').forEach(button => {
         }
     });
 });
+
+// TOC Functions
+function toggleTOC() {
+    var dropdown = document.getElementById('tocDropdown');
+    var overlay = document.getElementById('tocOverlay');
+    dropdown.classList.toggle('open');
+    overlay.classList.toggle('open');
+}
+
+function closeTOC() {
+    document.getElementById('tocDropdown').classList.remove('open');
+    document.getElementById('tocOverlay').classList.remove('open');
+}
 </script>
 </body>
 </html>
