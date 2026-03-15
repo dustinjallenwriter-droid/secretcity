@@ -9,26 +9,50 @@
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="has-progress-bar">
+
+<!-- Progress Bar & TOC -->
+<div class="progress-bar-container">
+    <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progressFill" style="width: 33%;"></div>
+    </div>
+</div>
+
+<button class="lesson-indicator" id="lessonIndicator" onclick="toggleTOC()">Lesson 2 of 5</button>
+
+<div class="toc-overlay" id="tocOverlay" onclick="closeTOC()"></div>
+
+<div class="toc-dropdown" id="tocDropdown">
+    <div class="toc-header">
+        <h3>The Art of Hinting</h3>
+    </div>
+    <ul class="toc-list">
+        <li><a href="section1.html" class="toc-link completed"><span class="toc-status">✓</span> Lesson 1: The Golden Rule</a></li>
+        <li><a href="section2.html" class="toc-link current"><span class="toc-status">→</span> Lesson 2: Group Dynamics</a></li>
+        <li><a href="section3.html" class="toc-link"><span class="toc-status">○</span> Lesson 3: Questions > Statements</a></li>
+        <li><a href="section4.html" class="toc-link"><span class="toc-status">○</span> Lesson 4: Staying in Character</a></li>
+        <li><a href="section5.html" class="toc-link"><span class="toc-status">○</span> Lesson 5: Adapting Your Approach</a></li>
+        <li><div class="toc-divider"></div></li>
+        <li><a href="section6.html" class="toc-link"><span class="toc-status">★</span> Final Exam</a></li>
+    </ul>
+</div>
+<!-- End Progress Bar & TOC -->
+
 <div class="intro-container">
     <div class="module-intro">
-<!-- Section 1 - Title & Intro -->
+        <!-- Section 1 - Title & Intro -->
         <div class="intro-section active" id="section1">
-            <h2 class="section-title">Lesson 2: Responding to group dynamics and player behaviour</h2>
+            <h2 class="section-title">Responding to group dynamics and player behaviour</h2>
             <br>
             <p>When it comes to hinting, knowing <em>when</em> to hint is often more important than knowing <em>what</em> to say. You won't always be given direct cues as to when it is or isn't the right time to hint. Developing <em>tact</em> often depends on reading unspoken cues from players.</p>
             <br>
-            <p><b>In this lesson, you'll learn how to:</b></p><br>
-            <ul class="topic-list">
-                <li>Sharpen your observation skills to interpret group dynamics</li>
-                <li>Adapt your approach to keep every team engaged and challenged</li>
-                <li>Support players at just the right moments without giving too much away</li>
-            </ul>
+            <p>In this lesson, you'll learn how to interpret group dynamics and adapt your approach to keep every team engaged and challenged. By sharpening your observation skills, you'll be able to support players at just the right moments without giving too much away.</p>
             
             <button class="next-btn" onclick="showSection(2)">
                 <span>→</span>
             </button>
         </div>
+
         <!-- Section 2 - Common Group Dynamics -->
         <div class="intro-section" id="section2">
             <h2 class="section-title">Common Group Dynamics in Escape Rooms</h2>
@@ -120,7 +144,7 @@
                     </button>
                     <div class="accordion-content">
                         <p><strong>When to use:</strong><br> If players are making discoveries but not sharing, or if groups are working in isolation and missing out on each other's insights.</p>
-                        <p><strong>How to phrase in character:</strong> <br>'Have you shared your findings with your companions?' or 'Perhaps you and your perhaps you and your fellow constables/adventurers/agents should compare notes?'</p>
+                        <p><strong>How to phrase in character:</strong> <br>'Have you shared your findings with your companions?' or 'Perhaps you and your teammate should compare notes?'</p>
                         <p><strong>Example:</strong><br> One player solves a puzzle, but others don't know and start working on it again. Remind them to update each other.</p>
                     </div>
                 </div>
@@ -186,6 +210,19 @@ document.querySelectorAll('.accordion-header').forEach(button => {
         }
     });
 });
+
+// TOC Functions
+function toggleTOC() {
+    var dropdown = document.getElementById('tocDropdown');
+    var overlay = document.getElementById('tocOverlay');
+    dropdown.classList.toggle('open');
+    overlay.classList.toggle('open');
+}
+
+function closeTOC() {
+    document.getElementById('tocDropdown').classList.remove('open');
+    document.getElementById('tocOverlay').classList.remove('open');
+}
 </script>
 </body>
 </html>
