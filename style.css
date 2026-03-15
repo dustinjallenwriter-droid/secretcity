@@ -498,6 +498,30 @@ body:not(.dark-mode):not(.centered-layout) .intro-container {
     margin: 0;
 }
 
+/* Text Content Card - for text-only sections */
+.text-content-card {
+    background: var(--off-white);
+    border-left: 4px solid var(--yellow);
+    border-radius: 0 8px 8px 0;
+    padding: 2rem;
+    margin: 1rem 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.text-content-card p {
+    margin-bottom: 1.25rem;
+    line-height: 1.8;
+}
+
+.text-content-card p:last-child {
+    margin-bottom: 0;
+}
+
+.text-content-card .highlight {
+    font-weight: 600;
+    color: var(--teal);
+}
+
 /* ============================
    STEP CAROUSEL
    ============================ */
@@ -826,10 +850,12 @@ body.dark-mode .nav-dots {
     height: 100%;
     transition: transform 0.6s;
     transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
 }
 
 .flip-card.flipped .flip-card-inner {
     transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
 }
 
 .flip-card-front,
@@ -838,6 +864,7 @@ body.dark-mode .nav-dots {
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     border-radius: 12px;
     padding: 1.5rem;
     display: flex;
@@ -891,27 +918,228 @@ body.dark-mode .nav-dots {
     }
 }
 
-/* Text Content Card - for text-only sections */
-.text-content-card {
-    background: #f5f5f0;
-    border: 1px solid #e0e0e0;
-    border-left: 4px solid var(--yellow);
-    border-radius: 0 8px 8px 0;
-    padding: 2rem;
-    margin: 1rem 0;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+/* ============================
+   PROGRESS BAR & TOC
+   ============================ */
+
+/* Progress bar container - fixed at top */
+.progress-bar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--white);
 }
 
-.text-content-card p {
-    margin-bottom: 1.25rem;
-    line-height: 1.8;
+.progress-bar-track {
+    height: 4px;
+    background: #e0e0e0;
+    width: 100%;
 }
 
-.text-content-card p:last-child {
-    margin-bottom: 0;
+.progress-bar-fill {
+    height: 100%;
+    background: var(--yellow);
+    transition: width 0.3s ease;
 }
 
-.text-content-card .highlight {
-    font-weight: 600;
+/* Lesson indicator button */
+.lesson-indicator {
+    position: fixed;
+    top: 12px;
+    right: 16px;
+    z-index: 1001;
+    font-family: var(--body-font);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--gray);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.lesson-indicator:hover {
+    background: rgba(0, 0, 0, 0.05);
     color: var(--teal);
+}
+
+.lesson-indicator::after {
+    content: ' ▾';
+    font-size: 0.6rem;
+}
+
+/* TOC Dropdown */
+.toc-dropdown {
+    position: fixed;
+    top: 40px;
+    right: 16px;
+    z-index: 1002;
+    background: var(--white);
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    min-width: 280px;
+    max-width: 320px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+}
+
+.toc-dropdown.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.toc-header {
+    padding: 1rem 1.25rem 0.75rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.toc-header h3 {
+    font-family: var(--heading-font);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--black);
+    margin: 0;
+}
+
+.toc-list {
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem 0;
+}
+
+.toc-list li {
+    margin: 0;
+    padding: 0;
+}
+
+.toc-list li::before {
+    display: none;
+}
+
+.toc-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    text-decoration: none;
+    color: var(--gray);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.toc-link:hover {
+    background: rgba(244, 196, 48, 0.1);
+    color: var(--black);
+}
+
+.toc-link.current {
+    color: var(--teal);
+    background: rgba(26, 77, 92, 0.08);
+}
+
+.toc-link.completed .toc-status {
+    color: var(--yellow);
+}
+
+.toc-status {
+    font-size: 0.85rem;
+    width: 1.25rem;
+    text-align: center;
+    color: #ccc;
+}
+
+.toc-divider {
+    height: 1px;
+    background: #e0e0e0;
+    margin: 0.5rem 1.25rem;
+}
+
+/* TOC overlay to close on tap outside */
+.toc-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    display: none;
+}
+
+.toc-overlay.open {
+    display: block;
+}
+
+/* Dark mode adjustments */
+body.dark-mode .progress-bar-container {
+    background: #0a0a0a;
+}
+
+body.dark-mode .progress-bar-track {
+    background: #333;
+}
+
+body.dark-mode .lesson-indicator {
+    color: #888;
+}
+
+body.dark-mode .lesson-indicator:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--yellow);
+}
+
+body.dark-mode .toc-dropdown {
+    background: #1a1a1a;
+    border-color: #333;
+}
+
+body.dark-mode .toc-header {
+    border-color: #333;
+}
+
+body.dark-mode .toc-header h3 {
+    color: var(--white);
+}
+
+body.dark-mode .toc-link {
+    color: #aaa;
+}
+
+body.dark-mode .toc-link:hover {
+    background: rgba(244, 196, 48, 0.15);
+    color: var(--white);
+}
+
+body.dark-mode .toc-link.current {
+    color: var(--yellow);
+    background: rgba(253, 185, 19, 0.1);
+}
+
+body.dark-mode .toc-divider {
+    background: #333;
+}
+
+/* Adjust body padding for fixed progress bar */
+body.has-progress-bar {
+    padding-top: calc(2rem + 4px);
+}
+
+@media (max-width: 768px) {
+    body.has-progress-bar {
+        padding-top: calc(1.5rem + 4px);
+    }
+    
+    .toc-dropdown {
+        right: 12px;
+        left: 12px;
+        max-width: none;
+    }
 }
