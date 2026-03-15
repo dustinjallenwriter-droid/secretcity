@@ -9,7 +9,35 @@
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-<body class="dark-mode centered-layout">
+<body class="dark-mode centered-layout has-progress-bar">
+
+<!-- Progress Bar & TOC -->
+<div class="progress-bar-container">
+    <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progressFill" style="width: 17%;"></div>
+    </div>
+</div>
+
+<button class="lesson-indicator" id="lessonIndicator" onclick="toggleTOC()">Lesson 1 of 5</button>
+
+<div class="toc-overlay" id="tocOverlay" onclick="closeTOC()"></div>
+
+<div class="toc-dropdown" id="tocDropdown">
+    <div class="toc-header">
+        <h3>The Art of Hinting</h3>
+    </div>
+    <ul class="toc-list">
+        <li><a href="section1.html" class="toc-link current"><span class="toc-status">→</span> Lesson 1: The Golden Rule</a></li>
+        <li><a href="section2.html" class="toc-link"><span class="toc-status">○</span> Lesson 2: Group Dynamics</a></li>
+        <li><a href="section3.html" class="toc-link"><span class="toc-status">○</span> Lesson 3: Questions > Statements</a></li>
+        <li><a href="section4.html" class="toc-link"><span class="toc-status">○</span> Lesson 4: Staying in Character</a></li>
+        <li><a href="section5.html" class="toc-link"><span class="toc-status">○</span> Lesson 5: Adapting Your Approach</a></li>
+        <li><div class="toc-divider"></div></li>
+        <li><a href="section6.html" class="toc-link"><span class="toc-status">★</span> Final Exam</a></li>
+    </ul>
+</div>
+<!-- End Progress Bar & TOC -->
+
 <div class="intro-container">
     <div class="module-intro">
         <!-- Section 1 - Golden Rule Reveal -->
@@ -180,24 +208,25 @@
         <p>The purpose of the game end target is to help ensure that each ticket holder has the opportunity to play through the majority of each experience, regardless of their general demographic, education level, escape game experience, English language comprehension, or game group type (public vs. private).</p>
         <p>This target is in place to ensure everyone receives the same product and the same level of enjoyment.</p>
     </div>
-    
+
     <button class="next-btn" onclick="showSection(8)">
         <span>→</span>
     </button>
 </div>
-        
+
 <!-- Section 8 - The Rest of the Golden Rule -->
 <div class="intro-section" id="section8">
     <h2 class="section-title">The (rest of the) Golden Rule</h2>
     <br>
     <p class="rule-statement">"Do not hint unless absolutely necessary (... and it is never necessary to hint on the final puzzle)"</p>
-    <p>As teams approach the end of the game, you may find yourself hinting more heavily than usual to push them toward the game end target. This is part of the job. Whenever possible, we do want players to get to the final puzzle with enough time to attempt it.</p>
     <br>
-    <p>But once they reach the game end target, <strong>you must stop hinting entirely</strong>.</p>
+    <p>As teams approach the end of the game, you may find yourself hinting more heavily than usual to push them toward the final puzzle. This is part of the job. Whenever possible, we do want players to get to the final puzzle with enough time to attempt it.</p>
     <br>
-    <p>If players feel like they only beat the game's final challenge because of your help, their sense of accomplishment will be deflated.</p>
+    <p>But once they reach the final puzzle, <strong>you must stop hinting entirely</strong>.</p>
     <br>
-    <p>Handing them the victory has no benefit to anyone — even if in the moment you think you're being helpful.</p>
+    <p>If players feel like they only beat the final puzzle because of your help, their sense of accomplishment will be deflated.</p>
+    <br>
+    <p>Handing them the victory has no benefit to anyone — even if in the moment you think you're just being helpful.</p>
 
     <div class="note-box">
         <p><strong>The shift:</strong> Near the end of the game, you may escalate hints to push players toward the end. It's imperative you recognize when they've reached the final puzzle and stop completely.</p>
@@ -337,6 +366,19 @@ function nextStep() {
     if (currentStep < totalSteps) {
         showStep(currentStep + 1);
     }
+}
+
+// TOC Functions
+function toggleTOC() {
+    var dropdown = document.getElementById('tocDropdown');
+    var overlay = document.getElementById('tocOverlay');
+    dropdown.classList.toggle('open');
+    overlay.classList.toggle('open');
+}
+
+function closeTOC() {
+    document.getElementById('tocDropdown').classList.remove('open');
+    document.getElementById('tocOverlay').classList.remove('open');
 }
 </script>
 </body>
