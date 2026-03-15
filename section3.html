@@ -9,7 +9,35 @@
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="has-progress-bar">
+
+<!-- Progress Bar & TOC -->
+<div class="progress-bar-container">
+    <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progressFill" style="width: 50%;"></div>
+    </div>
+</div>
+
+<button class="lesson-indicator" id="lessonIndicator" onclick="toggleTOC()">Lesson 3 of 5</button>
+
+<div class="toc-overlay" id="tocOverlay" onclick="closeTOC()"></div>
+
+<div class="toc-dropdown" id="tocDropdown">
+    <div class="toc-header">
+        <h3>The Art of Hinting</h3>
+    </div>
+    <ul class="toc-list">
+        <li><a href="section1.html" class="toc-link completed"><span class="toc-status">✓</span> Lesson 1: The Golden Rule</a></li>
+        <li><a href="section2.html" class="toc-link completed"><span class="toc-status">✓</span> Lesson 2: Group Dynamics</a></li>
+        <li><a href="section3.html" class="toc-link current"><span class="toc-status">→</span> Lesson 3: Questions > Statements</a></li>
+        <li><a href="section4.html" class="toc-link"><span class="toc-status">○</span> Lesson 4: Staying in Character</a></li>
+        <li><a href="section5.html" class="toc-link"><span class="toc-status">○</span> Lesson 5: Adapting Your Approach</a></li>
+        <li><div class="toc-divider"></div></li>
+        <li><a href="section6.html" class="toc-link"><span class="toc-status">★</span> Final Exam</a></li>
+    </ul>
+</div>
+<!-- End Progress Bar & TOC -->
+
 <div class="intro-container">
     <div class="module-intro">
         <!-- Section 1: Intro -->
@@ -213,14 +241,14 @@
             </button>
         </div>
 
-<!-- Section 5: Late-Game Exception -->
+        <!-- Section 5: Late-Game Exception -->
         <div class="intro-section" id="section5">
             <h2 class="section-title">Late-Game Exception</h2>
             
             <div class="text-content-card">
-                <p>As time runs short and players approach the game end target, you may need to hint more heavily — even jumping to higher rungs on the ladder — to ensure they have time to attempt the ending.</p>
+                <p>As time runs short and players approach the final puzzle, you may need to hint more heavily — even jumping to higher rungs on the ladder — to ensure they have time to attempt the ending.</p>
                 <p>Your job is to get them there.</p>
-                <p>But remember: once they reach the game end target, <b>stop hinting entirely</b>.</p>
+                <p>But remember: once they reach the final puzzle, stop hinting entirely. It is <em>never</em> necessary to hint on the final puzzle.</p>
             </div>
 
             <button class="next-btn" onclick="showSection(6)">
@@ -313,6 +341,19 @@ function nextStep() {
 
 function prevStep() {
     if (currentStep > 1) goToStep(currentStep - 1);
+}
+
+// TOC Functions
+function toggleTOC() {
+    var dropdown = document.getElementById('tocDropdown');
+    var overlay = document.getElementById('tocOverlay');
+    dropdown.classList.toggle('open');
+    overlay.classList.toggle('open');
+}
+
+function closeTOC() {
+    document.getElementById('tocDropdown').classList.remove('open');
+    document.getElementById('tocOverlay').classList.remove('open');
 }
 </script>
 </body>
